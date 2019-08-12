@@ -6,7 +6,7 @@ const MOUSE_SENSITIVITY = 0.05
 
 var accel = 8
 var deaccel = 11
-var max_speed = 18
+var max_speed = 14
 var velocity = Vector3()
 
 const MAX_SLOPE_ANGLE = 90
@@ -19,6 +19,7 @@ func _ready():
 	camera = $RotationHelper/Camera
 	rotation_helper = $RotationHelper
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	add_to_group("player")
 
 func _physics_process(delta):
 	move(delta)

@@ -7,10 +7,13 @@ var fire_ray
 
 var damage = 5
 
-var MAGAZINE_SIZE = 30
+var MAGAZINE_SIZE = 300
 var bullets_left
 
 var ammo_label
+
+var BULLET = preload("res://Scenes/Bullet.tscn")
+onready var FIREPOINT = get_node("RotationHelper/Camera/FirePoint")
 
 func _ready():
     playback = get("parameters/playback")
@@ -30,7 +33,7 @@ func _process(delta):
             playback.travel("idle")
     if Input.is_action_just_pressed("reload") && bullets_left < MAGAZINE_SIZE || bullets_left == 0:
         playback.travel("reload")
-
+    
 
 func fire_bullet():
     if bullets_left == 0:
@@ -38,10 +41,10 @@ func fire_bullet():
     bullets_left -= 1
     fire_ray.force_raycast_update()
     if fire_ray.is_colliding():
+        print(fire_ray.get_collider())
         var body = fire_ray.get_collider()
         if body.has_method("bullet_hit"):
             body.bullet_hit(damage)
-    pass
 
 func finish_reload():
     bullets_left = MAGAZINE_SIZE

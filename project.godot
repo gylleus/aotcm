@@ -30,6 +30,10 @@ config/name="Attack of the Chaos Monkeys"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=1920
