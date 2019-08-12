@@ -97,3 +97,36 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3252, 3.48637, 51.7208 )
 
 [node name="Monkey" parent="." instance=ExtResource( 12 )]
 transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, 0.73393, 4.30058, 39.8645 )
+
+[node name="Monkey7" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, 50.8164, 4.30058, -15.2822 )
+
+[node name="Monkey4" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, -14.0133, 4.30058, 21.9508 )
+
+[node name="Monkey10" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, 36.0691, 4.30058, -33.1959 )
+
+[node name="Monkey2" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, -11.3383, 4.30058, 28.2843 )
+
+[node name="Monkey8" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, 38.7441, 4.30058, -26.8624 )
+
+[node name="Monkey5" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, -26.0856, 4.30058, 10.3706 )
+
+[node name="Monkey11" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, 23.9969, 4.30058, -44.7762 )
+
+[node name="Monkey3" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, -25.6241, 4.30058, 21.7663 )
+
+[node name="Monkey9" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, 24.4584, 4.30058, -33.3804 )
+
+[node name="Monkey6" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, -40.3713, 4.30058, 3.85255 )
+
+[node name="Monkey12" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, 9.71111, 4.30058, -51.2942 )
