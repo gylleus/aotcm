@@ -42,7 +42,7 @@ spot_angle = 63.0
 spot_angle_attenuation = 0.870551
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 8.35189e-23, 4.37114e-08, -4.37114e-08, 1.91069e-15, 1, 0, -1, 1.91069e-15, -88.638, 108.9, 1.03241 )
+transform = Transform( 1, 8.35189e-023, 4.37114e-008, -4.37114e-008, 1.91069e-015, 1, 0, -1, 1.91069e-015, -88.638, 108.9, 1.03241 )
 light_energy = 0.24
 light_indirect_energy = 0.33
 light_specular = 0.48
@@ -77,10 +77,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 76.2951, 3.52777, 3.55095 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 76.1512, 4.12102, 0.731272 )
 
 [node name="Platforms" type="Spatial" parent="Navigation/NavigationMeshInstance/Arena/Environment"]
-editor/display_folded = true
 
 [node name="Platform" parent="Navigation/NavigationMeshInstance/Arena/Environment/Platforms" instance=ExtResource( 8 )]
-transform = Transform( 4, 0, 0, 0, 7, 0, 0, 0, 4, 35, 3.288, -45 )
+transform = Transform( 11.8698, 0, 0, 0, 7, 0, 0, 0, 11.8698, 29.8396, 3.288, -36.7617 )
 
 [node name="Platform2" parent="Navigation/NavigationMeshInstance/Arena/Environment/Platforms" instance=ExtResource( 8 )]
 transform = Transform( 4.14752, 0, 0, 0, 7.25816, 0, 0, 0, 4.14752, -34.626, 3.288, 48.0869 )
@@ -89,7 +88,7 @@ transform = Transform( 4.14752, 0, 0, 0, 7.25816, 0, 0, 0, 4.14752, -34.626, 3.2
 transform = Transform( -0.344893, 0, 0.0595734, 0, 0.35, 0, -0.0595734, 0, -0.344893, -14.2567, 3.83313, -48.8676 )
 
 [node name="KubeletTemple" parent="Navigation/NavigationMeshInstance/Arena/Environment" instance=ExtResource( 10 )]
-transform = Transform( 0.2, 0, 0, 0, 0.23, 0, 0, 0, 0.2, -0.0295463, 3.79173, -0.0181532 )
+transform = Transform( 0.2, 0, 0, 0, 0.23, 0, 0, 0, 0.2, 0, 3.792, 0 )
 
 [node name="KapokTree" parent="Navigation/NavigationMeshInstance/Arena/Environment" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3252, 3.48637, 51.7208 )

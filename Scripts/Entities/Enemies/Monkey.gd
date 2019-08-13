@@ -4,8 +4,8 @@ var playback : AnimationNodeStateMachinePlayback
 
 var path = []
 var path_ind = 0
-const ACCELERATION = 600
-const MAX_MOVEMENT_SPEED = 900
+const ACCELERATION = 350
+const MAX_MOVEMENT_SPEED = 500
 const MAX_SLOPE_ANGLE = 60
 var nav
 
@@ -14,7 +14,7 @@ var AGGRO_RADIUS = 5
 var ATTACK_RANGE = 3
 var GRAVITY = -2000
 var TARGET_RECALC_DISTANCE = 10
-var DRAG = 400
+var DRAG = 250
 
 var current_target
 # Where the target was last seen

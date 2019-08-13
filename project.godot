@@ -30,6 +30,10 @@ config/name="Attack of the Chaos Monkeys"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://Scripts/Globals.gd"
+
 [debug]
 
 settings/stdout/print_fps=true
@@ -38,10 +42,6 @@ settings/stdout/print_fps=true
 
 window/size/width=1920
 window/size/height=1080
-
-[editor_plugins]
-
-enabled=PoolStringArray( "zylann.hterrain" )
 
 [input]
 
