@@ -127,7 +127,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.7, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( -0.00149606, 0, 0 ), Vector3( 10.2694, -0.416164, 9.22897 ), Vector3( 11.7108, -8.13757e-007, 21.0463 ), Vector3( -0.00149606, 0, 0 ) ]
+"values": [ Vector3( -0.00149606, 0, 0 ), Vector3( 10.2694, -0.416164, 9.22897 ), Vector3( 11.7108, -8.13757e-07, 21.0463 ), Vector3( -0.00149606, 0, 0 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("AnimationTree")
@@ -159,17 +159,18 @@ shape = SubResource( 2 )
 disabled = true
 
 [node name="RotationHelper" type="Spatial" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 
 [node name="Camera" type="Camera" parent="RotationHelper"]
-transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, 0, 0.0411232, -0.523437 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.0411232, -0.523437 )
 fov = 90.0
 near = 0.07
 far = 200.0
 script = ExtResource( 2 )
 
 [node name="FirePoint" type="Spatial" parent="RotationHelper/Camera"]
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="FireRay" type="RayCast" parent="RotationHelper/Camera/FirePoint"]
 enabled = true
@@ -189,11 +190,11 @@ transform = Transform( 0.818154, -0.230433, 0, 0.23061, 0.818135, 0, 0, 0, 0.85,
 script = ExtResource( 4 )
 
 [node name="Sprite3D" type="Sprite3D" parent="RotationHelper/AnimationHelper/Rifle/Muzzle"]
-transform = Transform( -6.3926e-006, -6.28527e-005, 0.3, 0.3, -0.00024252, 6.34789e-006, 0.000242519, 0.3, 6.28579e-005, 2.98023e-008, -2.38419e-007, 0.0419673 )
+transform = Transform( -6.3926e-06, -6.28527e-05, 0.3, 0.3, -0.00024252, 6.34789e-06, 0.000242519, 0.3, 6.28579e-05, 2.98023e-08, -2.38419e-07, 0.0419673 )
 texture = ExtResource( 5 )
 
 [node name="Sprite3D2" type="Sprite3D" parent="RotationHelper/AnimationHelper/Rifle/Muzzle"]
-transform = Transform( 0.3, 0, 0, 0, -1.62053e-008, -0.244029, 0, 0.370734, -1.06668e-008, 5.96046e-008, 1.19209e-007, 0.0419673 )
+transform = Transform( 0.3, 0, 0, 0, -1.62053e-08, -0.244029, 0, 0.370734, -1.06668e-08, 5.96046e-08, 1.19209e-07, 0.0419673 )
 texture = ExtResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

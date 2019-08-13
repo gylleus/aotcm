@@ -1,5 +1,5 @@
 extends KinematicBody
- 
+
 var playback : AnimationNodeStateMachinePlayback
 
 var path = []
@@ -26,7 +26,7 @@ export var in_the_air = false
 var player
 var aggro_ray
 onready var skeleton = get_node("MonkeyHolder/Armature/Skeleton")
- 
+
 export var MAX_HEALTH = 30
 onready var current_health = MAX_HEALTH
 
@@ -37,7 +37,7 @@ func _ready():
     player = find_player_node()
     aggro_ray = get_node("MonkeyHolder/AggroRay")
     skeleton.physical_bones_start_simulation()
-    
+
 func die():
     queue_free()
 
@@ -45,7 +45,7 @@ func bullet_hit(damage):
     print(damage)
     print(current_health)
     current_health -= damage
-    flying_velocity = Vector3(0,900,0) + (global_transform.origin-player.transform.origin) * 20
+    flying_velocity = Vector3(0,200,0) + (global_transform.origin-player.transform.origin) * 20
     in_the_air = true
     apply_flying_movement(0.1)
    # if current_health <= 0:
@@ -136,7 +136,7 @@ func process_movement(delta):
         else:
             apply_movement(move_vec, ACCELERATION, delta)
         if walk_target_pos != null:
-            look(walk_target_pos)    
+            look(walk_target_pos)
             playback.travel("Walking")
 
 func _physics_process(delta):
@@ -153,11 +153,11 @@ func _physics_process(delta):
     if current_target != player:
         if will_aggro():
             aggro_player()
-    
+
     if !target_in_attack_range() && !in_the_air && playback.get_current_node() != "Attack":
         process_movement(delta)
     elif can_attack():
-        look(get_target_pos()) 
+        look(get_target_pos())
         playback.travel("Attack")
         pass
     else:
