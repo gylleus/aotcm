@@ -1,0 +1,57 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Models/Entities/Pod/pod.glb" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Entities/Pod.gd" type="Script" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "Attacked"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "Breathe"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/Attacked/node = SubResource( 1 )
+states/Attacked/position = Vector2( 709, 180 )
+states/BeginAttacked/node = SubResource( 8 )
+states/BeginAttacked/position = Vector2( 657, 56 )
+states/Breathe/node = SubResource( 2 )
+states/Breathe/position = Vector2( 396, 148 )
+transitions = [ "Breathe", "Attacked", SubResource( 3 ), "Attacked", "Breathe", SubResource( 4 ), "Attacked", "BeginAttacked", SubResource( 9 ), "BeginAttacked", "Attacked", SubResource( 10 ) ]
+start_node = "Breathe"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="Animation" id=7]
+resource_name = "Idle"
+
+[node name="Pod" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="PodArmature" parent="." index="0"]
+transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="1"]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 6 )
+
+[node name="PodArmature2" parent="." index="2"]
+transform = Transform( 7.23756, 0, 0, 0, 7.23756, 0, 0, 0, 7.23756, -0.0161542, 0, 0 )
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/Idle = SubResource( 7 )

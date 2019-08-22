@@ -72,3 +72,6 @@ func _input(event):
 		var camera_rot = rotation_helper.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_helper.rotation_degrees = camera_rot
+
+func take_damage(amount):
+	print("Took " + str(amount) + "damage")

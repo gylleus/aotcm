@@ -2,7 +2,7 @@ extends KinematicBody
 
 var playback : AnimationNodeStateMachinePlayback
 
-var path = []
+var path = null
 var path_ind = 0
 const ACCELERATION = 350
 const MAX_MOVEMENT_SPEED = 500
@@ -15,6 +15,8 @@ var ATTACK_RANGE = 3
 var GRAVITY = -2000
 var TARGET_RECALC_DISTANCE = 10
 var DRAG = 250
+var DEATH_DECAY = 5
+var decay_counter = 0
 
 var current_target
 # Where the target was last seen
@@ -22,11 +24,13 @@ var target_last_pos
 export var current_velocity = Vector3(0,0,0)
 export var flying_velocity = Vector3(0,0,0)
 export var in_the_air = false
+var is_dead = false
 
 var player
 var aggro_ray
 onready var skeleton = get_node("MonkeyHolder/Armature/Skeleton")
 
+export var ATTACK_DAMAGE = 15
 export var MAX_HEALTH = 30
 onready var current_health = MAX_HEALTH
 
@@ -39,7 +43,11 @@ func _ready():
     skeleton.physical_bones_start_simulation()
 
 func die():
-    queue_free()
+    is_dead = true
+    playback.travel("Death")
+    get_node("BodyCollider").disabled = true
+    get_node("HeadCollider").disabled = true
+    #queue_free()
 
 func bullet_hit(damage):
     print(damage)
@@ -48,12 +56,12 @@ func bullet_hit(damage):
     flying_velocity = Vector3(0,200,0) + (global_transform.origin-player.transform.origin) * 20
     in_the_air = true
     apply_flying_movement(0.1)
-   # if current_health <= 0:
-       # die()
+    if current_health <= 0:
+       die()
 
 # Get reference to player
 func find_player_node():
-    var players = get_tree().get_nodes_in_group("player")
+    var players = get_tree().get_nodes_in_group("pods")
     if len(players) == 0:
         print("WARNING: No player object defined in groups 'player'")
     elif len(players) > 1:
@@ -140,29 +148,34 @@ func process_movement(delta):
             playback.travel("Walking")
 
 func _physics_process(delta):
-    if is_on_floor():
-        if in_the_air:
-            in_the_air = false
-            current_velocity = Vector3(0,0,0)
-            flying_velocity = current_velocity
-    elif in_the_air:
-        apply_flying_movement(delta)
+    if !is_dead:
+        if is_on_floor():
+            if in_the_air:
+                in_the_air = false
+                current_velocity = Vector3(0,0,0)
+                flying_velocity = current_velocity
+        elif in_the_air:
+            apply_flying_movement(delta)
 
-    if current_target == null:
-        select_target()
-    if current_target != player:
-        if will_aggro():
-            aggro_player()
+        if current_target == null:
+            select_target()
+        if current_target != player:
+            if will_aggro():
+                aggro_player()
 
-    if !target_in_attack_range() && !in_the_air && playback.get_current_node() != "Attack":
-        process_movement(delta)
-    elif can_attack():
-        look(get_target_pos())
-        playback.travel("Attack")
-        pass
+        if !target_in_attack_range() && !in_the_air && playback.get_current_node() != "Attack":
+            process_movement(delta)
+        elif can_attack():
+            look(get_target_pos())
+            playback.travel("Attack")
+            pass
+        else:
+            pass
+            playback.travel("Idle")
     else:
-        pass
-        playback.travel("Idle")
+        decay_counter += delta
+        if decay_counter >= DEATH_DECAY:
+            queue_free()
 
 func look(target_pos):
     var zdir = (target_pos - global_transform.origin)
@@ -175,3 +188,10 @@ func update_path(target_pos):
     target_last_pos = target_pos
     path = nav.get_simple_path(global_transform.origin, target_pos)
     path_ind = 0
+
+func hit_target():
+    if target_in_attack_range():
+        if current_target.has_method("take_damage"):
+            current_target.take_damage(ATTACK_DAMAGE)
+        else:
+            print("WARNING: Attacked target has no take_damage method")

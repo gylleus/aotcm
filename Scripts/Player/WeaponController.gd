@@ -51,7 +51,6 @@ func fire_bullet():
             bh.transform.basis = player.transform.basis
             get_tree().root.add_child(bh)
         else:
-            print("spawned")
             var bh = BULLET_PARTICLE_HIT.instance()
             bh.global_transform.origin = fire_ray.get_collision_point()
             # TODO: Make transform basis Z the reflected vector in regard to meshes normal

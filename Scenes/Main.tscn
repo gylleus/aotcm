@@ -2,15 +2,15 @@
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Environment/Stones/stone1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Pod.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Arena.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Models/Environment/Stones/stone4.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Models/Environment/Stones/stone2.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Models/Environment/Stones/stone3.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Models/Environment/Pavilion/Pavilion.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/KubeletTemple.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Models/Environment/KapokTree/KapokTree.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Arena.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Models/Environment/Stones/stone4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Models/Environment/Stones/stone2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Models/Environment/Stones/stone3.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Models/Environment/Pavilion/Pavilion.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/KubeletTemple.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Models/Environment/KapokTree/KapokTree.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Models/Entities/Pod/Pod.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Models/Entities/Enemies/Monkey/monkey.tscn" type="PackedScene" id=12]
 
 [sub_resource type="NavigationMesh" id=1]
@@ -28,9 +28,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.8166, 0 )
 
 [node name="RayStone" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 72.4545, 4.32106, -2.74195 )
-
-[node name="Pod" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 0.54, 0, 0, 0, 1, 42.2767, 4.03641, 7.83283 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.00169702, 0.999999, 0, -0.999999, 0.00169702, 0, 52.4687, 0 )
@@ -56,42 +53,51 @@ directional_shadow_bias_split_scale = 0.0
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 1 )
 
-[node name="Arena" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 4 )]
-transform = Transform( 5, 0, 0, 0, 2, 0, 0, 0, 5, 0.00893592, 0.667307, 0.366338 )
+[node name="Arena" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 5, 0, 0, 0, 2, 0, 0, 0, 5, 0.00339126, 0.667305, 0.334073 )
 
 [node name="Environment" type="Spatial" parent="Navigation/NavigationMeshInstance/Arena"]
 transform = Transform( 0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0.0110153, -0.258293, -0.058876 )
 
 [node name="Stones" type="Spatial" parent="Navigation/NavigationMeshInstance/Arena/Environment"]
 
-[node name="Stone4" parent="Navigation/NavigationMeshInstance/Arena/Environment/Stones" instance=ExtResource( 5 )]
+[node name="Stone4" parent="Navigation/NavigationMeshInstance/Arena/Environment/Stones" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 72.7565, 4.12901, 1.33563 )
 
 [node name="Stone1" parent="Navigation/NavigationMeshInstance/Arena/Environment/Stones" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 72.3905, 4.17034, -2.81391 )
 
-[node name="Stone2" parent="Navigation/NavigationMeshInstance/Arena/Environment/Stones" instance=ExtResource( 6 )]
+[node name="Stone2" parent="Navigation/NavigationMeshInstance/Arena/Environment/Stones" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 76.2951, 3.52777, 3.55095 )
 
-[node name="Stone3" parent="Navigation/NavigationMeshInstance/Arena/Environment/Stones" instance=ExtResource( 7 )]
+[node name="Stone3" parent="Navigation/NavigationMeshInstance/Arena/Environment/Stones" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 76.1512, 4.12102, 0.731272 )
 
 [node name="Platforms" type="Spatial" parent="Navigation/NavigationMeshInstance/Arena/Environment"]
 
-[node name="Platform" parent="Navigation/NavigationMeshInstance/Arena/Environment/Platforms" instance=ExtResource( 8 )]
+[node name="Platform" parent="Navigation/NavigationMeshInstance/Arena/Environment/Platforms" instance=ExtResource( 7 )]
 transform = Transform( 11.8698, 0, 0, 0, 7, 0, 0, 0, 11.8698, 29.8396, 3.288, -36.7617 )
 
-[node name="Platform2" parent="Navigation/NavigationMeshInstance/Arena/Environment/Platforms" instance=ExtResource( 8 )]
+[node name="Platform2" parent="Navigation/NavigationMeshInstance/Arena/Environment/Platforms" instance=ExtResource( 7 )]
 transform = Transform( 4.14752, 0, 0, 0, 7.25816, 0, 0, 0, 4.14752, -34.626, 3.288, 48.0869 )
 
-[node name="Pavilion" parent="Navigation/NavigationMeshInstance/Arena/Environment" instance=ExtResource( 9 )]
+[node name="Pavilion" parent="Navigation/NavigationMeshInstance/Arena/Environment" instance=ExtResource( 8 )]
 transform = Transform( -0.344893, 0, 0.0595734, 0, 0.35, 0, -0.0595734, 0, -0.344893, -14.2567, 3.83313, -48.8676 )
 
-[node name="KubeletTemple" parent="Navigation/NavigationMeshInstance/Arena/Environment" instance=ExtResource( 10 )]
+[node name="KubeletTemple" parent="Navigation/NavigationMeshInstance/Arena/Environment" instance=ExtResource( 9 )]
 transform = Transform( 0.2, 0, 0, 0, 0.23, 0, 0, 0, 0.2, 0, 3.792, 0 )
 
-[node name="KapokTree" parent="Navigation/NavigationMeshInstance/Arena/Environment" instance=ExtResource( 11 )]
+[node name="KapokTree" parent="Navigation/NavigationMeshInstance/Arena/Environment" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3252, 3.48637, 51.7208 )
+
+[node name="Pod" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0173, 12.1784, -49.836 )
 
 [node name="Monkey" parent="." instance=ExtResource( 12 )]
 transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, 0.73393, 4.30058, 39.8645 )
+
+[node name="Monkey2" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, -40.9606, 4.30058, 36.0401 )
+
+[node name="Monkey3" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.091342, 0, -0.99582, 0, 1, 0, 0.99582, 0, -0.091342, -13.4342, 4.30058, 21.9125 )
