@@ -146,7 +146,7 @@ tracks/1/keys = {
 
 [node name="PlayerCharacter" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00405693, 0.0412759, -0.00859356 )
-collision_layer = 2
+collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="BodyCollider" type="CollisionShape" parent="."]

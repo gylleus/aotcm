@@ -1,0 +1,254 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "SpinBead"
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Beads")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "value"
+tracks/1/path = NodePath("Beads:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 90, 0 ) ]
+}
+tracks/2/type = "transform"
+tracks/2/path = NodePath("Beads/Bead1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = PoolRealArray(  )
+tracks/3/type = "transform"
+tracks/3/path = NodePath("Beads/Bead2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = PoolRealArray(  )
+tracks/4/type = "transform"
+tracks/4/path = NodePath("Beads/Bead3")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = PoolRealArray(  )
+tracks/5/type = "transform"
+tracks/5/path = NodePath("Beads/Bead4")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = PoolRealArray(  )
+tracks/6/type = "value"
+tracks/6/path = NodePath("Beads/Bead1:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 45, 45, 0 ), Vector3( 90, 90, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Beads/Bead4:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 45, 45, 0 ), Vector3( 90, 90, 0 ) ]
+}
+tracks/8/type = "transform"
+tracks/8/path = NodePath("Beads/Bead5")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = PoolRealArray(  )
+tracks/9/type = "transform"
+tracks/9/path = NodePath("Beads/Bead6")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = PoolRealArray(  )
+tracks/10/type = "transform"
+tracks/10/path = NodePath("Beads/Bead7")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = PoolRealArray(  )
+tracks/11/type = "transform"
+tracks/11/path = NodePath("Beads/Bead8")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = PoolRealArray(  )
+tracks/12/type = "transform"
+tracks/12/path = NodePath("Beads/Bead9")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = PoolRealArray(  )
+tracks/13/type = "transform"
+tracks/13/path = NodePath("Beads/Bead10")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = PoolRealArray(  )
+tracks/14/type = "transform"
+tracks/14/path = NodePath("Beads/Bead11")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = PoolRealArray(  )
+tracks/15/type = "transform"
+tracks/15/path = NodePath("Beads/Bead12")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = PoolRealArray(  )
+tracks/16/type = "value"
+tracks/16/path = NodePath("Beads/Bead7:rotation_degrees")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 45, 45, 0 ), Vector3( 90, 90, 0 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Beads/Bead10:rotation_degrees")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 45, 45, 0 ), Vector3( 90, 90, 0 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Beads/Bead2:rotation_degrees")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 60, 0, 60 ), Vector3( 90, 0, 90 ) ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Beads/Bead3:rotation_degrees")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -60, 0 ), Vector3( 0, 30, 60 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Beads/Bead5:rotation_degrees")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -30, 0 ), Vector3( 60, -30, 60 ), Vector3( 90, -30, 90 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Beads/Bead6:rotation_degrees")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -60, 0 ), Vector3( 0, 30, 60 ), Vector3( 0, 90, 90 ) ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Beads/Bead8:rotation_degrees")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -30, 0 ), Vector3( 60, -30, 60 ), Vector3( 90, -30, 90 ) ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Beads/Bead9:rotation_degrees")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -60, 0 ), Vector3( 0, 30, 60 ), Vector3( 0, 90, 90 ) ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Beads/Bead11:rotation_degrees")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -30, 0 ), Vector3( 60, -30, 60 ), Vector3( 90, -30, 90 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Beads/Bead12:rotation_degrees")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -60, 0 ), Vector3( 0, 30, 60 ), Vector3( 0, 90, 90 ) ]
+}
