@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Models/Entities/Kubelet/kubelet.glb" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Kubelet.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Entities/Kubelet.gd" type="Script" id=2]
 [ext_resource path="res://Models/Entities/Kubelet/KubeletStone.material" type="Material" id=3]
 [ext_resource path="res://Models/Entities/Kubelet/KubeletEye.material" type="Material" id=4]
 [ext_resource path="res://Models/Entities/Kubelet/Bead.tres" type="Material" id=5]
@@ -34,9 +34,9 @@ surfaces/1 = {
 "vertex_count": 334
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=7]
+[sub_resource type="AnimationNodeStateMachine" id=2]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
 [node name="Kubelet" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -53,17 +53,16 @@ bones/0/enabled = true
 bones/0/bound_children = [  ]
 bones/1/name = "Bone.001"
 bones/1/parent = -1
-bones/1/rest = Transform( -1.56713, 0, 1.35752e-006, 1.00497e-006, -0.223623, 1.16013, 2.37537e-007, 1.42259, 0.274209, 2.27374e-013, -1.53638, 0 )
+bones/1/rest = Transform( -1.56713, 0, 1.35752e-06, 1.00497e-06, -0.223623, 1.16013, 2.37537e-07, 1.42259, 0.274209, 2.27374e-13, -1.53638, 0 )
 bones/1/enabled = true
 bones/1/bound_children = [  ]
 bones/2/name = "Bone.002"
 bones/2/parent = -1
-bones/2/rest = Transform( -1.56713, -9.53017e-015, 6.10264e-007, 4.51745e-007, 0.224023, 1.16006, -1.06974e-007, 1.4225, -0.274704, -5.68434e-014, -1.53638, 2.98023e-008 )
+bones/2/rest = Transform( -1.56713, -9.53017e-15, 6.10264e-07, 4.51745e-07, 0.224023, 1.16006, -1.06974e-07, 1.4225, -0.274704, -5.68434e-14, -1.53638, 2.98023e-08 )
 bones/2/enabled = true
 bones/2/bound_children = [  ]
 
 [node name="KubeletHead" type="MeshInstance" parent="HeadScaler/Armature" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 material/1 = null
@@ -156,16 +155,16 @@ height = 0.135
 depth = 0.135
 material = ExtResource( 5 )
 
-[node name="AnimationPlayer" parent="." index="2"]
-playback_speed = 2.0
-anims/Spinbead = ExtResource( 6 )
-
 [node name="AnimationTree" type="AnimationTree" parent="." index="3"]
-tree_root = SubResource( 7 )
+tree_root = SubResource( 2 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 8 )
+parameters/playback = SubResource( 3 )
 
 [node name="BeadPlayer" type="AnimationPlayer" parent="." index="4"]
 autoplay = "Spinbead"
+anims/Spinbead = ExtResource( 6 )
+
+[node name="AnimationPlayer" parent="." index="8"]
+playback_speed = 2.0
 anims/Spinbead = ExtResource( 6 )
