@@ -38,7 +38,7 @@ surfaces/1 = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
-[node name="Kubelet" index="0" instance=ExtResource( 1 )]
+[node name="Kubelet" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="HeadScaler" type="Spatial" parent="." index="0"]

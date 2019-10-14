@@ -1,21 +1,43 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Models/Entities/Kubelet/Kubelet.tscn" type="PackedScene" id=1]
 
 [sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.156863, 0.243137, 0.156863, 1 )
+albedo_color = Color( 0.117647, 0.356863, 0.180392, 1 )
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.596078, 0.164706, 0.164706, 1 )
 
 [node name="Spatial" type="Spatial"]
 
 [node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 25, 0, 0, 0 )
+editor/display_folded = true
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 25, 0, 1.34859, 0 )
 material = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="CSGBox"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CSGBox/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+editor/display_folded = true
+transform = Transform( 7.61719, 0, 0, 0, 1, 0, 0, 0, 7.61719, 10.7757, 4.90866, -13.9604 )
+material = SubResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="CSGBox2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CSGBox2/StaticBody"]
+shape = SubResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.0468881, -0.601862, 0.797222, 0.0353371, 0.7986, 0.600824, -0.998275, -5.59759e-09, 0.0587129, 36.999, 27.1229, 0 )
 
-[node name="Kubelet" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.39626, 0 )
-
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.710463, 0.703734, 0, -0.703734, 0.710463, 0, 21.2015, 25.1203 )
+
+[node name="Kubelet" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.513, 0 )
+POD_AIR_TIME = 4.0

@@ -3,6 +3,8 @@ extends Node
 var mouse_sensitivity = 0.08
 var joypad_sensitivity = 2
 
+var POD_GRAVITY = -9.82
+
 var audio_clips = {
     "RifleShot": preload("res://Audio/RifleShot.wav")
 }
