@@ -33,11 +33,14 @@ material = SubResource( 3 )
 shape = SubResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.0468881, -0.601862, 0.797222, 0.0353371, 0.7986, 0.600824, -0.998275, -5.59759e-09, 0.0587129, 36.999, 27.1229, 0 )
+transform = Transform( 0.0468881, -0.601862, 0.797222, 0.0353371, 0.7986, 0.600824, -0.998275, -5.59759e-009, 0.0587129, 36.999, 27.1229, 0 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.710463, 0.703734, 0, -0.703734, 0.710463, 0, 21.2015, 25.1203 )
+transform = Transform( 1, 0, 0, 0, 0.710463, 0.703734, 0, -0.703734, 0.710463, -0.0144958, 33.4572, 37.5872 )
 
 [node name="Kubelet" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.513, 0 )
-POD_AIR_TIME = 4.0
+MAX_LAUNCH_RANGE = 15.0
+MIN_LAUNCH_RANGE = 7.0
+POD_AIR_TIME = 1.0
+SPIN_TIME = 2.0

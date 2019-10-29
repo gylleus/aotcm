@@ -41,7 +41,7 @@ spot_angle = 63.0
 spot_angle_attenuation = 0.870551
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 8.35189e-23, 4.37114e-08, -4.37114e-08, 1.91069e-15, 1, 0, -1, 1.91069e-15, -88.638, 108.9, 1.03241 )
+transform = Transform( 1, 8.35189e-023, 4.37114e-008, -4.37114e-008, 1.91069e-015, 1, 0, -1, 1.91069e-015, -88.638, 108.9, 1.03241 )
 light_energy = 0.24
 light_indirect_energy = 0.33
 light_specular = 0.48
