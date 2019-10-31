@@ -4,32 +4,39 @@ export var MAX_LAUNCH_RANGE = 10.0
 export var MIN_LAUNCH_RANGE = 1.0
 # Controls how many points are created when interpolating launch angle vector
 export var LAUNCH_GRANULARITY = 0.5
+var POD_GRAVITY_FACTOR = 1
 
 export var MIN_SPIN_ANGLE = 60
 export var MIN_POD_DISTANCE= 2.0
+export var MAX_SPIN_ANGLE = 90
 export var POD_AIR_TIME = 2.0
 export var SPIN_TIME = 1.0
-
-var launch_angle_margin = 0.02
 
 var pod_queue = []
 var next_pod = null
 
-var pod_launch_location = null
-var last_launch_angle = null
-var spin_start = null
-var spin_lerp_value = 0
+var pod_launch_vector : Vector3
+
+var last_launch_angle : int
+var spin_start : Transform
+var spin_lerp_value : float = 0
 # Random number generator
 var rng = RandomNumberGenerator.new()
 
 const PodTemplate = preload("PodTemplate.gd")
-onready var globals = get_node("/root/Globals")
-var POD_SCENE = preload("res://Models/Entities/Pod/Pod.tscn")
+var POD_SCENE = preload("res://Scenes/PodScene.tscn")
 
 func _ready():
     rng.randomize()
     # Set a random "previous" launch angle 
     last_launch_angle = rng.randf_range(0.0, 360.0)
+    queue_pod(PodTemplate.new(50,"test"))
+    queue_pod(PodTemplate.new(50,"test"))
+    queue_pod(PodTemplate.new(50,"test"))
+    queue_pod(PodTemplate.new(50,"test"))
+    queue_pod(PodTemplate.new(50,"test"))
+    queue_pod(PodTemplate.new(50,"test"))
+    queue_pod(PodTemplate.new(50,"test"))
     queue_pod(PodTemplate.new(50,"test"))
 
 func _physics_process(delta):
@@ -38,53 +45,63 @@ func _physics_process(delta):
         initiate_next_pod()
     if next_pod != null:
         spin_lerp_value += delta / SPIN_TIME
-        if spin_lerp_value > 1:
-            spin_lerp_value = 1
-        var launch_dir = find_launch_vector(pod_launch_location)
-        launch_dir.z = -launch_dir.z
-        launch_dir.x = -launch_dir.x
-        var rotTransform = spin_start.looking_at(launch_dir, Vector3(0,1,0))
-        var newRot = Quat(spin_start.basis).slerp(rotTransform.basis, spin_lerp_value)
-        set_transform(Transform(newRot, spin_start.origin))
+        rotate_towards_direction(pod_launch_vector, spin_lerp_value, spin_start)
+        if spin_lerp_value >= 1:
+            launch_pod(next_pod, pod_launch_vector)
+            next_pod = null
+
+func launch_pod(pod, launch_vector):
+    var pod_to_launch = POD_SCENE.instance()
+    get_tree().get_root().add_child(pod_to_launch)
+    pod_to_launch.transform.origin = global_transform.origin
+    pod_to_launch.set_linear_velocity(launch_vector)
+
+func rotate_towards_direction(direction, lerp_value, rotate_from):
+    if lerp_value >= 1:
+        lerp_value = 1
+    #direction.z = -direction.z
+  #  direction.x = -direction.x
+    direction = -direction
+    var rotate_to = rotate_from.looking_at(direction.normalized(), Vector3(0,1,0))
+    var new_rot = Quat(rotate_from.basis).slerp(rotate_to.basis, lerp_value).normalized()
+    set_transform(Transform(new_rot, rotate_from.origin))
 
 func initiate_next_pod():
     next_pod = pod_queue.pop_front()
-    pod_launch_location = find_next_pod_location(last_launch_angle)
-    var new_pod = POD_SCENE.instance()
-    new_pod.global_transform.origin = pod_launch_location
-    get_tree().get_root().add_child(new_pod)
+    var pod_launch_location = find_next_pod_location(last_launch_angle)
+    pod_launch_vector = find_launch_vector(pod_launch_location)
     spin_start = get_transform()
     spin_lerp_value = 0
+
+#    var new_pod = POD_SCENE.instance()
+#    new_pod.global_transform.origin = pod_launch_location
+#    get_tree().get_root().add_child(new_pod) 
 
 func queue_pod(pod_template):
     pod_queue.push_back(pod_template)
 
-func launch_pod(next_pod):
-
-    # IF LOOKING AT POD DIRECTION
-    pass
-
 # Find the velocity vector that launched pod needs to be assigned to land at target position 
-func find_launch_vector(target_position):
+func find_launch_vector(target_position) -> Vector3:
     var dir = target_position - get_global_transform().origin
     var vel = dir / POD_AIR_TIME
     # v0 = (s - s0 - at^2) / t
-    vel.y = (target_position.y - get_global_transform().origin.y - globals.POD_GRAVITY * POD_AIR_TIME * POD_AIR_TIME / 2) / POD_AIR_TIME
+    var pod_gravity = POD_GRAVITY_FACTOR * ProjectSettings.get("physics/3d/default_gravity")
+    vel.y = (target_position.y - get_global_transform().origin.y + pod_gravity * POD_AIR_TIME * POD_AIR_TIME / 2) / POD_AIR_TIME
     return vel
 
 # Find the next position to launch a pod based on the last launch angle
-func find_next_pod_location(last_angle):
+func find_next_pod_location(last_angle) -> Vector3:
     var next_angle = next_launch_angle(last_angle)
-    var angle_vector = Vector2(cos(next_angle), sin(next_angle))
+    var rad_angle = next_angle * PI / 180 
+    var angle_vector = Vector2(cos(rad_angle), sin(rad_angle))
     var possible_positions = interpolate_angle_vector(angle_vector)
     var next_pod_position = find_valid_pod_position(possible_positions)
-
     last_launch_angle = next_angle
     return next_pod_position
 
-func next_launch_angle(last_angle):
-    var angle_from = int(last_launch_angle + MIN_SPIN_ANGLE) % 360 
-    var angle_to = int(last_launch_angle - MIN_SPIN_ANGLE) % 360
+func next_launch_angle(last_angle) -> int:
+    var angle_from = int(last_angle + MIN_SPIN_ANGLE) % 360 
+    var angle_to = int(last_angle + MAX_SPIN_ANGLE) % 360
     if angle_from > angle_to:
         angle_to += 360
     # NOTE: godot RNG contains randfn for normal distribution simulation
