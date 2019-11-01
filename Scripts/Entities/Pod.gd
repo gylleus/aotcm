@@ -1,7 +1,8 @@
 extends Spatial
 
-export var MAX_HEALTH = 100
-export var EXPLOSION_FORCE = 10
+export var MAX_HEALTH : float = 100
+export var EXPLOSION_FORCE : float = 10.0
+export var EXPLOSION_DIR_ELEVATION : float = 2
 onready var health_left = MAX_HEALTH
 
 #onready var playback = get_node("AnimationTree").get("parameters/playback")
@@ -17,7 +18,13 @@ func take_damage(amount):
 #    playback.travel("BeginAttacked")
 
 func die():
-    pass
+    # TODO: Send signal that Pod has died
+    queue_free()
 
 func explode(force):
-    var bodies = explosion_area.get_overlapping_bodies()
+    var blast_targets = explosion_area.get_overlapping_bodies()
+    for target in blast_targets:
+        if target.has_method("add_central_impulse"):
+            var force_dir = target.global_transform.origin - global_transform.origin + Vector3(0, EXPLOSION_DIR_ELEVATION, 0)  
+            target.add_central_impulse(force_dir * force)
+    die()
