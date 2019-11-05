@@ -34,8 +34,9 @@ var player
 var aggro_ray
 onready var skeleton = get_node("MonkeyHolder/Armature/Skeleton")
 
-export var ATTACK_DAMAGE = 15
-export var MAX_HEALTH = 30
+export var ATTACK_DAMAGE : float = 15
+export var MAX_HEALTH : float = 30
+export var WEIGHT : float = 1.0
 onready var current_health = MAX_HEALTH
 
 func _ready():
@@ -45,30 +46,32 @@ func _ready():
     player = find_player_node()
     aggro_ray = get_node("MonkeyHolder/AggroRay")
 
-
 func _physics_process(delta):
     if !is_dead:
         if is_on_floor():
             if in_the_air:
                 in_the_air = false
                 current_velocity = Vector3(0,0,0)
-                flying_velocity = current_velocity
+                flying_velocity = Vector3(0,0,0)
                 path = null
         elif in_the_air:
             apply_flying_movement(delta)
 
-        if current_target == null:
+        if !is_instance_valid(current_target):
             select_target()
         if current_target != player:
             if will_aggro():
                 aggro_player()
 
-        if can_attack():
-            look(get_target_pos())
-            process_movement(delta)
-            playback.travel("Attack")
-        elif !in_the_air && playback.get_current_node() != "Attack":
-            process_movement(delta)
+        if is_instance_valid(current_target):
+            if can_attack():
+                look(get_target_pos())
+                process_movement(delta)
+                playback.travel("Attack")
+            elif !in_the_air && playback.get_current_node() != "Attack":
+                process_movement(delta)
+            else:
+                playback.travel("Idle")
         else:
             playback.travel("Idle")
     else:
@@ -85,11 +88,14 @@ func die():
 
 func bullet_hit(damage):
     current_health -= damage
-    flying_velocity = Vector3(0,2000,0) + (global_transform.origin-player.transform.origin) * 20
-    in_the_air = true
-    apply_flying_movement(0.1)
+    aggro_player()
     if current_health <= 0:
        die()
+
+func add_flying_force(force):
+    in_the_air = true
+    flying_velocity += force / WEIGHT
+    apply_flying_movement(0.1)
 
 func find_pods():
     return get_tree().get_nodes_in_group("pods")
@@ -129,7 +135,7 @@ func aggro_player():
 func will_aggro():
     return (player.global_transform.origin - global_transform.origin).length() <= AGGRO_RADIUS
 
-func get_target_pos():
+func get_target_pos():    
     return current_target.global_transform.origin
 
 func target_has_moved():
@@ -205,7 +211,7 @@ func update_path(target_pos):
     path_ind = 0
 
 func hit_target():
-    if target_in_range(ATTACK_REACH_RANGE):
+    if is_instance_valid(current_target) && target_in_range(ATTACK_REACH_RANGE):
         if current_target.has_method("take_damage"):
             current_target.take_damage(ATTACK_DAMAGE)
         else:

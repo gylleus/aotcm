@@ -59,18 +59,22 @@ func launch_pod(pod, launch_vector):
 func rotate_towards_direction(direction, lerp_value, rotate_from):
     if lerp_value >= 1:
         lerp_value = 1
-    #direction.z = -direction.z
+  #  direction.z = -direction.z
   #  direction.x = -direction.x
     direction = -direction
-    var rotate_to = rotate_from.looking_at(direction.normalized(), Vector3(0,1,0))
-    var new_rot = Quat(rotate_from.basis).slerp(rotate_to.basis, lerp_value).normalized()
+    var rotate_to = rotate_from.looking_at(direction, Vector3(0,1,0))
+    var a = Quat(rotate_from.basis)
+    var new_rot = a.slerp(rotate_to.basis, lerp_value)
     set_transform(Transform(new_rot, rotate_from.origin))
 
 func initiate_next_pod():
     next_pod = pod_queue.pop_front()
     var pod_launch_location = find_next_pod_location(last_launch_angle)
+    if pod_launch_location == null:
+        print("ERROR: Could not find a valid pod launch location")
+        return
     pod_launch_vector = find_launch_vector(pod_launch_location)
-    spin_start = get_transform()
+    spin_start = get_transform().orthonormalized()
     spin_lerp_value = 0
 
 #    var new_pod = POD_SCENE.instance()

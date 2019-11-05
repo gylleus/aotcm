@@ -17,7 +17,7 @@ albedo_color = Color( 0.54902, 0.121569, 0.352941, 1 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
 editor/display_folded = true
-transform = Transform( 50.2889, 0, 0, 0, 1.00903, 0, 0, 0, 50.2889, 0, 1.34859, 0 )
+transform = Transform( 953.953, 0, 0, 0, 1.00903, 0, 0, 0, 953.953, 0, 1.34859, 0 )
 material = SubResource( 1 )
 
 [node name="StaticBody" type="StaticBody" parent="CSGBox"]
@@ -46,19 +46,16 @@ material = SubResource( 4 )
 shape = SubResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.0468881, -0.601862, 0.797222, 0.0353371, 0.7986, 0.600824, -0.998275, -5.59759e-09, 0.0587129, 36.999, 27.1229, 0 )
+transform = Transform( 0.0468881, -0.601862, 0.797222, 0.0353371, 0.7986, 0.600824, -0.998275, -5.59759e-009, 0.0587129, 36.999, 27.1229, 0 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 81.974, 0 )
+transform = Transform( 1, 0, 0, 0, 0.971584, 0.236695, 0, -0.236695, 0.971584, 0, 23.8387, 35.7596 )
+fov = 93.3
 far = 334.3
 
 [node name="Kubelet" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.998257, 0, 0, 0, 0.998257, 0, 0, 0, 0.998257, -0.970016, 7.96043, -0.13327 )
-MAX_LAUNCH_RANGE = 40.0
-MIN_LAUNCH_RANGE = 14.0
-LAUNCH_GRANULARITY = null
-MIN_SPIN_ANGLE = null
-MIN_POD_DISTANCE = null
-MAX_SPIN_ANGLE = null
-POD_AIR_TIME = null
-SPIN_TIME = 5.0
+MAX_LAUNCH_RANGE = 500.0
+MIN_LAUNCH_RANGE = 5.0
+POD_AIR_TIME = 10.0
+SPIN_TIME = 1.5

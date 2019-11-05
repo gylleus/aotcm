@@ -3,6 +3,7 @@ extends KinematicBody
 const JUMP_VELOCITY = 20
 const GRAVITY = -40
 const MOUSE_SENSITIVITY = 0.05
+const WEIGHT = 1.0
 
 var accel = 8
 var deaccel = 11
@@ -62,7 +63,8 @@ func move(delta):
 	if Input.is_action_just_pressed("player_jump") && is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	# Apply gravity
-	velocity.y += delta * GRAVITY
+	if !is_on_floor():
+		velocity.y += delta * GRAVITY
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -75,3 +77,6 @@ func _input(event):
 
 func take_damage(amount):
 	print("Took " + str(amount) + "damage")
+
+func add_flying_force(force):
+	velocity += force/WEIGHT

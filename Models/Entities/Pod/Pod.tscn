@@ -12,24 +12,24 @@ animation = "Idle"
 animation = "Breathe"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=4]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/Attacked/node = SubResource( 1 )
-states/Attacked/position = Vector2( 709, 180 )
+states/Attacked/position = Vector2( 710, 180 )
 states/BeginAttacked/node = SubResource( 2 )
 states/BeginAttacked/position = Vector2( 657, 56 )
 states/Breathe/node = SubResource( 3 )
 states/Breathe/position = Vector2( 396, 148 )
-transitions = [ "Breathe", "Attacked", SubResource( 4 ), "Attacked", "Breathe", SubResource( 5 ), "Attacked", "BeginAttacked", SubResource( 6 ), "BeginAttacked", "Attacked", SubResource( 7 ) ]
+transitions = [ "Attacked", "Breathe", SubResource( 4 ), "Attacked", "BeginAttacked", SubResource( 5 ), "BeginAttacked", "Attacked", SubResource( 6 ), "Breathe", "Attacked", SubResource( 11 ) ]
 start_node = "Breathe"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
@@ -37,7 +37,7 @@ start_node = "Breathe"
 [sub_resource type="Animation" id=10]
 loop = true
 
-[node name="Pod" instance=ExtResource( 1 )]
+[node name="Pod" index="0" instance=ExtResource( 1 )]
 
 [node name="PodArmature" parent="." index="0"]
 transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
