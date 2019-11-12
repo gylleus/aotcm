@@ -1,115 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Models/Entities/Kubelet/kubelet.glb" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Entities/Kubelet.gd" type="Script" id=2]
-[ext_resource path="res://Models/Entities/Kubelet/Bead.tres" type="Material" id=3]
-[ext_resource path="res://Models/Entities/Kubelet/Spinbead.tres" type="Animation" id=4]
+[ext_resource path="res://Scripts/Entities/Kubelet/Kubelet.gd" type="Script" id=1]
+[ext_resource path="res://Models/Entities/Kubelet/Beads.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Models/Entities/Kubelet/KubeletModel.tscn" type="PackedScene" id=3]
 
-[sub_resource type="AnimationNodeStateMachine" id=2]
+[node name="Kubelet" type="Spatial"]
+script = ExtResource( 1 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[node name="Beads" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 3.33996, 0 )
 
-[node name="Kubelet" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
-
-[node name="Beads" type="Spatial" parent="." index="0"]
-editor/display_folded = true
-transform = Transform( 1.29343, 0, 0.535757, 0, 1.4, 0, -0.535757, 0, 1.29343, 0, 1.86794, 0 )
-
-[node name="Bead1" type="CSGBox" parent="Beads" index="0"]
-transform = Transform( 1.47821, 0.234315, 0.565685, 0, 1.47821, -0.612294, -0.612294, 0.565685, 1.36569, 1, 0, 0 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead2" type="CSGBox" parent="Beads" index="1"]
-transform = Transform( 1.38564, -0.8, 0, 0.69282, 1.2, -0.8, 0.4, 0.69282, 1.38564, 0.866025, 0, 0.5 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead3" type="CSGBox" parent="Beads" index="2"]
-transform = Transform( 1.33843, -0.772741, -0.41411, 0.8, 1.38564, 0, 0.35863, -0.207055, 1.54548, 0.490437, 0, 0.901076 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead4" type="CSGBox" parent="Beads" index="3"]
-transform = Transform( 1.47821, 0.234315, 0.565685, 0, 1.47821, -0.612294, -0.612294, 0.565685, 1.36569, 0, 0, 1 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead5" type="CSGBox" parent="Beads" index="4"]
-transform = Transform( 1, -1.03923, -0.692821, 0.69282, 1.2, -0.8, 1.03923, 0.2, 1.2, -0.5, 0, 0.866025 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead6" type="CSGBox" parent="Beads" index="5"]
-transform = Transform( 1.33843, -0.772741, -0.41411, 0.8, 1.38564, 0, 0.35863, -0.207055, 1.54548, -0.866025, 0, 0.5 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead7" type="CSGBox" parent="Beads" index="6"]
-transform = Transform( 1.47821, 0.234315, 0.565685, 0, 1.47821, -0.612294, -0.612294, 0.565685, 1.36569, -1, 0, 0 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead8" type="CSGBox" parent="Beads" index="7"]
-transform = Transform( 1, -1.03923, -0.692821, 0.69282, 1.2, -0.8, 1.03923, 0.2, 1.2, -0.866025, 0, -0.5 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead9" type="CSGBox" parent="Beads" index="8"]
-transform = Transform( 1.33843, -0.772741, -0.41411, 0.8, 1.38564, 0, 0.35863, -0.207055, 1.54548, -0.5, 0, -0.866025 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead10" type="CSGBox" parent="Beads" index="9"]
-transform = Transform( 1.47821, 0.234315, 0.565685, 0, 1.47821, -0.612294, -0.612294, 0.565685, 1.36569, 0, 0, -1 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead11" type="CSGBox" parent="Beads" index="10"]
-transform = Transform( 1, -1.03923, -0.692821, 0.69282, 1.2, -0.8, 1.03923, 0.2, 1.2, 0.5, 0, -0.866025 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="Bead12" type="CSGBox" parent="Beads" index="11"]
-transform = Transform( 1.33843, -0.772741, -0.41411, 0.8, 1.38564, 0, 0.35863, -0.207055, 1.54548, 0.866025, 0, -0.5 )
-width = 0.135
-height = 0.135
-depth = 0.135
-material = ExtResource( 3 )
-
-[node name="AnimationTree" type="AnimationTree" parent="." index="1"]
-tree_root = SubResource( 2 )
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 3 )
-
-[node name="BeadPlayer" type="AnimationPlayer" parent="." index="2"]
-autoplay = "Spinbead"
-anims/Spinbead = ExtResource( 4 )
-
-[node name="AnimationPlayer" parent="." index="6"]
-playback_speed = 2.0
-anims/Spinbead = ExtResource( 4 )
+[node name="KubeletModel" parent="." instance=ExtResource( 3 )]
+[connection signal="spit_pod" from="." to="KubeletModel" method="_on_Kubelet_spit_pod"]

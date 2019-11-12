@@ -8,35 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "ResourceFormatLoader",
-"class": "HTerrainDataLoader",
-"language": "GDScript",
-"path": "res://addons/zylann.hterrain/hterrain_resource_loader.gd"
-}, {
-"base": "ResourceFormatSaver",
-"class": "HTerrainDataSaver",
-"language": "GDScript",
-"path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"HTerrainDataLoader": "",
-"HTerrainDataSaver": ""
+
 }
 
 [application]
 
 config/name="Attack of the Chaos Monkeys"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/TestArea.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Globals="*res://Scripts/Globals.gd"
-
-[debug]
-
-settings/stdout/print_fps=true
 
 [display]
 

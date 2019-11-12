@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/kubelet.glb-1b9da74234355a00c7280249885b74dc.scn"
+path="res://.import/kubelet.dae-beb3f5894b5bef1fd59cfc4ce15efeab.scn"
 
 [deps]
 
-source_file="res://Models/Entities/Kubelet/kubelet.glb"
-dest_files=[ "res://.import/kubelet.glb-1b9da74234355a00c7280249885b74dc.scn" ]
+source_file="res://Models/Entities/Kubelet/kubelet.dae"
+dest_files=[ "res://.import/kubelet.dae-beb3f5894b5bef1fd59cfc4ce15efeab.scn" ]
 
 [params]
 

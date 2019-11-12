@@ -11,7 +11,7 @@ onready var explosion_area : Area = get_node("ExplosionArea")
 func _ready():
     add_to_group("pods")
 
-func bullet_hit(damage):
+func bullet_hit(_damage):
     take_damage(0)
 
 func take_damage(amount):

@@ -7,7 +7,7 @@ export var LAUNCH_GRANULARITY = 0.5
 var POD_GRAVITY_FACTOR = 1
 
 export var MIN_SPIN_ANGLE = 60
-export var MIN_POD_DISTANCE= 2.0
+#export var MIN_POD_DISTANCE= 2.0
 export var MAX_SPIN_ANGLE = 90
 export var POD_AIR_TIME = 2.0
 export var SPIN_TIME = 1.0
@@ -23,8 +23,9 @@ var spin_lerp_value : float = 0
 # Random number generator
 var rng = RandomNumberGenerator.new()
 
-const PodTemplate = preload("PodTemplate.gd")
-var POD_SCENE = preload("res://Scenes/PodScene.tscn")
+const PodTemplate = preload("res://Scripts/Entities/PodTemplate.gd")
+
+signal spit_pod
 
 func _ready():
     rng.randomize()
@@ -47,21 +48,12 @@ func _physics_process(delta):
         spin_lerp_value += delta / SPIN_TIME
         rotate_towards_direction(pod_launch_vector, spin_lerp_value, spin_start)
         if spin_lerp_value >= 1:
-            launch_pod(next_pod, pod_launch_vector)
+            emit_signal("spit_pod", pod_launch_vector)
             next_pod = null
-
-func launch_pod(pod, launch_vector):
-    var pod_to_launch = POD_SCENE.instance()
-    get_tree().get_root().add_child(pod_to_launch)
-    pod_to_launch.transform.origin = global_transform.origin
-    pod_to_launch.set_linear_velocity(launch_vector)
 
 func rotate_towards_direction(direction, lerp_value, rotate_from):
     if lerp_value >= 1:
         lerp_value = 1
-  #  direction.z = -direction.z
-  #  direction.x = -direction.x
-    direction = -direction
     var rotate_to = rotate_from.looking_at(direction, Vector3(0,1,0))
     var a = Quat(rotate_from.basis)
     var new_rot = a.slerp(rotate_to.basis, lerp_value)

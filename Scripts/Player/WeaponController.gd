@@ -39,7 +39,7 @@ func fire_bullet():
     if bullets_left == 0:
         return
     bullets_left -= 1
-    globals.play_sound("RifleShot", false, player.global_transform.origin)
+    globals.play_sound("RifleShot", player.global_transform.origin)
     fire_ray.force_raycast_update()
     if fire_ray.is_colliding():
         print(fire_ray.get_collider())

@@ -1,0 +1,257 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+params_diffuse_mode = 4
+params_specular_mode = 3
+albedo_color = Color( 0.27451, 0.415686, 0.372549, 1 )
+
+[sub_resource type="Animation" id=2]
+length = 9.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bead1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.7, 6.1, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 60, -120, 153.245 ), Vector3( -60, -60, -137.41 ), Vector3( 360, 180, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bead2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.4, 5.5, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -31.5795, 110.788, -125.938 ), Vector3( -10.5108, -130.553, -44.3983 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bead3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3.6, 7.3, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 33.4587, -120, -180 ), Vector3( 15.9476, 145.927, -29.4734 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Bead4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4.7, 6.9, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 60, -180, 144.593 ), Vector3( -27.1491, 43.2182, 9.83202 ), Vector3( 360, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Bead5:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3, 5.4, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -3.59376, -156.454, -70.0558 ), Vector3( -32.0197, 60, 139.023 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Bead6:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.9, 5.1, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -45.1582, -73.7977, -119.946 ), Vector3( 15.1883, 120, 168.201 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Bead7:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 3, 6.6, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 60, -180, 108.132 ), Vector3( 11.4817, -62.7148, 126.476 ), Vector3( 360, 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Bead8:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.3, 5.4, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -46.6749, -127.744, 136.779 ), Vector3( -1.54251e-007, -96.716, -74.3935 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Bead9:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 2.7, 5.7, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -9.8023e-007, 60, 48.4485 ), Vector3( -46.4945, 2.1552, 126.066 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Bead10:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 4.6, 6.5, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 60, -180, -123.471 ), Vector3( -28.5791, 123.087, -132.516 ), Vector3( 360, 0, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Bead11:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 1.8, 5.6, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -46.8822, -128.067, 137.015 ), Vector3( 24.3026, -103.05, -53.478 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Bead12:rotation_degrees")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 2.5, 6.4, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 60, 0 ), Vector3( -55.8644, 177.961, -52.9078 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath(".:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 3, 6, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 120, 0 ), Vector3( 0, 240, 0 ), Vector3( 0, 360, 0 ) ]
+}
+
+[node name="Beads" type="Spatial"]
+transform = Transform( 0.669131, 0, 0.743145, 0, 1, 0, -0.743145, 0, 0.669131, 0, 1.86794, 0 )
+
+[node name="Bead1" type="CSGBox" parent="."]
+transform = Transform( -1.06582, 0.194487, -1.17737, 1.12343, -0.368779, -1.07791, -0.402393, -1.54473, 0.109099, 1, 0, 0 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead2" type="CSGBox" parent="."]
+transform = Transform( 0.732174, 0.646565, 1.26723, -1.37144, 0.699718, 0.435373, -0.378255, -1.28544, 0.8744, 0.866025, 0, 0.5 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead3" type="CSGBox" parent="."]
+transform = Transform( 0.785116, 0.961996, -1.00904, -1.35947, 0.784892, -0.309485, 0.308914, 1.00921, 1.20252, 0.490437, 0, 0.901076 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead4" type="CSGBox" parent="."]
+transform = Transform( 0.706778, -0.911055, -1.10925, 0.926913, 1.23375, -0.422713, 1.09604, -0.455886, 1.07279, 0, 0, 1 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead5" type="CSGBox" parent="."]
+transform = Transform( 0.63366, 0.377601, -1.41982, -0.751468, 1.41198, 0.0401385, 1.26245, 0.650948, 0.736544, -0.5, 0, 0.866025 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead6" type="CSGBox" parent="."]
+transform = Transform( -0.267633, 1.20197, -1.02159, -1.3626, 0.345921, 0.763969, 0.794784, 0.997806, 0.965765, -0.866025, 0, 0.5 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead7" type="CSGBox" parent="."]
+transform = Transform( -0.0639907, -0.789579, -1.39013, 1.00157, 1.06459, -0.650779, 1.2461, -0.896221, 0.451682, -1, 0, 0 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead8" type="CSGBox" parent="."]
+transform = Transform( 1.22177, 0.0329175, -1.03256, 0.942284, -0.691102, 1.09292, -0.423518, -1.44267, -0.547118, -0.866025, 0, -0.5 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead9" type="CSGBox" parent="."]
+transform = Transform( 1.33002, -0.524786, 0.718079, 0.587251, 1.48833, 1.21659e-008, -0.667963, 0.263558, 1.42981, -0.497904, 2.38419e-007, -0.876585 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead10" type="CSGBox" parent="."]
+transform = Transform( 1.09217, 0.315174, -1.12598, -0.821209, 1.30356, -0.431675, 0.832329, 0.872578, 1.05159, 0, 0, -1 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead11" type="CSGBox" parent="."]
+transform = Transform( 0.824202, -0.148293, -1.36334, 1.36741, -0.0320658, 0.830152, -0.104264, -1.59279, 0.110218, 0.5, 0, -0.866025 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="Bead12" type="CSGBox" parent="."]
+transform = Transform( 1.40209, 0, 0.770806, 0, 1.6, 0, -0.770806, 0, 1.40209, 0.866025, 0, -0.5 )
+width = 0.135
+height = 0.135
+depth = 0.135
+material = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "KubeRotate"
+anims/KubeRotate = SubResource( 2 )

@@ -54,8 +54,7 @@ fov = 93.3
 far = 334.3
 
 [node name="Kubelet" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.998257, 0, 0, 0, 0.998257, 0, 0, 0, 0.998257, -0.970016, 7.96043, -0.13327 )
-MAX_LAUNCH_RANGE = 500.0
-MIN_LAUNCH_RANGE = 5.0
-POD_AIR_TIME = 10.0
-SPIN_TIME = 1.5
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+MAX_LAUNCH_RANGE = 50.0
+MIN_LAUNCH_RANGE = 30.0
+SPIN_TIME = 0.7
