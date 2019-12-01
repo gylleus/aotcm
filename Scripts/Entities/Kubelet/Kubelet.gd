@@ -39,11 +39,11 @@ func _ready():
     queue_pod(PodTemplate.new(50,"test"))
     queue_pod(PodTemplate.new(50,"test"))
     queue_pod(PodTemplate.new(50,"test"))
+    initiate_next_pod()
+    
 
 func _physics_process(delta):
   #  print(get_global_transform().basis.z)
-    if next_pod == null && pod_queue.size() > 0:
-        initiate_next_pod()
     if next_pod != null:
         spin_lerp_value += delta / SPIN_TIME
         rotate_towards_direction(pod_launch_vector, spin_lerp_value, spin_start)
@@ -54,24 +54,21 @@ func _physics_process(delta):
 func rotate_towards_direction(direction, lerp_value, rotate_from):
     if lerp_value >= 1:
         lerp_value = 1
-    var rotate_to = rotate_from.looking_at(direction, Vector3(0,1,0))
+    var rotate_to = rotate_from.looking_at(global_transform.origin + direction, transform.basis.y)
     var a = Quat(rotate_from.basis)
     var new_rot = a.slerp(rotate_to.basis, lerp_value)
     set_transform(Transform(new_rot, rotate_from.origin))
 
 func initiate_next_pod():
-    next_pod = pod_queue.pop_front()
-    var pod_launch_location = find_next_pod_location(last_launch_angle)
-    if pod_launch_location == null:
-        print("ERROR: Could not find a valid pod launch location")
-        return
-    pod_launch_vector = find_launch_vector(pod_launch_location)
-    spin_start = get_transform().orthonormalized()
-    spin_lerp_value = 0
-
-#    var new_pod = POD_SCENE.instance()
-#    new_pod.global_transform.origin = pod_launch_location
-#    get_tree().get_root().add_child(new_pod) 
+    if len(pod_queue) > 0:
+        next_pod = pod_queue.pop_front()
+        var pod_launch_location = find_next_pod_location(last_launch_angle)
+        if pod_launch_location == null:
+            print("ERROR: Could not find a valid pod launch location")
+            return
+        pod_launch_vector = find_launch_vector(pod_launch_location)
+        spin_start = get_transform().orthonormalized()
+        spin_lerp_value = 0
 
 func queue_pod(pod_template):
     pod_queue.push_back(pod_template)
@@ -139,3 +136,6 @@ func find_valid_pod_position(possible_positions):
     if next_launch_pos == null:
         print("ERROR: No valid launch position could be found")
     return next_launch_pos
+
+func _on_next_pod():
+    initiate_next_pod()

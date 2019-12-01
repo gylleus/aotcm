@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/pod.glb-c70d08da5fd2a43056dcb91598a0c65e.scn"
+path="res://.import/small_tree_naked.glb-1369966ce09e582cd9e28b6d7c6a3757.scn"
 
 [deps]
 
-source_file="res://Models/Entities/Pod/pod.glb"
-dest_files=[ "res://.import/pod.glb-c70d08da5fd2a43056dcb91598a0c65e.scn" ]
+source_file="res://Models/Environment/Trees/SmallTreeNaked/small_tree_naked.glb"
+dest_files=[ "res://.import/small_tree_naked.glb-1369966ce09e582cd9e28b6d7c6a3757.scn" ]
 
 [params]
 

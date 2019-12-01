@@ -11,7 +11,7 @@ export var AGGRO_RADIUS : float = 5
 export var ATTACK_RANGE : float = 3
 export var ATTACK_REACH_RANGE : float = 5
 export var GRAVITY = -2000
-export var TARGET_RECALC_DISTANCE = 10
+export var TARGET_RECALC_DISTANCE = 0.5
 export var DRAG = 250
 export var DEATH_DECAY = 5
 
@@ -22,7 +22,7 @@ var nav
 
 var decay_counter = 0
 
-var current_target
+var current_target = null
 # Where the target was last seen
 var target_last_pos
 export var current_velocity = Vector3(0,0,0)
@@ -47,6 +47,10 @@ func _ready():
     aggro_ray = get_node("MonkeyHolder/AggroRay")
 
 func _physics_process(delta):
+    if player == null:
+        find_player_node()
+        return
+    
     if !is_dead:
         if is_on_floor():
             if in_the_air:
@@ -66,7 +70,6 @@ func _physics_process(delta):
         if is_instance_valid(current_target):
             if can_attack():
                 look(get_target_pos())
-                process_movement(delta)
                 playback.travel("Attack")
             elif !in_the_air && playback.get_current_node() != "Attack":
                 process_movement(delta)
@@ -76,7 +79,6 @@ func _physics_process(delta):
             playback.travel("Idle")
     else:
         decay_counter += delta
-        move_and_slide(Vector3(0,GRAVITY,0) * delta, Vector3(0,1,0), deg2rad(MAX_SLOPE_ANGLE))
         if decay_counter >= DEATH_DECAY:
             queue_free()
 
@@ -120,6 +122,7 @@ func is_walking():
 func select_target():
     # Check if any pods to attack
     var pods = find_pods()
+    print(pods)
     var closest_pod = null
     for p in pods:
         if closest_pod == null || (p.global_transform.origin - global_transform.origin).length() < (closest_pod.global_transform.origin - global_transform.origin).length():
@@ -127,7 +130,8 @@ func select_target():
     current_target = closest_pod
     if current_target == null:
         current_target = player
-    target_last_pos = get_target_pos()
+    if current_target != null:
+        target_last_pos = get_target_pos()
 
 func aggro_player():
     current_target = player
@@ -151,7 +155,6 @@ func apply_flying_movement(delta):
 
 func apply_movement(direction, speed, delta):
     current_velocity += direction * speed
-    current_velocity.y += GRAVITY * delta
     var hvel = current_velocity
     hvel.y = 0
 
@@ -171,32 +174,40 @@ func apply_air_drag(delta):
     flying_velocity -= flying_velocity.normalized() * applied_drag
 
 func process_movement(delta):
-    if current_target == player && false:
-        aggro_ray.transform.basis.z  = (get_target_pos() - global_transform.origin)*10000
-        aggro_ray.force_raycast_update()
-        # If we can walk directly towards the player
-        if aggro_ray.is_colliding():
-            if aggro_ray.get_collider() == player:
-                var dir = get_target_pos() - global_transform.origin
-                apply_movement(dir, ACCELERATION, delta)
-                return
+    # Check if we can walk directly towards the player
+    var walk_target_pos = null
+    if current_target == player and player_in_los():
+        walk_target_pos = get_target_pos()
+    else:
+        if (path == null || target_has_moved()):
+            update_path(get_target_pos())
+        walk_target_pos = travel_on_path()
+    if walk_target_pos != null:
+        var dir = walk_target_pos - global_transform.origin
+        apply_movement(dir, ACCELERATION, delta)
+        look(walk_target_pos)
+        playback.travel("Walking")
 
-    if (path == null || target_has_moved()):
-        update_path(get_target_pos())
+func player_in_los():
+    var space_state = get_world().get_direct_space_state()
+    var hit = space_state.intersect_ray(aggro_ray.global_transform.origin, get_target_pos(), [], 3)
+    if hit:
+        var asf = hit.collider
+        if hit.collider == player:
+            return true
+    return false
 
+func travel_on_path():
     if path != null && path_ind < path.size():
         var walk_target_pos = path[path_ind]
-        var move_vec = (walk_target_pos - global_transform.origin)
-        if move_vec.length() < STOP_RADIUS || path_ind == path.size()-1 && move_vec.length() < ATTACK_RANGE:
+        var distance_to_target = (walk_target_pos - global_transform.origin).length()
+        if distance_to_target < STOP_RADIUS:
             path_ind += 1
             if path_ind >= path.size():
                 path = null
-        else:
-            apply_movement(move_vec, ACCELERATION, delta)
-        if walk_target_pos != null:
-            look(walk_target_pos)
-            playback.travel("Walking")
-
+                return null
+        return walk_target_pos
+    return null
 
 func look(target_pos):
     var zdir = (target_pos - global_transform.origin)
@@ -209,6 +220,8 @@ func update_path(target_pos):
     target_last_pos = target_pos
     path = nav.get_simple_path(global_transform.origin, target_pos)
     path_ind = 0
+    if len(path) == 0:
+        select_target()
 
 func hit_target():
     if is_instance_valid(current_target) && target_in_range(ATTACK_REACH_RANGE):

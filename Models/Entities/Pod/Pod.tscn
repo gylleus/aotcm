@@ -1,82 +1,137 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Models/Entities/Pod/pod.glb" type="PackedScene" id=1]
+[ext_resource path="res://Models/Entities/Pod/pod.dae" type="PackedScene" id=1]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
-animation = "Attacked"
-
-[sub_resource type="AnimationNodeAnimation" id=2]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "Breathe"
-
-[sub_resource type="AnimationNodeAnimation" id=12]
-animation = "Grow"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=4]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=5]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/Attacked/node = SubResource( 1 )
-states/Attacked/position = Vector2( 710, 180 )
-states/BeginAttacked/node = SubResource( 2 )
-states/BeginAttacked/position = Vector2( 657, 56 )
-states/Breathe/node = SubResource( 3 )
-states/Breathe/position = Vector2( 424, 228 )
-states/Grow/node = SubResource( 12 )
-states/Grow/position = Vector2( 242, 85 )
-transitions = [ "Attacked", "Breathe", SubResource( 4 ), "Attacked", "BeginAttacked", SubResource( 5 ), "BeginAttacked", "Attacked", SubResource( 6 ), "Breathe", "Attacked", SubResource( 7 ), "Grow", "Breathe", SubResource( 13 ) ]
-start_node = "Grow"
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
-
-[sub_resource type="Animation" id=10]
-resource_name = "Grow"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
+[sub_resource type="Animation" id=2]
+resource_name = "Attacked"
+length = 0.75
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("PodArmature")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
+tracks/0/imported = true
 tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0.15, 0.15, 0.15 ), Vector3( 0.7, 0.7, 0.7 ) ]
-}
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153, 0.75, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("PodArmature/Skeleton:PodBone")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, 0, 0, 0, -0.0623322, 0, 0, 0.998055, 1, 1, 1, 0.133333, 1, 0, 0, 0, -0.101872, -0.00215428, -0.0114232, 0.99473, 1, 1, 1, 0.2, 1, 0, 0, 0, 0.0334666, -0.0266444, -0.141284, 0.989044, 1, 1, 1, 0.266667, 1, 0, 0, 0, 0.119179, -0.0265578, -0.115995, 0.985716, 1, 1, 1, 0.333333, 1, 0, 0, 0, 0.106864, 0.0755489, 0.57488, 0.807704, 1, 1, 1, 0.4, 1, 0, 0, 0, 0.0839759, 0.0901463, 0.664014, 0.7375, 1, 1, 1, 0.466667, 1, 0, 0, 0, 0.0719651, 0.00642221, 0.0805371, 0.99413, 1, 1, 1, 0.533333, 1, 0, 0, 0, 0.0218391, -0.0207554, -0.012045, 0.999474, 1, 1, 1, 0.6, 1, 0, 0, 0, -0.0314347, -0.0182591, 0.29157, 0.955858, 1, 1, 1, 0.666667, 1, 0, 0, 0, -0.031235, -0.0101429, 0.270966, 0.962028, 1, 1, 1, 0.733333, 1, 0, 0, 0, -0.00437836, -0.00130403, 0.0379832, 0.999268, 1, 1, 1, 0.75, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=3]
+resource_name = "Breathe"
+length = 3.33333
 loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("PodArmature")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153, 3.33333, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("PodArmature/Skeleton:PodBone")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, 0, 0, 0, 0, 0, 0, 1, 1.0001, 1.0001, 1.0001, 0.133333, 1, 0, 0, 0, 0, 0, 0, 1, 1.00042, 1.00042, 1.00042, 0.2, 1, 0, 0, 0, 0, 0, 0, 1, 1.001, 1.001, 1.001, 0.266667, 1, 0, 0, 0, 0, 0, 0, 1, 1.0019, 1.0019, 1.0019, 0.333333, 1, 0, 0, 0, 0, 0, 0, 1, 1.00313, 1.00313, 1.00313, 0.4, 1, 0, 0, 0, 0, 0, 0, 1, 1.00481, 1.00481, 1.00481, 0.466667, 1, 0, 0, 0, 0, 0, 0, 1, 1.00691, 1.00691, 1.00691, 0.6, 1, 0, 0, 0, 0, 0, 0, 1, 1.01268, 1.01268, 1.01268, 0.733333, 1, 0, 0, 0, 0, 0, 0, 1, 1.0208, 1.0208, 1.0208, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1.04559, 1.04559, 1.04559, 1.53333, 1, 0, 0, 0, 0, 0, 0, 1, 1.1213, 1.1213, 1.1213, 1.6, 1, 0, 0, 0, 0, 0, 0, 1, 1.12604, 1.12604, 1.12604, 1.66667, 1, 0, 0, 0, 0, 0, 0, 1, 1.12792, 1.12792, 1.12792, 1.73333, 1, 0, 0, 0, 0, 0, 0, 1, 1.12604, 1.12604, 1.12604, 1.8, 1, 0, 0, 0, 0, 0, 0, 1, 1.1213, 1.1213, 1.1213, 1.86667, 1, 0, 0, 0, 0, 0, 0, 1, 1.11406, 1.11406, 1.11406, 3.33333, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Explode"
+length = 0.833333
+tracks/0/type = "transform"
+tracks/0/path = NodePath("PodArmature")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153, 0.833333, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("PodArmature/Skeleton:PodBone")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 1, 1, 1, 0.0666667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 1.0227, 1.02239, 0.964415, 0.133333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 1.07737, 1.07633, 0.878695, 0.4, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 1.41818, 1.41257, 0.344347, 0.466667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 1.47726, 1.47086, 0.251711, 0.533333, 1, 0, 0, 0, 0.0145126, -0.0207915, 0.0124738, 0.999601, 1.50299, 1.49625, 0.211372, 0.6, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 1.35626, 1.34972, 0.443155, 0.733333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.550252, 0.544947, 1.71622, 0.8, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.244154, 0.239319, 2.19969, 0.833333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.185704, 0.180958, 2.29202 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Grow"
+length = 2.08333
+tracks/0/type = "transform"
+tracks/0/path = NodePath("PodArmature")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153, 2.08333, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("PodArmature/Skeleton:PodBone")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.286667, 0.286667, 0.286667, 0.0666667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.286707, 0.286707, 0.286707, 0.133333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.286932, 0.286932, 0.286932, 0.2, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.287536, 0.287536, 0.287536, 0.266667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.288723, 0.288723, 0.288723, 0.333333, 1, 0, 0, 0, 0.0145126, -0.0207915, 0.0124738, 0.999601, 0.290612, 0.290612, 0.290612, 0.4, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.293537, 0.293537, 0.293537, 0.466667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.297534, 0.297534, 0.297534, 0.533333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.302872, 0.302872, 0.302872, 0.6, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.309754, 0.309754, 0.309754, 0.666667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.318226, 0.318226, 0.318226, 0.8, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.341273, 0.341273, 0.341273, 1, 1, 0, 0, 0, 0.0145126, -0.0207915, 0.0124738, 0.999601, 0.393179, 0.393179, 0.393179, 1.26667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.503673, 0.503673, 0.503673, 2, 1, 0, 0, 0, 0.0145126, -0.0207915, 0.0124738, 0.999601, 0.989596, 0.989596, 0.989596, 2.06667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.99893, 0.99893, 0.99893, 2.08333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 1, 1, 1 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "Attacked"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Breathe"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Grow"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/Attacked/node = SubResource( 12 )
+states/Attacked/position = Vector2( 569, 159 )
+states/Breathe/node = SubResource( 9 )
+states/Breathe/position = Vector2( 373, 218 )
+states/Grow/node = SubResource( 10 )
+states/Grow/position = Vector2( 273, 119 )
+states/Idle/node = SubResource( 13 )
+states/Idle/position = Vector2( 458, 33 )
+transitions = [ "Grow", "Breathe", SubResource( 11 ), "Attacked", "Idle", SubResource( 14 ), "Idle", "Attacked", SubResource( 15 ), "Breathe", "Attacked", SubResource( 16 ), "Attacked", "Breathe", SubResource( 17 ) ]
+start_node = "Grow"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
 [node name="Pod" instance=ExtResource( 1 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
-[node name="PodArmature" parent="." index="0"]
-transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PodArmature" index="1"]
+root_node = NodePath("../..")
+anims/Attacked = SubResource( 2 )
+anims/Breathe = SubResource( 3 )
+anims/Explode = SubResource( 4 )
+anims/Grow = SubResource( 5 )
+anims/Idle = SubResource( 8 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="1"]
-tree_root = SubResource( 8 )
+[node name="AnimationTree" type="AnimationTree" parent="PodArmature" index="2"]
+tree_root = SubResource( 6 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
-
-[node name="PodArmature2" parent="." index="2"]
-transform = Transform( 7.23756, 0, 0, 0, 7.23756, 0, 0, 0, 7.23756, -0.0161542, 0, 0 )
-
-[node name="AnimationPlayer" parent="." index="3"]
-anims/Grow = SubResource( 10 )
-anims/Idle = SubResource( 11 )
+parameters/playback = SubResource( 7 )

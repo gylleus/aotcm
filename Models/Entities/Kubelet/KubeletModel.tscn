@@ -109,9 +109,6 @@ start_node = "Idle"
 [node name="KubeletModel" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="KubeletHead" parent="KubeletArmature/Skeleton" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KubeletArmature" index="1"]
 root_node = NodePath("../..")
 anims/Idle = SubResource( 1 )

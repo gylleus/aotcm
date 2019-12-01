@@ -1,15 +1,24 @@
-extends Spatial
+extends RigidBody
 
 export var MAX_HEALTH : float = 100
 export var EXPLOSION_FORCE : float = 500.0
 export var EXPLOSION_DIR_ELEVATION : float = 5
 onready var health_left = MAX_HEALTH
 
-onready var playback = get_node("Pod/AnimationTree").get("parameters/playback")
+onready var playback = get_node("Pod/PodArmature/AnimationTree").get("parameters/playback")
 onready var explosion_area : Area = get_node("ExplosionArea")
 
 func _ready():
     add_to_group("pods")
+
+func _physics_process(delta):
+    if get("contact_monitor") && len(get_colliding_bodies()) > 0:
+        land()
+
+func land():
+    set("contact_monitor", false)
+    set("axis_lock_linear_x", true)
+    set("axis_lock_linear_z", true)
 
 func bullet_hit(_damage):
     take_damage(0)

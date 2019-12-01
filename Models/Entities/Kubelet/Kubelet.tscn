@@ -6,9 +6,11 @@
 
 [node name="Kubelet" type="Spatial"]
 script = ExtResource( 1 )
+POD_AIR_TIME = 1.0
 
 [node name="Beads" parent="." instance=ExtResource( 2 )]
 transform = Transform( 2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 3.33996, 0 )
 
 [node name="KubeletModel" parent="." instance=ExtResource( 3 )]
 [connection signal="spit_pod" from="." to="KubeletModel" method="_on_Kubelet_spit_pod"]
+[connection signal="next_pod" from="KubeletModel" to="." method="_on_next_pod"]

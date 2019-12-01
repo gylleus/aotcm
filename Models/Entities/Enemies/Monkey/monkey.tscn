@@ -830,8 +830,9 @@ graph_offset = Vector2( -68, 136.624 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
-[sub_resource type="BoxShape" id=20]
-extents = Vector3( 0.482995, 0.386331, 0.536945 )
+[sub_resource type="CapsuleShape" id=20]
+radius = 0.531706
+height = 0.474881
 
 [sub_resource type="BoxShape" id=21]
 extents = Vector3( 0.299803, 0.30479, 0.285968 )
@@ -1097,5 +1098,6 @@ material/5 = null
 material/6 = null
 
 [node name="AggroRay" type="RayCast" parent="MonkeyHolder"]
-cast_to = Vector3( 0, 0, 50 )
-collision_mask = 2
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69666, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, 99.99 )

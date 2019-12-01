@@ -10,7 +10,7 @@ var deaccel = 11
 var max_speed = 14
 var velocity = Vector3()
 
-const MAX_SLOPE_ANGLE = 90
+const MAX_SLOPE_ANGLE = 60
 
 var camera
 var rotation_helper
@@ -60,7 +60,7 @@ func move(delta):
 	velocity.z = hvel.z
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 
-	if Input.is_action_just_pressed("player_jump") && is_on_floor():
+	if Input.is_action_pressed("player_jump") && is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	# Apply gravity
 	if !is_on_floor():
