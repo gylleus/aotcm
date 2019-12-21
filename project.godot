@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Attack of the Chaos Monkeys"
 run/main_scene="res://Scenes/TestArea.tscn"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [autoload]
@@ -25,8 +26,8 @@ Globals="*res://Scripts/Globals.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=1080
+window/size/height=720
 
 [input]
 

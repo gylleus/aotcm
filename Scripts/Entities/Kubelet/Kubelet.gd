@@ -43,7 +43,6 @@ func _ready():
     
 
 func _physics_process(delta):
-  #  print(get_global_transform().basis.z)
     if next_pod != null:
         spin_lerp_value += delta / SPIN_TIME
         rotate_towards_direction(pod_launch_vector, spin_lerp_value, spin_start)

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/MonkeyTest.gd" type="Script" id=2]
-[ext_resource path="res://Models/pirategun.dae" type="PackedScene" id=3]
+[ext_resource path="res://Models/Player/pirategun.dae" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Muzzle.gd" type="Script" id=4]
 [ext_resource path="res://Models/Player/Weapon/Fire/fire1.png" type="Texture" id=5]
 [ext_resource path="res://Models/Player/Weapon/Fire/fire2.png" type="Texture" id=6]
@@ -146,19 +146,19 @@ tracks/1/keys = {
 
 [node name="PlayerCharacter" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00405693, 0.0412759, -0.00859356 )
-collision_layer = 0
+collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="BodyCollider" type="CollisionShape" parent="."]
-transform = Transform( 0.819844, 0, 0, 0, 1.2, 0, 0, 0, 0.424961, 0, 1.185, 0.0560107 )
+transform = Transform( 0.819844, 0, 0, 0, 1.2, 0, 0, 0, 0.424961, 0, 1.10941, 0.0560107 )
 shape = SubResource( 1 )
 
 [node name="FeetCollider" type="CollisionShape" parent="."]
-transform = Transform( 1.41271, 0, 0, 0, 0.0704462, 0, 0, 0, 0.465509, 0, 0.3, -0.392 )
+transform = Transform( 1.41271, 0, 0, 0, 0.0704462, 0, 0, 0, 0.465509, 0, 0.22441, -0.392 )
 shape = SubResource( 2 )
 
 [node name="RotationHelper" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92441, 0 )
 
 [node name="Camera" type="Camera" parent="RotationHelper"]
 transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, 0, 0.0411232, -0.523437 )

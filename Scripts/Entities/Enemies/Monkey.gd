@@ -119,20 +119,6 @@ func target_in_range(r):
 func is_walking():
     return path == null
 
-func select_target():
-    # Check if any pods to attack
-    var pods = find_pods()
-    print(pods)
-    var closest_pod = null
-    for p in pods:
-        if closest_pod == null || (p.global_transform.origin - global_transform.origin).length() < (closest_pod.global_transform.origin - global_transform.origin).length():
-            closest_pod = p
-    current_target = closest_pod
-    if current_target == null:
-        current_target = player
-    if current_target != null:
-        target_last_pos = get_target_pos()
-
 func aggro_player():
     current_target = player
 

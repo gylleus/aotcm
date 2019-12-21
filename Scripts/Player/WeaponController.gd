@@ -42,14 +42,13 @@ func fire_bullet():
     globals.play_sound("RifleShot", player.global_transform.origin)
     fire_ray.force_raycast_update()
     if fire_ray.is_colliding():
-        print(fire_ray.get_collider())
         var body = fire_ray.get_collider()
         if body.has_method("bullet_hit"):
             body.bullet_hit(damage)
             var bh = BULLET_HIT.instance()
-            bh.global_transform.origin = fire_ray.get_collision_point()
-            bh.transform.basis = player.transform.basis
             get_tree().root.add_child(bh)
+            bh.get_global_transform().origin = fire_ray.get_collision_point()
+            bh.transform.basis = player.transform.basis
         else:
             var bh = BULLET_PARTICLE_HIT.instance()
             bh.global_transform.origin = fire_ray.get_collision_point()

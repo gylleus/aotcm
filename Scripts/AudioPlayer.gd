@@ -11,7 +11,6 @@ func _ready():
 
 
 func play_sound(audio_stream, position=null):
-    print(position)
     if audio_stream == null:
         print ("No audio stream passed; cannot play sound")
         globals.created_audio.remove(globals.created_audio.find(self))

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/pirategun.dae-2921d887e4575253b6de301da257a10b.scn"
+path="res://.import/pirategun.dae-292d561d057ccef25d49381e64fd83fd.scn"
 
 [deps]
 
-source_file="res://Models/pirategun.dae"
-dest_files=[ "res://.import/pirategun.dae-2921d887e4575253b6de301da257a10b.scn" ]
+source_file="res://Models/Player/pirategun.dae"
+dest_files=[ "res://.import/pirategun.dae-292d561d057ccef25d49381e64fd83fd.scn" ]
 
 [params]
 
