@@ -70,12 +70,21 @@ reload={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
+kubelet_clear={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
 3d_physics/layer_1="All"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemies"
+
+[physics]
+
+3d/default_clear_color=Color( 0.3, 0.3, 0.3, 1 )
 
 [rendering]
 

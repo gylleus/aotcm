@@ -1,11 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[sub_resource type="SpatialMaterial" id=1]
-params_diffuse_mode = 4
-params_specular_mode = 3
-albedo_color = Color( 0.27451, 0.415686, 0.372549, 1 )
+[ext_resource path="res://Models/Entities/Kubelet/Materials/Kube.tres" type="Material" id=1]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 length = 9.0
 loop = true
 tracks/0/type = "value"
@@ -173,85 +170,85 @@ transform = Transform( -1.06582, 0.194487, -1.17737, 1.12343, -0.368779, -1.0779
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead2" type="CSGBox" parent="."]
 transform = Transform( 0.732174, 0.646565, 1.26723, -1.37144, 0.699718, 0.435373, -0.378255, -1.28544, 0.8744, 0.866025, 0, 0.5 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead3" type="CSGBox" parent="."]
 transform = Transform( 0.785116, 0.961996, -1.00904, -1.35947, 0.784892, -0.309485, 0.308914, 1.00921, 1.20252, 0.490437, 0, 0.901076 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead4" type="CSGBox" parent="."]
 transform = Transform( 0.706778, -0.911055, -1.10925, 0.926913, 1.23375, -0.422713, 1.09604, -0.455886, 1.07279, 0, 0, 1 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead5" type="CSGBox" parent="."]
 transform = Transform( 0.63366, 0.377601, -1.41982, -0.751468, 1.41198, 0.0401385, 1.26245, 0.650948, 0.736544, -0.5, 0, 0.866025 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead6" type="CSGBox" parent="."]
 transform = Transform( -0.267633, 1.20197, -1.02159, -1.3626, 0.345921, 0.763969, 0.794784, 0.997806, 0.965765, -0.866025, 0, 0.5 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead7" type="CSGBox" parent="."]
 transform = Transform( -0.0639907, -0.789579, -1.39013, 1.00157, 1.06459, -0.650779, 1.2461, -0.896221, 0.451682, -1, 0, 0 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead8" type="CSGBox" parent="."]
 transform = Transform( 1.22177, 0.0329175, -1.03256, 0.942284, -0.691102, 1.09292, -0.423518, -1.44267, -0.547118, -0.866025, 0, -0.5 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead9" type="CSGBox" parent="."]
 transform = Transform( 1.33002, -0.524786, 0.718079, 0.587251, 1.48833, 1.21659e-008, -0.667963, 0.263558, 1.42981, -0.497904, 2.38419e-007, -0.876585 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead10" type="CSGBox" parent="."]
 transform = Transform( 1.09217, 0.315174, -1.12598, -0.821209, 1.30356, -0.431675, 0.832329, 0.872578, 1.05159, 0, 0, -1 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead11" type="CSGBox" parent="."]
 transform = Transform( 0.824202, -0.148293, -1.36334, 1.36741, -0.0320658, 0.830152, -0.104264, -1.59279, 0.110218, 0.5, 0, -0.866025 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="Bead12" type="CSGBox" parent="."]
 transform = Transform( 1.40209, 0, 0.770806, 0, 1.6, 0, -0.770806, 0, 1.40209, 0.866025, 0, -0.5 )
 width = 0.135
 height = 0.135
 depth = 0.135
-material = SubResource( 1 )
+material = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "KubeRotate"
-anims/KubeRotate = SubResource( 2 )
+anims/KubeRotate = SubResource( 1 )

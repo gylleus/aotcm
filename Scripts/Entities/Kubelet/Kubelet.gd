@@ -20,25 +20,38 @@ var pod_launch_vector : Vector3
 var last_launch_angle : int
 var spin_start : Transform
 var spin_lerp_value : float = 0
+var resting_look_direction : Vector3
 # Random number generator
 var rng = RandomNumberGenerator.new()
 
 const PodTemplate = preload("res://Scripts/Entities/PodTemplate.gd")
+onready var playback = get_node("KubeletModel/KubeletArmature/AnimationTree").get("parameters/playback")
+var explosion_scene = preload("res://Models/Entities/Kubelet/Explosion.tscn")
 
 signal spit_pod
 
 func _ready():
     rng.randomize()
+    add_to_group("kubelet")
+    resting_look_direction = global_transform.basis.z
     # Set a random "previous" launch angle 
     last_launch_angle = rng.randf_range(0.0, 360.0)
     queue_pod(PodTemplate.new(50,"test"))
     queue_pod(PodTemplate.new(50,"test"))
-    queue_pod(PodTemplate.new(50,"test"))
-    queue_pod(PodTemplate.new(50,"test"))
-    queue_pod(PodTemplate.new(50,"test"))
-    queue_pod(PodTemplate.new(50,"test"))
-    queue_pod(PodTemplate.new(50,"test"))
-    queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
+    # queue_pod(PodTemplate.new(50,"test"))
     initiate_next_pod()
     
 
@@ -48,12 +61,14 @@ func _physics_process(delta):
         rotate_towards_direction(pod_launch_vector, spin_lerp_value, spin_start)
         if spin_lerp_value >= 1:
             emit_signal("spit_pod", pod_launch_vector)
-            next_pod = null
-
+    elif len(pod_queue) == 0:
+        spin_lerp_value += delta / SPIN_TIME
+        rotate_towards_direction(resting_look_direction, spin_lerp_value, spin_start)
+        
 func rotate_towards_direction(direction, lerp_value, rotate_from):
     if lerp_value >= 1:
         lerp_value = 1
-    var rotate_to = rotate_from.looking_at(global_transform.origin + direction, transform.basis.y)
+    var rotate_to = rotate_from.looking_at(global_transform.origin + direction, Vector3(0,1,0))
     var a = Quat(rotate_from.basis)
     var new_rot = a.slerp(rotate_to.basis, lerp_value)
     set_transform(Transform(new_rot, rotate_from.origin))
@@ -66,8 +81,10 @@ func initiate_next_pod():
             print("ERROR: Could not find a valid pod launch location")
             return
         pod_launch_vector = find_launch_vector(pod_launch_location)
-        spin_start = get_transform().orthonormalized()
-        spin_lerp_value = 0
+    else:
+        next_pod = null
+    spin_start = get_transform().orthonormalized()
+    spin_lerp_value = 0
 
 func queue_pod(pod_template):
     pod_queue.push_back(pod_template)
@@ -135,6 +152,15 @@ func find_valid_pod_position(possible_positions):
     if next_launch_pos == null:
         print("ERROR: No valid launch position could be found")
     return next_launch_pos
+
+func trigger_emergency_clear():
+    playback.travel("Purge")
+    explode()
+
+func explode():
+    var explosion = explosion_scene.instance()
+    get_tree().get_root().add_child(explosion)
+    explosion.global_transform.origin = global_transform.origin
 
 func _on_next_pod():
     initiate_next_pod()

@@ -1,17 +1,17 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scripts/Entities/Enemies/MonkeyStateMachine.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Idle.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Move.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Falling.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Attack.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Stagger.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Falling.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Attack.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Stagger.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Move.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Die.gd" type="Script" id=7]
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Fur.material" type="Material" id=8]
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Face.material" type="Material" id=9]
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Mouth.material" type="Material" id=10]
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Eyebrow.material" type="Material" id=11]
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Eye.material" type="Material" id=12]
+[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Materials/Fur.tres" type="Material" id=8]
+[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Monkey.shader" type="Shader" id=9]
+[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Materials/Eyebrow.tres" type="Material" id=10]
+[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Materials/Eye.tres" type="Material" id=11]
+[ext_resource path="res://Scenes/Visuals/MonkeyChaosFlame.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Attack"
@@ -871,10 +871,11 @@ tracks/18/enabled = true
 tracks/18/keys = PoolRealArray( 0, 1, 1.12976e-009, 1.49012e-008, 5.96046e-008, -0.0540471, 7.10194e-015, 5.94552e-014, 0.998538, 1, 1, 1, 1.5, 1, 1.12976e-009, 1.49012e-008, 5.96046e-008, -0.0540471, 7.10194e-015, 5.94552e-014, 0.998538, 1, 1, 1 )
 
 [sub_resource type="BoxShape" id=7]
-extents = Vector3( 0.369052, 0.414251, 0.302027 )
+extents = Vector3( 0.410514, 0.609455, 0.549215 )
 
-[sub_resource type="BoxShape" id=8]
-extents = Vector3( 0.353567, 0.447072, 0.631419 )
+[sub_resource type="CapsuleShape" id=8]
+radius = 0.56479
+height = 0.427427
 
 [sub_resource type="ArrayMesh" id=9]
 surfaces/0 = {
@@ -884,7 +885,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97751,
 "index_count": 9345,
-"material": ExtResource( 8 ),
 "name": "Fur",
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.904317, -1.41315, -1.89143, 2.44339, 2.26642, 2.4184 ), AABB( 0.421086, -2.54768, -1.77203, 1.22259, 2.58484, 1.33755 ), AABB( 0.972026, -2.54768, -1.77203, 0.671654, 0.147909, 1.19973 ), AABB( -1.56351, -1.41315, -1.89143, 2.67188, 2.22094, 2.49798 ), AABB( -1.66812, -2.54768, -1.77203, 1.19294, 2.59447, 1.33755 ), AABB( -1.66812, -2.54768, -1.77203, 0.671654, 0.147899, 1.19973 ), AABB( -1.32779, -0.952243, -1.89143, 2.65555, 1.87341, 3.81169 ), AABB( -1.02447, -0.192991, -1.89143, 2.18469, 1.06167, 1.82205 ), AABB( -0.247329, 0.81369, -1.4133, 0.568667, 2.00681, 0.643741 ), AABB( -0.279623, 3.74347, -1.40425, 0.534809, 0.845905, 0.53481 ), AABB( -0.279623, 4.58937, -1.40425, 0.534809, 0.377779, 0.534809 ), AABB( -1.4073, -0.895109, -0.640899, 2.80898, 1.85889, 2.65219 ), AABB( -1.52932, -0.952243, -0.640899, 3.10254, 1.96754, 3.64324 ), AABB( -0.865559, -1.78012, 0.606543, 2.90487, 2.74389, 2.3958 ), AABB( 1.28251, -2.39426, 1.33818, 0.881995, 2.33533, 0.936474 ), AABB( -1.97535, -0.983259, 0.681789, 2.81647, 1.94704, 2.32055 ), AABB( -2.10055, -2.39426, 1.33818, 0.904461, 2.33533, 1.00086 ), AABB( -1.83276, -0.0359879, 1.19797, 3.62848, 3.13326, 2.1048 ) ],
@@ -897,7 +897,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97751,
 "index_count": 90,
-"material": ExtResource( 9 ),
 "name": "Face",
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -1.62191, 0.682285, 2.51722, 3.20679, 1.9615, 0.80485 ) ],
@@ -910,7 +909,6 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97751,
 "index_count": 252,
-"material": ExtResource( 10 ),
 "name": "Mouth",
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.486167, 0.975412, 3.34856, 1.09955, 0.527156, 0.0641556 ) ],
@@ -923,7 +921,6 @@ surfaces/3 = {
 "blend_shape_data": [  ],
 "format": 97751,
 "index_count": 120,
-"material": ExtResource( 11 ),
 "name": "Eyebrow",
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.717001, 2.11134, 3.38319, 1.47342, 0.226375, 0.056211 ) ],
@@ -936,17 +933,63 @@ surfaces/4 = {
 "blend_shape_data": [  ],
 "format": 97751,
 "index_count": 1620,
-"material": ExtResource( 12 ),
 "name": "Eye",
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.748151, 1.66114, 3.21313, 1.47254, 0.516139, 0.209941 ) ],
 "vertex_count": 346
 }
 
+[sub_resource type="ShaderMaterial" id=10]
+shader = ExtResource( 9 )
+shader_param/color = Color( 0.776471, 0.560784, 0.509804, 1 )
+shader_param/outline_color = null
+shader_param/useTexture = true
+shader_param/useNormalMap = false
+shader_param/unlit_coefficient = 0.2
+shader_param/cut_point = 0.2
+shader_param/normalMapDepth = null
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+albedo_color = Color( 1, 1, 1, 0 )
+albedo_texture = ExtResource( 12 )
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.418121, 0.1711 ), 0.0, 0.0, 0, 0, Vector2( 0.935043, 0.9807 ), 0.0, 0.0, 0, 0, Vector2( 0.994233, 0.0655 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+flag_align_y = true
+spread = 103.92
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.7
+initial_velocity_random = 0.53
+angular_velocity = 1.56887e-019
+scale = 2.0
+scale_curve = SubResource( 13 )
+color = Color( 0.0705882, 0.00392157, 0.00392157, 1 )
+
+[sub_resource type="SphereMesh" id=15]
+radius = 0.35
+height = 0.35
+radial_segments = 8
+rings = 8
+
 [node name="Monkey" type="KinematicBody"]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 5
 script = ExtResource( 1 )
+chaos_movement_multiplier = 2.0
+chaos_attack_speed_multiplier = 2.0
+attack_range = 2.5
+movement_speed = 700
+max_health = 45
+gravity = 35.0
+nav_path_name = "MonkeyNavigation"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 1 )
@@ -960,36 +1003,35 @@ anims/Walking = SubResource( 6 )
 
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource( 2 )
-DEBUG = true
 animation_name = "Idle"
 
-[node name="Move" type="Node" parent="States"]
-script = ExtResource( 3 )
-DEBUG = true
-animation_name = "Walking"
-max_slope_angle = 90
-waypoint_reach_margin = 0.5
-draw_path = false
-
 [node name="Falling" type="Node" parent="States"]
-script = ExtResource( 4 )
-DEBUG = true
+script = ExtResource( 3 )
 animation_name = "Falling"
+animation_speed = 1.3
 
 [node name="Attack" type="Node" parent="States"]
-script = ExtResource( 5 )
-DEBUG = true
+script = ExtResource( 4 )
 animation_name = "Attack"
+animation_speed = 1.4
+hit_range_multiplier = 2.0
 
 [node name="Stagger" type="Node" parent="States"]
-script = ExtResource( 6 )
-DEBUG = true
+script = ExtResource( 5 )
 animation_name = "Stagger"
+animation_speed = 1.5
+
+[node name="Move" type="Node" parent="States"]
+script = ExtResource( 6 )
+animation_name = "Walking"
+animation_speed = 1.4
+max_slope_angle = 90
+draw_path = true
 
 [node name="Die" type="Node" parent="States"]
 script = ExtResource( 7 )
-DEBUG = true
 animation_name = "Death"
+animation_speed = 2.0
 
 [node name="VisionRay" type="RayCast" parent="."]
 transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 1.29383, 0 )
@@ -997,12 +1039,12 @@ enabled = true
 cast_to = Vector3( 0, 0, 99.99 )
 collision_mask = 3
 
-[node name="HeadCollider" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00585672, 1.29655, -0.673496 )
+[node name="BodyCollider" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.19249e-008, 1, 0, -1, 1.19249e-008, 0, 0.56, -0.095 )
 shape = SubResource( 7 )
 
-[node name="BodyCollider" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, -9.25007e-014, 0, 9.25007e-014, 1, 0.0409185, 0.459432, -0.125183 )
+[node name="BodyCollider2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.568247, -0.156047 )
 shape = SubResource( 8 )
 
 [node name="MonkeyHolder" type="Spatial" parent="."]
@@ -1012,6 +1054,7 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 transform = Transform( -1, 0, -1.50996e-007, 0, 1, 0, 1.50996e-007, 0, -1, 0, 2.79661, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="MonkeyHolder/Armature"]
+transform = Transform( 1, 0, 1.42109e-014, 0, 1, 0, -1.42109e-014, 0, 1, 0, 0, 0 )
 bones_in_world_transform = true
 bones/0/name = "Bone.007"
 bones/0/parent = -1
@@ -1105,9 +1148,20 @@ bones/17/enabled = true
 bones/17/bound_children = [  ]
 
 [node name="Body" type="MeshInstance" parent="MonkeyHolder/Armature/Skeleton"]
+transform = Transform( 1, 6.03846e-009, -1.74337e-009, -6.03846e-009, 1, -1.79497e-009, 1.74337e-009, 1.79497e-009, 1, 0, 0, 0 )
 mesh = SubResource( 9 )
-material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
-material/4 = null
+material/0 = ExtResource( 8 )
+material/1 = SubResource( 10 )
+material/2 = ExtResource( 10 )
+material/3 = ExtResource( 10 )
+material/4 = ExtResource( 11 )
+
+[node name="ChaosAura" type="Particles" parent="MonkeyHolder"]
+transform = Transform( -0.999999, -8.74227e-008, 1.76465e-022, 1.04251e-015, -1.19249e-008, 0.999999, -8.74227e-008, 0.999999, 1.19249e-008, 0.110828, 2.50034, -0.394163 )
+material_override = SubResource( 11 )
+emitting = false
+amount = 20
+explosiveness = 0.25
+local_coords = false
+process_material = SubResource( 14 )
+draw_pass_1 = SubResource( 15 )

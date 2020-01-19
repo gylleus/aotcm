@@ -4,7 +4,7 @@ var playback : AnimationNodeStateMachinePlayback
 onready var player = get_node("..")
 var fire_ray
 
-var damage = 5
+export var damage = 5
 var MAGAZINE_SIZE = 300
 var bullets_left
 

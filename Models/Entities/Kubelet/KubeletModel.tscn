@@ -1,14 +1,19 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Models/Entities/Kubelet/kubelet.dae" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Kubelet/PodShooter.gd" type="Script" id=2]
+[ext_resource path="res://Models/Entities/Kubelet/Materials/Surface.tres" type="Material" id=3]
+[ext_resource path="res://Models/Entities/Kubelet/Materials/Eye.tres" type="Material" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
+length = 2.0
+loop = true
 
 [sub_resource type="Animation" id=2]
 resource_name = "Purge"
 length = 1.16667
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KubeletArmature")
 tracks/0/interp = 1
@@ -41,6 +46,7 @@ tracks/3/keys = PoolRealArray( 0, 1, -4.1553e-015, -3.50432e-009, -1.81465e-008,
 [sub_resource type="Animation" id=3]
 resource_name = "SpitPod"
 length = 0.833333
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("KubeletArmature")
 tracks/0/interp = 1
@@ -88,26 +94,45 @@ tracks/4/keys = {
 animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Purge"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "SpitPod"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
 states/Idle/node = SubResource( 4 )
 states/Idle/position = Vector2( 220, 108 )
-states/SpitPod/node = SubResource( 5 )
+states/Purge/node = SubResource( 5 )
+states/Purge/position = Vector2( 323, 243 )
+states/SpitPod/node = SubResource( 6 )
 states/SpitPod/position = Vector2( 426, 108 )
-transitions = [ "Idle", "SpitPod", SubResource( 6 ), "SpitPod", "Idle", SubResource( 7 ) ]
+transitions = [ "Idle", "SpitPod", SubResource( 7 ), "SpitPod", "Idle", SubResource( 8 ), "Idle", "Purge", SubResource( 9 ), "Purge", "Idle", SubResource( 10 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
 [node name="KubeletModel" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="KubeletArmature" parent="." index="0"]
+transform = Transform( -3.22506, 0, 4.86971e-007, 0, 2.41414, 0, -4.86971e-007, 0, -3.22506, 0, -0.712989, 0 )
+
+[node name="KubeletHead" parent="KubeletArmature/Skeleton" index="0"]
+transform = Transform( 1, 0, 2.84217e-014, 0, 1, 0, -2.84217e-014, 0, 1, 0, 0, 0 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KubeletArmature" index="1"]
 root_node = NodePath("../..")
@@ -116,7 +141,7 @@ anims/Purge = SubResource( 2 )
 anims/SpitPod = SubResource( 3 )
 
 [node name="AnimationTree" type="AnimationTree" parent="KubeletArmature" index="2"]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 12 )

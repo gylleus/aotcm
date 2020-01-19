@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Models/Entities/Kubelet/Explosion.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/Entities/Kubelet/KubeletExplosion.gd" type="Script" id=2]
+
+[sub_resource type="Curve" id=2]
+max_value = 250.0
+_data = [ Vector2( 0, 250 ), 0.0, -2111.51, 0, 1, Vector2( 0.118399, 0 ), -2111.51, 0.0, 1, 1, Vector2( 0.205184, 0 ), 0.0, 314.538, 0, 1, Vector2( 1, 250 ), 314.538, 0.0, 1, 0 ]
+
+[sub_resource type="SphereShape" id=3]
+
+[node name="Explosion" type="CSGSphere"]
+radial_segments = 36
+rings = 36
+material = ExtResource( 1 )
+script = ExtResource( 2 )
+explosion_size = SubResource( 2 )
+explosion_duration = 4.0
+explosion_shape = Vector3( 1, 1, 1 )
+explosion_dir_elevation = 70.0
+explosion_force = 35.0
+explosion_damage = 1500.0
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 3 )
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

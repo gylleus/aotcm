@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Entities/Kubelet/Kubelet.gd" type="Script" id=1]
 [ext_resource path="res://Models/Entities/Kubelet/Beads.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Entities/Kubelet/KubeletModel.tscn" type="PackedScene" id=3]
 
-[node name="Kubelet" type="Spatial"]
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.21571, 1.76543, 1.79724 )
+
+[node name="Kubelet" type="StaticBody"]
 script = ExtResource( 1 )
 POD_AIR_TIME = 1.0
 
@@ -12,5 +15,10 @@ POD_AIR_TIME = 1.0
 transform = Transform( 2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 3.33996, 0 )
 
 [node name="KubeletModel" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.508953, -0.190859 )
+shape = SubResource( 1 )
+disabled = true
 [connection signal="spit_pod" from="." to="KubeletModel" method="_on_Kubelet_spit_pod"]
 [connection signal="next_pod" from="KubeletModel" to="." method="_on_next_pod"]

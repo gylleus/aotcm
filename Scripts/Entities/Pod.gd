@@ -21,8 +21,8 @@ func land():
     set("axis_lock_linear_x", true)
     set("axis_lock_linear_z", true)
 
-func bullet_hit(_damage):
-    take_damage(0)
+func bullet_hit(damage):
+    take_damage(damage)
 
 func take_damage(amount):
     health_left -= amount

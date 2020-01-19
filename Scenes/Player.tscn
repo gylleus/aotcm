@@ -43,7 +43,7 @@ states/idle/position = Vector2( 503, 168 )
 states/reload/node = SubResource( 5 )
 states/reload/position = Vector2( 503, 338 )
 transitions = [ "idle", "fire", SubResource( 6 ), "fire", "idle", SubResource( 7 ), "idle", "reload", SubResource( 8 ), "reload", "idle", SubResource( 9 ) ]
-graph_offset = Vector2( -68, 54 )
+graph_offset = Vector2( -68, 82.32 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
@@ -148,6 +148,8 @@ tracks/1/keys = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00405693, 0.0412759, -0.00859356 )
 collision_layer = 2
 script = ExtResource( 1 )
+GRAVITY = -30
+WEIGHT = 90.0
 
 [node name="BodyCollider" type="CollisionShape" parent="."]
 transform = Transform( 0.819844, 0, 0, 0, 1.2, 0, 0, 0, 0.424961, 0, 1.10941, 0.0560107 )
@@ -162,9 +164,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92441, 0 )
 
 [node name="Camera" type="Camera" parent="RotationHelper"]
 transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, 0, 0.0411232, -0.523437 )
+current = true
 fov = 75.0
 near = 0.07
-far = 200.0
+far = 1000.0
 script = ExtResource( 2 )
 
 [node name="FirePoint" type="Spatial" parent="RotationHelper/Camera"]
@@ -177,7 +180,6 @@ collision_mask = 5
 collide_with_areas = true
 
 [node name="AnimationHelper" type="Spatial" parent="RotationHelper"]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
 
 [node name="Rifle" parent="RotationHelper/AnimationHelper" instance=ExtResource( 3 )]
@@ -201,6 +203,7 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 11 )
 script = ExtResource( 7 )
+damage = 15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fire = SubResource( 12 )
@@ -239,3 +242,8 @@ margin_top = -81.0
 text = "safsafasf"
 align = 1
 valign = 1
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+[connection signal="timeout" from="RespawnTimer" to="." method="_respawn"]

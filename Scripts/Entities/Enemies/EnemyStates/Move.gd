@@ -27,7 +27,6 @@ export var draw_path : bool
 
 var path
 var path_ind = 0
-var last_pos = null
 var last_target_pos = null
 var travelling_on_path = false
 
@@ -41,26 +40,27 @@ func fixed_update(input):
     if !is_instance_valid(output["current_target"]):
         output["current_target"] = null
         return output
-
-
-    var destination = get_destination(input)
-    destination.y = owner.get_global_transform().origin.y
-    var move_direction
-
-    if destination != null:
-        owner.transform = owner.transform.looking_at(destination, Vector3(0,1,0))
-        move_direction = (destination - input["owner"].get_global_transform().origin).normalized()
-    else:
-        move_direction = Vector3(0,0,0)
-        output["current_target"] = null
-    move_direction.y = -0.05
-    move_direction = move_direction.normalized()
-    owner.move_and_slide(move_direction * input["movement_speed"] * input["delta"], Vector3(0,1,0), deg2rad(max_slope_angle))
     output["can_attack"] = target_in_attack_range(input["owner"], input["current_target"], input["attack_range"])
-    output["in_air"] = !owner.is_on_floor() and move_direction.y < 0
-  #  if last_pos == owner.get_global_transform().origin:
-  #      path = null
-    last_pos = owner.get_global_transform().origin
+    if !output["can_attack"]:
+        var movement_speed = input["movement_speed"] * input["movement_multiplier"]
+        input["anim_player"].playback_speed = animation_speed * input["movement_multiplier"]
+
+        var destination = get_destination(input)
+        var move_direction
+
+        if destination != null:
+            destination.y = owner.get_global_transform().origin.y
+            owner.transform = owner.transform.looking_at(destination, Vector3(0,1,0))
+            move_direction = (destination - input["owner"].get_global_transform().origin).normalized()
+        else:
+            move_direction = Vector3(0,0,0)
+            output["current_target"] = null
+#        move_direction.y = -0.05
+        move_direction = move_direction.normalized()
+        var move_vector = move_direction * movement_speed * input["delta"]
+        move_vector += Vector3(0,-0.1,0)# * input["delta"]
+        owner.move_and_slide(move_vector, Vector3(0,1,0), deg2rad(max_slope_angle))
+        output["in_air"] = !owner.is_on_floor()# and move_direction.y < 0
     return output
 
 func get_destination(input):
@@ -96,7 +96,7 @@ func find_path(navmesh, from, to):
     path_ind = 1
     last_target_pos = to
     var new_path = navmesh.get_simple_path(from, to)
-    if draw_path and false:
+    if draw_path:
         var im = get_tree().get_root().get_node("Spatial/draw")
         im.set_material_override(m)
         im.clear()
