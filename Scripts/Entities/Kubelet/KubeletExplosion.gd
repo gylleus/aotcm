@@ -5,6 +5,7 @@ export var explosion_duration : float
 export var explosion_shape : Vector3
 export var explosion_dir_elevation : float
 export var explosion_force : float
+export var implosion_force : float
 export var explosion_damage : float
 
 var time_passed : float = 0
@@ -22,8 +23,12 @@ func _physics_process(delta):
     else:
         queue_free()
     
-
 func _on_Area_body_entered(body):
-    if body.has_method("add_flying_force") and is_growing and body != Globals.get_player():
+    if body.has_method("add_flying_force") and body != Globals.get_player() and is_growing:
         var force_dir = body.global_transform.origin - global_transform.origin + Vector3(0, explosion_dir_elevation, 0)  
         body.add_flying_force(force_dir * explosion_force, explosion_damage)
+            
+func _on_Area_body_exited(body):
+    if body.has_method("add_flying_force") and body != Globals.get_player() and !is_growing:
+            var force_dir = global_transform.origin - body.global_transform.origin + Vector3(0, explosion_dir_elevation/2, 0)  
+            body.add_flying_force(force_dir * implosion_force, 0)

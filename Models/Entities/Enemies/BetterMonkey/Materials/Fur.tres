@@ -1,7 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=2]
 
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/MonkeyOutline.shader" type="Shader" id=1]
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Monkey.shader" type="Shader" id=2]
+[ext_resource path="res://Shaders/Outline.shader" type="Shader" id=1]
+[ext_resource path="res://Shaders/Toon.shader" type="Shader" id=2]
+
+
+
+
 
 [sub_resource type="ShaderMaterial" id=1]
 render_priority = 1

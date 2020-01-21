@@ -8,10 +8,12 @@
 [ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Move.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Die.gd" type="Script" id=7]
 [ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Materials/Fur.tres" type="Material" id=8]
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Monkey.shader" type="Shader" id=9]
+[ext_resource path="res://Shaders/Toon.shader" type="Shader" id=9]
 [ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Materials/Eyebrow.tres" type="Material" id=10]
 [ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Materials/Eye.tres" type="Material" id=11]
 [ext_resource path="res://Scenes/Visuals/MonkeyChaosFlame.png" type="Texture" id=12]
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Attack"

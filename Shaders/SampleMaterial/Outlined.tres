@@ -3,10 +3,6 @@
 [ext_resource path="res://Shaders/Outline.shader" type="Shader" id=1]
 [ext_resource path="res://Shaders/Toon.shader" type="Shader" id=2]
 
-
-
-
-
 [sub_resource type="ShaderMaterial" id=1]
 render_priority = 1
 shader = ExtResource( 1 )
@@ -17,7 +13,7 @@ shader_param/outline_color = Color( 0, 0, 0, 1 )
 render_priority = 1
 next_pass = SubResource( 1 )
 shader = ExtResource( 2 )
-shader_param/color = Color( 0.345098, 0.286275, 0.262745, 1 )
+shader_param/color = Color( 0.54902, 0.317647, 0.223529, 1 )
 shader_param/outline_color = null
 shader_param/useTexture = true
 shader_param/useNormalMap = false

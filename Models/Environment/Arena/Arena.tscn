@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Models/Environment/Arena/Materials/Outlined2.tres" type="Material" id=1]
+[ext_resource path="res://Models/Environment/Arena/Materials/Ground.tres" type="Material" id=2]
+
+[node name="Arena" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+use_collision = true
+width = 80.2737
+height = 7.85891
+depth = 80.3255
+material = ExtResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87366, 0 )
+operation = 2
+radius = 17.4901
+height = 5.97958
+material = ExtResource( 2 )
