@@ -8,6 +8,8 @@ var enemy_types = []
 
 var rng = RandomNumberGenerator.new()
 
+var portal_scene = preload("res://Models/Entities/Portal/Portal.tscn")
+
 func _ready():
     for child in get_children():
         enemy_types.push_back(child)
@@ -85,7 +87,12 @@ func _spawn_wave(difficulty):
         print("ERROR: Could not find valid spawn location for enemies")
     else:
         var enemies_in_wave = get_wave_enemies(difficulty)
-        var spawn_locations = get_spawn_locations(spawn_origin, len(enemies_in_wave))
-        for i in range(len(enemies_in_wave)):
-            spawn_enemy(spawn_locations[i], enemies_in_wave[i])
+        var new_portal = portal_scene.instance()
+        get_tree().get_root().add_child(new_portal)
+        new_portal.global_transform.origin = spawn_origin
+        new_portal.global_transform = new_portal.global_transform.looking_at(Vector3(0,spawn_origin.y, 0), Vector3(0,1,0))
+        new_portal.enemies = enemies_in_wave  
+    # var spawn_locations = get_spawn_locations(spawn_origin, len(enemies_in_wave))
+    #    for i in range(len(enemies_in_wave)):
+       #     spawn_enemy(spawn_locations[i], enemies_in_wave[i])
             

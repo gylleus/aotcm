@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Models/Entities/Kubelet/Kubelet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Environment/Pavilion/Pavilion.tscn" type="PackedScene" id=2]
@@ -7,11 +7,10 @@
 [ext_resource path="res://Models/Environment/Stones/stone3.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Models/Environment/Stones/stone4.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Models/Environment/Temple/KubeletTemple.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Models/Environment/Arena/Arena.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Monkey.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/GameHandler.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Models/Environment/Trees/SmallTree/SmallTree.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/GameHandler.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Models/Environment/Trees/SmallTree/SmallTree.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Models/Environment/FloatingPlatform/FloatingPlatform.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.168627, 0.164706, 0.596078, 1 )
@@ -59,10 +58,11 @@ light_indirect_energy = 0.0
 
 [node name="Kubelet" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2785, 0 )
-MAX_LAUNCH_RANGE = 40.0
+MAX_LAUNCH_RANGE = 80.0
 MIN_LAUNCH_RANGE = 30.0
 POD_AIR_TIME = 3.0
 SPIN_TIME = 0.7
+test_pods = 20
 
 [node name="MonkeyNavigation" type="Navigation" parent="."]
 
@@ -89,28 +89,24 @@ transform = Transform( 0.689488, 0.724296, -0.00123089, -0.724296, 0.689483, -0.
 [node name="KubeletTemple" parent="MonkeyNavigation/NavigationMeshInstance" instance=ExtResource( 7 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -50.0958 )
 
-[node name="Arena" parent="MonkeyNavigation/NavigationMeshInstance" instance=ExtResource( 8 )]
-transform = Transform( 6.42154, 0, 0, 0, 7.20743, 0, 0, 0, 6.42154, -0.313189, -14.0249, -0.181522 )
-
-[node name="PlayerCharacter" parent="." instance=ExtResource( 9 )]
+[node name="PlayerCharacter" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0259, 3.58104, -15.5157 )
 GRAVITY = -20
-
-[node name="Monkey" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9874, 26.9643, -5.22277 )
+MAX_HEALTH = 10000
 
 [node name="draw" type="ImmediateGeometry" parent="."]
 
-[node name="GameHandler" parent="." instance=ExtResource( 11 )]
-editor/display_folded = true
-spawn_position = NodePath("SpawnPosition")
-
-[node name="SpawnPosition" type="Spatial" parent="GameHandler"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5912, -49.8934 )
+[node name="GameHandler" parent="." instance=ExtResource( 9 )]
+pause_mode = 2
+transform = Transform( 1.12047, 0, 0, 0, 1.12047, 0, 0, 0, 1.12047, 0, 0, 0 )
+spawn_position = NodePath("")
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.860058, -0.230467, 0.455177, 0, 0.892159, 0.451722, -0.510197, -0.388507, 0.767308, 38.9717, 72.8735, 113.309 )
 far = 1000.0
 
-[node name="SmallTree" parent="." instance=ExtResource( 12 )]
+[node name="SmallTree" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8174, 0.75513, -16.4829 )
+
+[node name="FloatingPlatform" parent="." instance=ExtResource( 11 )]
+transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, 0, -20.5122, 0 )

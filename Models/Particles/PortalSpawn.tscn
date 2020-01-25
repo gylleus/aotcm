@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/TimedLife.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Visuals/star.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 4
+params_specular_mode = 3
+params_blend_mode = 1
+params_line_width = 0.1
+params_billboard_mode = 3
+params_grow = true
+params_grow_amount = -1.31
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.796078, 0.164706, 0.196078, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.00138526, 0.0149 ), 0.0, 0.0, 0, 0, Vector2( 0.0367095, 0.9741 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+spread = 180.0
+gravity = Vector3( 0, 1, 0 )
+initial_velocity = 25.0
+initial_velocity_random = 0.34
+angular_velocity = 35.0
+angular_velocity_random = 0.17
+linear_accel = -35.0
+tangential_accel = 5.0
+scale_curve = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[node name="PortalSpawnEffect" type="Spatial"]
+script = ExtResource( 1 )
+LIFETIME = 2.0
+
+[node name="Stars" type="Particles" parent="."]
+material_override = SubResource( 1 )
+amount = 40
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )

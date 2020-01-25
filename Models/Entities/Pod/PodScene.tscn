@@ -3,7 +3,9 @@
 [ext_resource path="res://Scripts/Entities/Pod.gd" type="Script" id=1]
 [ext_resource path="res://Models/Entities/Pod/PodExplosion.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Entities/Pod/PodSurface.material" type="Material" id=3]
-[ext_resource path="res://OutlinePodMaterial.tres" type="Material" id=4]
+[ext_resource path="res://Models/Entities/Pod/Materials/OutlinePodMaterial.tres" type="Material" id=4]
+
+
 
 [sub_resource type="SphereShape" id=1]
 

@@ -55,7 +55,7 @@ func fixed_update(input):
         else:
             move_direction = Vector3(0,0,0)
             output["current_target"] = null
-#        move_direction.y = -0.05
+        move_direction.y = -0.05
         move_direction = move_direction.normalized()
         var move_vector = move_direction * movement_speed * input["delta"]
         move_vector += Vector3(0,-0.1,0)# * input["delta"]

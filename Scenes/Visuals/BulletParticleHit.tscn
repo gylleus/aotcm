@@ -1,7 +1,20 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Visuals/BulletParticleHit.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Visuals/dirt_test.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Visuals/dirt_test.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Spatial
+
+export var LIFETIME : float = 1
+var time_left : float
+
+func _ready():
+    time_left = LIFETIME
+    
+func _process(delta):
+    time_left -= delta
+    if time_left <= 0:
+        queue_free()"
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_unshaded = true
@@ -11,7 +24,7 @@ params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_texture = ExtResource( 2 )
+albedo_texture = ExtResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=2]
 spread = 11.2
@@ -26,7 +39,7 @@ color = Color( 0.0980392, 0.054902, 0.0431373, 1 )
 [sub_resource type="QuadMesh" id=3]
 
 [node name="BulletParticleHit" type="Spatial"]
-script = ExtResource( 1 )
+script = SubResource( 4 )
 LIFETIME = 0.7
 
 [node name="Particles" type="Particles" parent="."]

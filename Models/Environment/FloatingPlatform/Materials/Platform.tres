@@ -3,11 +3,12 @@
 [ext_resource path="res://Shaders/Toon.shader" type="Shader" id=1]
 
 [resource]
+render_priority = 1
 shader = ExtResource( 1 )
-shader_param/color = Color( 0.717647, 0.145098, 0.2, 1 )
+shader_param/color = Color( 0.156863, 0.129412, 0.192157, 1 )
 shader_param/outline_color = null
 shader_param/useTexture = true
 shader_param/useNormalMap = false
-shader_param/unlit_coefficient = 0.94
-shader_param/cut_point = 0.0
-shader_param/normalMapDepth = null
+shader_param/unlit_coefficient = 0.2
+shader_param/cut_point = 0.2
+shader_param/normalMapDepth = 0.0

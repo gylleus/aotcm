@@ -13,8 +13,6 @@
 [ext_resource path="res://Models/Entities/Enemies/BetterMonkey/Materials/Eye.tres" type="Material" id=11]
 [ext_resource path="res://Scenes/Visuals/MonkeyChaosFlame.png" type="Texture" id=12]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "Attack"
 loop = true

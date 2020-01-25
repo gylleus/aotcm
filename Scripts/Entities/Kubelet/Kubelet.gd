@@ -11,6 +11,7 @@ export var MIN_SPIN_ANGLE = 60
 export var MAX_SPIN_ANGLE = 90
 export var POD_AIR_TIME = 2.0
 export var SPIN_TIME = 1.0
+export var test_pods = 0
 
 var pod_queue = []
 var next_pod = null
@@ -36,8 +37,10 @@ func _ready():
     resting_look_direction = global_transform.basis.z
     # Set a random "previous" launch angle 
     last_launch_angle = rng.randf_range(0.0, 360.0)
-    queue_pod(PodTemplate.new(50,"test"))
-    queue_pod(PodTemplate.new(50,"test"))
+    
+    for i in range(test_pods):
+        queue_pod(PodTemplate.new(50,"test"))
+    #queue_pod(PodTemplate.new(50,"test"))
     # queue_pod(PodTemplate.new(50,"test"))
     # queue_pod(PodTemplate.new(50,"test"))
     # queue_pod(PodTemplate.new(50,"test"))
