@@ -1,27 +1,25 @@
 extends KinematicBody
 
+export var score = 100
 export var chaos_movement_multiplier = 1.0
 export var chaos_attack_speed_multiplier = 1.0
 
 export var aggro_range : float = 20
 export var attack_range : float = 2
 export var attack_damage = 15
-export var movement_speed = 500
+export var base_movement_speed = 400
 export var max_health = 100
 export var gravity = 9.82
+export var sound_pitch = 1.0
 export var nav_path_name = ""
-var state_stack = []
-var current_state = null
-
-var current_target = null
-var player = null
-var chaos_active = false
+export var stuck_timeout = 0.6
 
 onready var current_health = max_health
 onready var vision_ray = $VisionRay
 onready var navmesh = get_tree().get_root().find_node(nav_path_name, true, false)
 #onready var navmesh = get_tree().get_root().find_node("MonkeyNavigation")
 onready var anim_player = get_node("AnimationPlayer")
+onready var movement_speed = base_movement_speed
 onready var states = {
     "idle": $States/Idle,
     "move": $States/Move,
@@ -30,6 +28,15 @@ onready var states = {
     "stagger": $States/Stagger,
     "die": $States/Die
 }
+
+var state_stack = []
+var current_state = null
+
+var current_target = null
+var player = null
+var chaos_active = false
+var last_position : Vector3
+var stuck_counter = 0
 
 func _ready():
     player = Globals.get_player()
@@ -91,6 +98,8 @@ func handle_state_output(output):
             return
     if current_health <= 0 and current_state != states["falling"]:
         transition_to_state("die")
+        Globals.total_score += score
+        Globals.monkeys_killed += 1
         return
             
     if current_state == states["idle"]:
@@ -144,6 +153,7 @@ func in_aggro_range(player, aggro_range):
 
 func _physics_process(delta):
     validate_target()
+    check_not_stuck(delta)
     if current_state.has_method("fixed_update"):
         fixed_update_state(delta)
     if in_aggro_range(player, aggro_range):
@@ -162,12 +172,31 @@ func bullet_hit(damage):
     current_target = player
     if current_health > 0 and current_state != states["falling"]:
         transition_to_state("stagger")
+        stuck_counter = 0
 
 func add_flying_force(force, damage=0):
     take_damage(damage)
     transition_to_state("falling")
     var init_values = {"force": force}
     current_state.init(init_values)
+
+func anti_stuck():
+    var launch_dir = Vector3(rand_range(-0.5,0.5), 0.7, rand_range(-0.5,0.5))
+    add_flying_force(launch_dir.normalized() * 2000, 0)
+    stuck_counter = 0
+
+func check_not_stuck(delta):
+    if last_position != null and (global_transform.origin-last_position).length() < 0.3 and current_state != states["attack"]:
+        stuck_counter += delta
+        if stuck_counter > stuck_timeout:
+            anti_stuck()
+    else:
+        stuck_counter = 0
+        last_position = global_transform.origin
+
+func check_oob():
+    if global_transform.origin.y < -50:
+        queue_free()
 
 func start_chaos():
     chaos_active = true

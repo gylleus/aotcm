@@ -1,11 +1,10 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/Entities/Pod.gd" type="Script" id=1]
 [ext_resource path="res://Models/Entities/Pod/PodExplosion.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Entities/Pod/PodSurface.material" type="Material" id=3]
 [ext_resource path="res://Models/Entities/Pod/Materials/OutlinePodMaterial.tres" type="Material" id=4]
-
-
+[ext_resource path="res://Audio/PodExplosion.wav" type="AudioStream" id=5]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -88,11 +87,14 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.47, 0.65 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.47, 0.48, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "emitt_particles"
+}, {
+"args": [  ],
+"method": "trigger_explode_sound"
 }, {
 "args": [  ],
 "method": "explode"
@@ -107,7 +109,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = true
 tracks/0/enabled = true
-tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153, 2.08333, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153 )
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 0.2, 0.2, 0.2, 2.08333, 1, 0, 0, 0, 0, 0, 0, 1, 1.30153, 1.30153, 1.30153 )
 tracks/1/type = "transform"
 tracks/1/path = NodePath("PodArmature/Skeleton:PodBone")
 tracks/1/interp = 1
@@ -241,8 +243,9 @@ tracks/1/imported = true
 tracks/1/enabled = true
 tracks/1/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.286667, 0.286667, 0.286667, 0.0666667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.286707, 0.286707, 0.286707, 0.133333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.286932, 0.286932, 0.286932, 0.2, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.287536, 0.287536, 0.287536, 0.266667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.288723, 0.288723, 0.288723, 0.333333, 1, 0, 0, 0, 0.0145126, -0.0207915, 0.0124738, 0.999601, 0.290612, 0.290612, 0.290612, 0.4, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.293537, 0.293537, 0.293537, 0.466667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.297534, 0.297534, 0.297534, 0.533333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.302872, 0.302872, 0.302872, 0.6, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.309754, 0.309754, 0.309754, 0.666667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.318226, 0.318226, 0.318226, 0.8, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.341273, 0.341273, 0.341273, 1, 1, 0, 0, 0, 0.0145126, -0.0207915, 0.0124738, 0.999601, 0.393179, 0.393179, 0.393179, 1.26667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.503673, 0.503673, 0.503673, 2, 1, 0, 0, 0, 0.0145126, -0.0207915, 0.0124738, 0.999601, 0.989596, 0.989596, 0.989596, 2.06667, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 0.99893, 0.99893, 0.99893, 2.08333, 1, 0, 0, 0, 0.0145126, -0.0207916, 0.0124738, 0.999601, 1, 1, 1 )
 
-[node name="RigidBody" type="RigidBody"]
+[node name="Pod" type="RigidBody"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+gravity_scale = 4.0
 contacts_reported = 1
 contact_monitor = true
 axis_lock_angular_x = true
@@ -275,7 +278,6 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 transform = Transform( 1.30153, 0, 0, 0, 1.30153, 0, 0, 0, 1.30153, 0, 0, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="Pod/PodArmature"]
-bones_in_world_transform = true
 bones/0/name = "PodBone"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0 )
@@ -305,3 +307,10 @@ anims/Attacked = SubResource( 23 )
 anims/Breathe = SubResource( 24 )
 anims/Explode = SubResource( 25 )
 anims/Grow = SubResource( 26 )
+
+[node name="PodExplosionAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+unit_db = 6.0
+unit_size = 10.0
+max_db = 6.0
+pitch_scale = 1.1

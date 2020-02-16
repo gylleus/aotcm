@@ -1,0 +1,627 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Entities/Enemies/MonkeyTest.gd" type="Script" id=2]
+[ext_resource path="res://Models/Player/Rifle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Muzzle.gd" type="Script" id=4]
+[ext_resource path="res://Models/Player/Weapon/Fire/fire1.png" type="Texture" id=5]
+[ext_resource path="res://Models/Player/Weapon/Fire/fire2.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Player/WeaponController.gd" type="Script" id=7]
+[ext_resource path="res://Models/Sprites/Crosshair/crosshair.png" type="Texture" id=8]
+[ext_resource path="res://UI/HUDTheme.tres" type="Theme" id=9]
+[ext_resource path="res://UI/Fonts/minotaur.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Scripts/Menu/Score.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Player/HealthBar.gd" type="Script" id=12]
+[ext_resource path="res://Audio/Shoot.wav" type="AudioStream" id=13]
+[ext_resource path="res://Scripts/Menu/PodsLeft.gd" type="Script" id=14]
+
+[sub_resource type="CapsuleShape" id=1]
+height = 0.002
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.336309, 1, 1 )
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "fire"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "reload"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/fire/node = SubResource( 3 )
+states/fire/position = Vector2( 696, 168 )
+states/idle/node = SubResource( 4 )
+states/idle/position = Vector2( 503, 168 )
+states/reload/node = SubResource( 5 )
+states/reload/position = Vector2( 503, 338 )
+transitions = [ "idle", "fire", SubResource( 6 ), "fire", "idle", SubResource( 7 ), "idle", "reload", SubResource( 8 ), "reload", "idle", SubResource( 9 ) ]
+graph_offset = Vector2( -68, 82.32 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+
+[sub_resource type="Animation" id=12]
+length = 0.12
+loop = true
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("AnimationTree")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire_bullet"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("RotationHelper/AnimationHelper/Rifle/Muzzle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "show_and_rotate"
+} ]
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -0.35551, -0.25, 0, 0.25, 0, -0.358677, -0.25, 0, 0.25, 0, -0.35551, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.03, 0.12 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1.66597, -0.25, 0, 0.25, 0, 1.66605, -0.25, 0, 0.25, 0, 1.66597, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.03, 0.12 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0.22441, -0.25, 0, 0.25, 0, 0.166048, -0.25, 0, 0.25, 0, 0.22441, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.03, 0.12 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("RotationHelper/AnimationHelper/Rifle:rotation_degrees:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.03, 0.12 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("RotationHelper/AnimationHelper/Rifle:rotation_degrees:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 6.388, -0.25, 0, 0.25, 0, 6.391, -0.25, 0, 0.25, 0, 6.388, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.03, 0.12 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("RotationHelper/AnimationHelper/Rifle:rotation_degrees:z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( -0.442, -0.25, 0, 0.25, 0, -0.639, -0.25, 0, 0.25, 0, -0.442, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.03, 0.12 )
+}
+
+[sub_resource type="Animation" id=13]
+loop = true
+step = 0.01
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -0.35551, -0.25, 0, 0.25, 0, -0.355678, -0.25, 0, 0.25, 0, -0.35551, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1.66597, -0.25, 0, 0.25, 0, 1.64409, -0.25, 0, 0.25, 0, 1.66597, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0.22441, -0.25, 0, 0.25, 0, 0.224429, -0.25, 0, 0.25, 0, 0.22441, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=14]
+loop = true
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("AnimationTree")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.95 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_reload"
+} ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -0.35551, -0.25, 0, 0.25, 0, -0.358589, -0.25, 0, 0.25, 0, -0.35551, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.65, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1.66597, -0.25, 0, 0.25, 0, 1.53216, -0.25, 0, 0.25, 0, 1.66597, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.65, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("RotationHelper/AnimationHelper/Rifle:translation:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0.22441, -0.25, 0, 0.25, 0, 0.0983216, -0.25, 0, 0.25, 0, 0.22441, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.65, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("RotationHelper/AnimationHelper/Rifle:rotation_degrees:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( -3.29312e-09, -0.25, 0, 0.25, 0, 43.041, -0.25, 0, 0.25, 0, -3.29312e-09, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.65, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("RotationHelper/AnimationHelper/Rifle:rotation_degrees:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 6.388, -0.25, 0, 0.25, 0, -11.9655, -0.25, 0, 0.25, 0, 6.388, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.65, 1 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("RotationHelper/AnimationHelper/Rifle:rotation_degrees:z")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( -0.442, -0.25, 0, 0.25, 0, -17.0655, -0.25, 0, 0.25, 0, -0.442, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.65, 1 )
+}
+
+[sub_resource type="DynamicFont" id=15]
+size = 70
+outline_size = 2
+outline_color = Color( 0.494118, 0.494118, 0.494118, 1 )
+use_filter = true
+extra_spacing_char = 5
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.12549, 0.137255, 0.172549, 1 )
+border_width_right = 9
+border_width_bottom = 9
+border_color = Color( 0.65098, 0.65098, 0.65098, 1 )
+border_blend = true
+corner_radius_bottom_right = 30
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.215686, 0.423529, 0.278431, 1 )
+border_width_top = 5
+border_color = Color( 0.584314, 0.858824, 0.666667, 1 )
+border_blend = true
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_detail = 12
+shadow_color = Color( 0.380392, 0.72549, 0.376471, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( -1, 0 )
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.168627, 0.0901961, 0.0901961, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 3
+corner_detail = 20
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 1.0
+anti_aliasing_size = 2
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.0823529, 0.556863, 0.788235, 1 )
+border_width_top = 5
+border_color = Color( 0.521569, 0.709804, 0.909804, 1 )
+border_blend = true
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_detail = 12
+shadow_color = Color( 0.376471, 0.67451, 0.72549, 0.533333 )
+shadow_size = 6
+shadow_offset = Vector2( -1, 0 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.466667, 0.658824, 0.827451, 0 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color( 0.0901961, 0.54902, 1, 0.670588 )
+shadow_size = 17
+anti_aliasing_size = 2
+
+[sub_resource type="DynamicFont" id=21]
+size = 70
+outline_size = 3
+outline_color = Color( 0.372549, 0.254902, 0.133333, 1 )
+use_filter = true
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=22]
+resource_name = "Grow"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 70, -0.25, 0, 0.25, 0, 45, -0.25, 0, 0.25, 0, 70, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="DynamicFont" id=23]
+size = 40
+outline_size = 2
+outline_color = Color( 0.494118, 0.494118, 0.494118, 1 )
+extra_spacing_char = 5
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 30
+outline_size = 2
+outline_color = Color( 0.333333, 0.313726, 0.313726, 1 )
+use_filter = true
+extra_spacing_char = 5
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.12549, 0.137255, 0.172549, 1 )
+border_width_right = 9
+border_width_bottom = 9
+border_color = Color( 0.65098, 0.65098, 0.65098, 1 )
+border_blend = true
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="PlayerCharacter" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00405693, 0.0412759, -0.00859356 )
+collision_layer = 2
+script = ExtResource( 1 )
+GRAVITY = -30
+WEIGHT = 90.0
+
+[node name="BodyCollider" type="CollisionShape" parent="."]
+transform = Transform( 0.82, 0, 0, 0, 2.1, 0, 0, 0, 0.425, 0, 1.10941, 0.0560107 )
+shape = SubResource( 1 )
+
+[node name="FeetCollider" type="CollisionShape" parent="."]
+transform = Transform( 1.41271, 0, 0, 0, 0.0704462, 0, 0, 0, 0.465509, 0, -0.847732, 0.0399572 )
+shape = SubResource( 2 )
+
+[node name="RotationHelper" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92441, 0 )
+
+[node name="Camera" type="Camera" parent="RotationHelper"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.0411232, -0.523437 )
+current = true
+fov = 75.0
+near = 0.07
+far = 1000.0
+script = ExtResource( 2 )
+
+[node name="FirePoint" type="Spatial" parent="RotationHelper/Camera"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="FireRay" type="RayCast" parent="RotationHelper/Camera/FirePoint"]
+enabled = true
+cast_to = Vector3( 0, 0, 1500 )
+collision_mask = 5
+collide_with_areas = true
+
+[node name="AnimationHelper" type="Spatial" parent="RotationHelper"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+
+[node name="Rifle" parent="RotationHelper/AnimationHelper" instance=ExtResource( 3 )]
+transform = Transform( 0.993761, 0.00766638, 0.111261, -0.00771428, 0.99997, 0, -0.111257, -0.000858297, 0.993791, -0.35551, 1.66597, 0.22441 )
+
+[node name="Muzzle" type="Spatial" parent="RotationHelper/AnimationHelper/Rifle"]
+transform = Transform( 0.818148, -0.230432, -4.47035e-08, 0.230462, 0.81761, 0, 0, -2.23517e-08, 0.680528, 0.00309715, 0.0189819, 0.640986 )
+script = ExtResource( 4 )
+
+[node name="Sprite3D" type="Sprite3D" parent="RotationHelper/AnimationHelper/Rifle/Muzzle"]
+transform = Transform( -6.21867e-06, -6.28345e-05, 0.3, 0.3, -0.000242524, 6.40989e-06, 0.000242521, 0.299999, 6.28643e-05, 0, 0, 0 )
+texture = ExtResource( 5 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="RotationHelper/AnimationHelper/Rifle/Muzzle"]
+transform = Transform( 0.3, 2.23517e-08, -2.18337e-07, 5.61704e-08, -2.04891e-08, -0.244029, 6.70552e-08, 0.370734, -1.86265e-09, 0, 0, 0 )
+texture = ExtResource( 6 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 10 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 11 )
+script = ExtResource( 7 )
+damage = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fire = SubResource( 12 )
+anims/idle = SubResource( 13 )
+anims/reload = SubResource( 14 )
+
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.05039
+margin_bottom = -2.05042
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 8 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoBar" type="Panel" parent="HUD"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -271.0
+margin_top = -94.0
+rect_pivot_offset = Vector2( -130.466, -182.335 )
+theme = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoText" type="Label" parent="HUD/AmmoBar"]
+anchor_left = -0.0516605
+anchor_top = 0.0638298
+anchor_right = 0.97417
+anchor_bottom = 1.06383
+margin_left = 83.8934
+margin_right = -14.1066
+custom_fonts/font = SubResource( 15 )
+text = "30/30"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="StatusBar" type="Panel" parent="HUD"]
+margin_right = 455.0
+margin_bottom = 153.0
+custom_styles/panel = SubResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/StatusBar"]
+margin_left = 17.0
+margin_top = 65.6227
+margin_right = 406.0
+margin_bottom = 86.6227
+custom_styles/fg = SubResource( 17 )
+custom_styles/bg = SubResource( 18 )
+custom_colors/font_color = Color( 0.101961, 0.0941176, 0.0941176, 1 )
+value = 60.0
+rounded = true
+percent_visible = false
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KubeBar" type="ProgressBar" parent="HUD/StatusBar"]
+margin_left = 17.0
+margin_top = 96.0
+margin_right = 275.0
+margin_bottom = 117.0
+custom_styles/fg = SubResource( 19 )
+custom_styles/bg = SubResource( 18 )
+custom_colors/font_color = Color( 0.101961, 0.0941176, 0.0941176, 1 )
+value = 66.0
+rounded = true
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KubeBarHighlight" type="Panel" parent="HUD/StatusBar"]
+margin_left = 17.0
+margin_top = 93.0
+margin_right = 273.0
+margin_bottom = 120.0
+custom_styles/panel = SubResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QLabel" type="Label" parent="HUD/StatusBar/KubeBarHighlight"]
+margin_left = 253.777
+margin_top = -2.11862
+margin_right = 333.777
+margin_bottom = 67.8814
+custom_fonts/font = SubResource( 21 )
+text = "Q"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/StatusBar/KubeBarHighlight/QLabel"]
+autoplay = "Grow"
+anims/Grow = SubResource( 22 )
+
+[node name="Score" type="Label" parent="HUD/StatusBar"]
+margin_left = 155.0
+margin_top = 17.0
+margin_right = 438.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 23 )
+text = "100000"
+valign = 1
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreTitle" type="Label" parent="HUD/StatusBar"]
+margin_left = 17.0
+margin_top = 12.0
+margin_right = 147.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 24 )
+text = "SCORE:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PodBar" type="Panel" parent="HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -316.0
+margin_bottom = 87.0
+custom_styles/panel = SubResource( 25 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PodsLeft" type="Label" parent="HUD/PodBar"]
+margin_left = 239.0
+margin_top = 17.0
+margin_right = 321.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 23 )
+text = "50"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PodsLeftTitle" type="Label" parent="HUD/PodBar"]
+margin_left = 23.0
+margin_top = 12.0
+margin_right = 219.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 24 )
+text = "PODS LEFT:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="GunSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83986, 0 )
+stream = ExtResource( 13 )
+unit_db = -5.0
+unit_size = 10.0
+max_db = -5.0
+pitch_scale = 0.6
+[connection signal="timeout" from="RespawnTimer" to="." method="_respawn"]

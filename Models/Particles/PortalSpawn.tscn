@@ -40,7 +40,7 @@ scale_curve = SubResource( 3 )
 
 [node name="PortalSpawnEffect" type="Spatial"]
 script = ExtResource( 1 )
-LIFETIME = 2.0
+LIFETIME = 0.8
 
 [node name="Stars" type="Particles" parent="."]
 material_override = SubResource( 1 )

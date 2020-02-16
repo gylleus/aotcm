@@ -2,23 +2,32 @@ extends Spatial
 
 export var SPAWN_RADIUS = 20
 export var SPAWN_PADDING = 3
-#export var SPAWN_DELAY
 export var difficulty_to_points_multiplier : float
+export var wave_base_points : float = 18
+export var nav_path_name : String
+
+onready var navmesh = get_tree().get_root().find_node(nav_path_name, true, false)
+
 var enemy_types = []
-
 var rng = RandomNumberGenerator.new()
-
 var portal_scene = preload("res://Models/Entities/Portal/Portal.tscn")
+var origin_point : Vector3
+
 
 func _ready():
+    rng.randomize()
     for child in get_children():
         enemy_types.push_back(child)
+    origin_point = raycast_from_sky(Vector2(0,0))
 
 func get_spawn_angle():
     return rng.randf_range(0,2 * PI)
 
 func is_valid_spawn_location(location):
-    return location != null
+    if location == null:
+        return false
+    var path = navmesh.get_simple_path(location, origin_point) 
+    return path != null
 
 func select_spawn_location(max_attempts=10):
     var spawn_location = null
@@ -32,8 +41,8 @@ func select_spawn_location(max_attempts=10):
 
 func raycast_from_sky(pos2d):
     var world_state = get_world().direct_space_state
-    var from = Vector3(pos2d.x, 500, pos2d.y)
-    var to = Vector3(pos2d.x, -5, pos2d.y)
+    var from = Vector3(pos2d.x, 5, pos2d.y)
+    var to = Vector3(pos2d.x, -50, pos2d.y)
     var col_info = world_state.intersect_ray(from, to)
     if col_info.size() > 0:
         return col_info.position
@@ -47,19 +56,21 @@ func select_enemy(points):
         return null
     var enemy = null
     # TODO: Make smarter and more efficient
-    while enemy == null or enemy.difficulty_points > points:
-        enemy = enemy_types[randi() % enemy_types.size()]
+#    while enemy == null or enemy.difficulty_points > points:
+    # TODO: Fix if ever add more enemies
+    if enemy_types[0].difficulty_points <= points:
+        enemy = enemy_types[0]
     return enemy
 
 func get_wave_enemies(difficulty):
-    var difficulty_points = difficulty * difficulty_to_points_multiplier
+    var difficulty_points = wave_base_points + difficulty * difficulty_to_points_multiplier
     var enemies = []
     while difficulty_points > 0:
         var next_enemy = select_enemy(difficulty_points)
-        difficulty_points -= next_enemy.difficulty_points
         if next_enemy == null:
             break
         else:
+            difficulty_points -= next_enemy.difficulty_points
             enemies.push_back(next_enemy)
     return enemies
 
@@ -75,7 +86,7 @@ func get_spawn_locations(origin, num_points):
 
 func spawn_enemy(location, enemy):
     var new_enemy = enemy.scene.instance()
-    get_tree().get_root().add_child(new_enemy)
+    add_child(new_enemy)
     new_enemy.transform.origin = location
     if Globals.chaos_active:
         new_enemy.start_chaos()
@@ -92,7 +103,4 @@ func _spawn_wave(difficulty):
         new_portal.global_transform.origin = spawn_origin
         new_portal.global_transform = new_portal.global_transform.looking_at(Vector3(0,spawn_origin.y, 0), Vector3(0,1,0))
         new_portal.enemies = enemies_in_wave  
-    # var spawn_locations = get_spawn_locations(spawn_origin, len(enemies_in_wave))
-    #    for i in range(len(enemies_in_wave)):
-       #     spawn_enemy(spawn_locations[i], enemies_in_wave[i])
             

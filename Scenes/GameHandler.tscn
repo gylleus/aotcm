@@ -1,29 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/GameHandler/GameHandler.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/GameHandler/EnemySpawner.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/GameHandler/Enemy.gd" type="Script" id=3]
 [ext_resource path="res://Audio/DoomChaos.wav" type="AudioStream" id=4]
+[ext_resource path="res://Scenes/KubernetesStateHandler.tscn" type="PackedScene" id=5]
 
 [node name="GameHandler" type="Spatial"]
 script = ExtResource( 1 )
+chaos_spawn_multiplier = 3.0
+chaos_spawn_divider = 3
 
 [node name="EnemySpawner" type="Spatial" parent="."]
 script = ExtResource( 2 )
-SPAWN_RADIUS = 80
-difficulty_to_points_multiplier = 20.0
+SPAWN_RADIUS = 100
+difficulty_to_points_multiplier = 2.0
+nav_path_name = "MonkeyNavigation"
 
 [node name="Monkey" type="Spatial" parent="EnemySpawner"]
 script = ExtResource( 3 )
 difficulty_points = 5
-scene_path = "res://Models/Entities/Enemies/BetterMonkey/Monkey.tscn"
+scene_path = "res://Models/Entities/Enemies/Monkey/Monkey.tscn"
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 80.0
 autostart = true
 
 [node name="ChaosStartTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 25.0
 one_shot = true
 
 [node name="ChaosStopTimer" type="Timer" parent="."]
@@ -36,6 +39,9 @@ one_shot = true
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -14.607
+
+[node name="KubernetesStateHandler" parent="." instance=ExtResource( 5 )]
 [connection signal="spawn_wave" from="." to="EnemySpawner" method="_spawn_wave"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 [connection signal="timeout" from="ChaosStartTimer" to="." method="_start_chaos"]

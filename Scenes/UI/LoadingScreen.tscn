@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Menu/ProgressBar.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Menu/Loading.gd" type="Script" id=2]
+[ext_resource path="res://UI/LoadingTheme.tres" type="Theme" id=4]
+[ext_resource path="res://UI/Monkey face.png" type="Texture" id=5]
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "RotateHead"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.280192, -4.77927, 360, -0.24119, -42.293, 0.25, 0, 360, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8, 1 )
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="LoadingScreen" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+game_scene = "res://Scenes/Main.tscn"
+
+[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
+anchor_top = 0.926852
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LoadingText" type="Label" parent="LoadingScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 457.0
+margin_top = 55.0
+margin_right = -458.0
+margin_bottom = -840.0
+rect_pivot_offset = Vector2( 751.187, 476.694 )
+theme = ExtResource( 4 )
+text = "LOADING . . ."
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MonkeyFace" type="Control" parent="LoadingScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Monkey face" type="Sprite" parent="LoadingScreen/MonkeyFace"]
+position = Vector2( 921.864, 524.534 )
+rotation = 6.28319
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingScreen/MonkeyFace/Monkey face"]
+autoplay = "RotateHead"
+anims/RotateHead = SubResource( 1 )

@@ -1,8 +1,11 @@
 shader_type spatial;
 
 uniform sampler2D noise_tex;
+uniform sampler2D displace_tex;
 
 uniform float distortion;
+uniform float displacement_amount : hint_range(0.0,1.0);
+uniform float displacement_speed : hint_range(0.0,1.0);
 uniform float distortion_speed;
 uniform float distortion_y_factor;
 uniform float scroll_speed = 1;
@@ -21,7 +24,10 @@ void vertex() {
 }
 	
 void fragment() {
-    float noise = texture(noise_tex, vec2(UV.x-TIME*scroll_speed, UV.y-TIME*scroll_speed/2.0)).b;
+    vec2 displacement = texture(displace_tex, UV - vec2(-TIME * displacement_speed,0)).rg;
+    displacement = ((displacement * 2.0) - 1.0) * displacement_amount;
+    
+    float noise = texture(noise_tex, vec2(UV.x-TIME*scroll_speed, UV.y-TIME*scroll_speed/2.0) + displacement).b;
     noise = round(noise * float(distinct_colors)) / float(distinct_colors);
    // EMISSION = mix(color1, color2, noise).rgb;
     ALPHA = alpha;

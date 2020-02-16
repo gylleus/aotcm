@@ -21,17 +21,24 @@ in_air : bool
 
 export var max_slope_angle = 60
 # If target moved more than path_update_range path needs to be updated
-export var path_update_range = 1
+export var path_update_range = 1.0
 export var waypoint_reach_margin = 0.1
 export var draw_path : bool
 
-var path
+var path = null
 var path_ind = 0
 var last_target_pos = null
 var travelling_on_path = false
 
 var m = SpatialMaterial.new()
 
+func enter(anim_player):
+    path = null
+    path_ind = 0
+    last_target_pos = null
+    travelling_on_path = false
+    .enter(anim_player)
+    
 func fixed_update(input):
     var output = {
         "current_target": input["current_target"]
@@ -55,11 +62,12 @@ func fixed_update(input):
         else:
             move_direction = Vector3(0,0,0)
             output["current_target"] = null
-        move_direction.y = -0.05
+  #      move_direction.y = -0.05
         move_direction = move_direction.normalized()
         var move_vector = move_direction * movement_speed * input["delta"]
         move_vector += Vector3(0,-0.1,0)# * input["delta"]
-        owner.move_and_slide(move_vector, Vector3(0,1,0), deg2rad(max_slope_angle))
+        var kekos = input["owner"].global_transform.origin
+        owner.move_and_slide_with_snap(move_vector, Vector3(0,-1,0), Vector3(0,1,0), deg2rad(max_slope_angle))
         output["in_air"] = !owner.is_on_floor()# and move_direction.y < 0
     return output
 

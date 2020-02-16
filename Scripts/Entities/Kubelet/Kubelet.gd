@@ -4,14 +4,15 @@ export var MAX_LAUNCH_RANGE = 10.0
 export var MIN_LAUNCH_RANGE = 1.0
 # Controls how many points are created when interpolating launch angle vector
 export var LAUNCH_GRANULARITY = 0.5
-var POD_GRAVITY_FACTOR = 1
+var POD_GRAVITY_FACTOR = 4
 
 export var MIN_SPIN_ANGLE = 60
 #export var MIN_POD_DISTANCE= 2.0
 export var MAX_SPIN_ANGLE = 90
 export var POD_AIR_TIME = 2.0
 export var SPIN_TIME = 1.0
-export var test_pods = 0
+export var pods_amount = 9
+export var pod_health = 100
 
 var pod_queue = []
 var next_pod = null
@@ -38,32 +39,22 @@ func _ready():
     # Set a random "previous" launch angle 
     last_launch_angle = rng.randf_range(0.0, 360.0)
     
-    for i in range(test_pods):
-        queue_pod(PodTemplate.new(50,"test"))
-    #queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
-    # queue_pod(PodTemplate.new(50,"test"))
+    for i in range(pods_amount):
+        queue_pod(PodTemplate.new(pod_health,"test"))
     initiate_next_pod()
     
 
 func _physics_process(delta):
+    if len(get_tree().get_nodes_in_group("pods")) + len(pod_queue) < pods_amount:
+        queue_pod(PodTemplate.new(pod_health,"test"))
+                
     if next_pod != null:
         spin_lerp_value += delta / SPIN_TIME
         rotate_towards_direction(pod_launch_vector, spin_lerp_value, spin_start)
         if spin_lerp_value >= 1:
             emit_signal("spit_pod", pod_launch_vector)
+    elif len(pod_queue) > 0:
+        initiate_next_pod()
     elif len(pod_queue) == 0:
         spin_lerp_value += delta / SPIN_TIME
         rotate_towards_direction(resting_look_direction, spin_lerp_value, spin_start)
@@ -137,7 +128,7 @@ func is_valid_launch_point(launch_point):
 func raycast_from_sky(pos2d):
     var world_state = get_world().direct_space_state
     var from = Vector3(pos2d.x, 500, pos2d.y)
-    var to = Vector3(pos2d.x, -5, pos2d.y)
+    var to = Vector3(pos2d.x, -50, pos2d.y)
     var col_info = world_state.intersect_ray(from, to)
     if col_info.size() > 0:
         return col_info.position
@@ -158,6 +149,7 @@ func find_valid_pod_position(possible_positions):
 
 func trigger_emergency_clear():
     playback.travel("Purge")
+    $ExplosionSound.play()
     explode()
 
 func explode():

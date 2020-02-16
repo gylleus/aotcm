@@ -11,24 +11,6 @@ func _ready():
 
 
 func play_sound(audio_stream, position=null):
-    if audio_stream == null:
-        print ("No audio stream passed; cannot play sound")
-        globals.created_audio.remove(globals.created_audio.find(self))
-        queue_free()
-        return
-
     self.stream = audio_stream
 
-    if position != null:
-        global_transform.origin = position
-
     self.play(0.0)
-
-
-func sound_finished():
-    if should_loop:
-        audio_node.play(0.0)
-    else:
-        globals.created_audio.remove(globals.created_audio.find(self))
-        self.stop()
-        queue_free()

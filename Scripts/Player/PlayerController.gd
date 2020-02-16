@@ -5,15 +5,22 @@ export var GRAVITY = -40
 export var MOUSE_SENSITIVITY = 0.05
 export var WEIGHT = 1.0
 export var MAX_HEALTH = 100
+export var health_recover_per_second = 1
+export var kube_power_per_second = 1
+export var kube_power_per_health = 1
+export var kube_power_per_damage_dealt = 0.05
 
 export var accel = 8
 export var deaccel = 11
 export var max_speed = 14
 
+onready var current_health : float = MAX_HEALTH
+
 const MAX_SLOPE_ANGLE = 60
 
 var velocity = Vector3()
-onready var current_health = MAX_HEALTH
+var max_kube_power : float = 100
+var current_kube_power : float = 0
 
 var camera
 var rotation_helper
@@ -26,6 +33,14 @@ func _ready():
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     add_to_group("player")
 
+func _process(delta):
+    current_health = min(current_health + delta * health_recover_per_second, MAX_HEALTH)
+    current_kube_power += kube_power_per_second * delta
+    current_kube_power = min(max_kube_power * 1.1, current_kube_power)
+    $HUD/StatusBar/KubeBarHighlight.visible = current_kube_power > max_kube_power
+    $HUD/StatusBar/KubeBar.value = min(max_kube_power, current_kube_power)/max_kube_power * 100
+    $HUD/StatusBar/HealthBar.value = current_health/MAX_HEALTH * 100
+
 func _physics_process(delta):
     move(delta)
     # Capturing/Freeing the cursor
@@ -34,7 +49,8 @@ func _physics_process(delta):
             Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
         else:
             Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)	
-    if Input.is_action_just_pressed("kubelet_clear"):
+    if Input.is_action_just_pressed("kubelet_clear") and current_kube_power >= max_kube_power:
+        current_kube_power = 0
         for k in get_tree().get_nodes_in_group("kubelet"):
             k.trigger_emergency_clear()
 
@@ -65,7 +81,7 @@ func move(delta):
     hvel = hvel.linear_interpolate(dir * max_speed, accel * delta)
     velocity.x = hvel.x
     velocity.z = hvel.z
-    velocity = move_and_slide(velocity, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+    velocity = move_and_slide(velocity, Vector3(0, 1, 0), false, 4, deg2rad(MAX_SLOPE_ANGLE))
 
     if Input.is_action_pressed("player_jump") && is_on_floor():
         velocity.y = JUMP_VELOCITY
@@ -89,6 +105,7 @@ func die():
 
 func take_damage(amount):
     current_health -= amount
+    current_kube_power += kube_power_per_health * amount
     if current_health <= 0:
         die()
 

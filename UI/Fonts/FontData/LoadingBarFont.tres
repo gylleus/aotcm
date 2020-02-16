@@ -1,0 +1,11 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://UI/Fonts/Plug-NickelBlack.ttf" type="DynamicFontData" id=1]
+
+[resource]
+size = 45
+outline_size = 2
+outline_color = Color( 0.345098, 0.188235, 0.435294, 1 )
+use_filter = true
+extra_spacing_char = 4
+font_data = ExtResource( 1 )

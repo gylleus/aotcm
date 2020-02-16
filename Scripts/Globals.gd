@@ -1,10 +1,17 @@
 extends Node
 
-#var mouse_sensitivity = 0.08
-#var joypad_sensitivity = 2
+var total_score : float = 0
+var monkeys_killed = 0
+var pods_lost = 0
+var lose_when_pods_killed = 35
+var invasion = false
 
 var audio_clips = {
-    "RifleShot": preload("res://Audio/RifleShot.wav")
+    "RifleShot": preload("res://Audio/RifleShot.wav"),
+    "MonkeyAttack1": preload("res://Audio/MonkeyAttack1.wav"),
+    "MonkeyAttack2": preload("res://Audio/MonkeyAttack2.wav"),
+    "MonkeyAttack3": preload("res://Audio/MonkeyAttack3.wav"),
+    "MonkeyAttack4": preload("res://Audio/MonkeyAttack4.wav")
 }
 
 const AUDIO_PLAYER_SCENE = preload("res://Scenes/AudioPlayer.tscn")

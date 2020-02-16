@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Models/Environment/KubeStone/Materials/Kube.tres" type="Material" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Levitate"
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:translation:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CSGBox:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 45, 0 ), Vector3( 0, 90, 0 ) ]
+}
+
+[node name="SpinningKubeStone" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+material_override = ExtResource( 1 )
+width = 1.0
+height = 1.0
+depth = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Levitate"
+playback_speed = 0.25
+anims/Levitate = SubResource( 1 )

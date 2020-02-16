@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Shaders/Outline.shader" type="Shader" id=1]
+[ext_resource path="res://Shaders/Toon.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+render_priority = 1
+shader = ExtResource( 1 )
+shader_param/outline_thickness = 0.03
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+
+[resource]
+render_priority = 1
+next_pass = SubResource( 1 )
+shader = ExtResource( 2 )
+shader_param/color = Color( 0.305882, 0.301961, 0.301961, 1 )
+shader_param/useTexture = true
+shader_param/useNormalMap = false
+shader_param/unlit_coefficient = 0.2
+shader_param/normalMapDepth = 0.0
+shader_param/distinct_colors = 2
+shader_param/cutoff_point = 0.0
+shader_param/transition_width = 0.0

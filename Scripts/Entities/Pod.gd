@@ -3,6 +3,7 @@ extends RigidBody
 export var MAX_HEALTH : float = 100
 export var EXPLOSION_FORCE : float = 500.0
 export var EXPLOSION_DIR_ELEVATION : float = 5
+export var EXPLOSION_DAMAGE : float = 500
 
 onready var health_left = MAX_HEALTH
 onready var playback = get_node("Pod/PodArmature/AnimationTree").get("parameters/playback")
@@ -31,6 +32,9 @@ func take_damage(amount):
     else:
         playback.travel("Attacked")
 
+func trigger_explode_sound():
+    $PodExplosionAudio.play()
+
 func emitt_particles():
     var explosion_particles = explosion_particles_scene.instance()
     get_tree().get_root().add_child(explosion_particles)
@@ -39,6 +43,7 @@ func emitt_particles():
 
 func die():
     # TODO: Send signal that Pod has died
+    Globals.pods_lost += 1
     queue_free()
 
 func explode():
@@ -48,4 +53,7 @@ func explode():
         if target.has_method("add_flying_force"):
             var force_dir = target.global_transform.origin - global_transform.origin + Vector3(0, EXPLOSION_DIR_ELEVATION, 0)  
             target.add_flying_force(force_dir * force)
+            if target != Globals.get_player():
+                target.take_damage(EXPLOSION_DAMAGE)
+                
     die()

@@ -15,6 +15,7 @@ current_target : Object
 var flying_force : Vector3
 
 func init(init_values):
+    #$AudioPlayer.play()
     if init_values.has("force"):
         flying_force = init_values["force"]
     else:

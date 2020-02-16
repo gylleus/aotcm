@@ -1,0 +1,152 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://UI/Fonts/FontData/UIFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/MenuBackground.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Menu/GameOver.gd" type="Script" id=3]
+[ext_resource path="res://UI/Fonts/Plug-NickelBlack.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Audio/DoomPeace.wav" type="AudioStream" id=5]
+[ext_resource path="res://Scripts/ScoreDisplay.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/MonkeysValue.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 4
+outline_color = Color( 0.466667, 0.443137, 0.443137, 1 )
+use_filter = true
+extra_spacing_char = 4
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+outline_size = 4
+outline_color = Color( 0.466667, 0.443137, 0.443137, 1 )
+use_filter = true
+extra_spacing_char = 4
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 51
+outline_size = 1
+outline_color = Color( 0.0470588, 0.027451, 0.027451, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Menu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+main_menu_scene = "res://Scenes/UI/Menu.tscn"
+
+[node name="MenuBackground" type="Sprite" parent="Menu"]
+position = Vector2( 960.234, 557.687 )
+scale = Vector2( 1, 1.03996 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="Menu"]
+anchor_left = 0.5
+anchor_top = 0.074
+anchor_right = 0.5
+anchor_bottom = 0.074
+margin_left = -763.5
+margin_top = 0.0800018
+margin_right = 763.5
+margin_bottom = 201.08
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_shadow = Color( 0.337255, 0.352941, 0.364706, 1 )
+custom_constants/shadow_offset_x = -13
+custom_constants/shadow_offset_y = 14
+text = "GAME OVER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ScoreLabel" type="Label" parent="Menu"]
+anchor_left = 0.278631
+anchor_top = 0.470799
+anchor_right = 0.484881
+anchor_bottom = 0.563392
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0.337255, 0.352941, 0.364706, 1 )
+text = "SCORE;"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ScoreValue" type="Label" parent="Menu/ScoreLabel"]
+anchor_left = 0.5
+anchor_top = 0.074
+anchor_right = 0.5
+anchor_bottom = 0.074
+margin_left = 208.405
+margin_top = -7.4
+margin_right = 604.405
+margin_bottom = 92.6
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0.337255, 0.352941, 0.364706, 1 )
+text = "0"
+valign = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MonkeysLabel" type="Label" parent="Menu"]
+anchor_left = 0.169256
+anchor_top = 0.581911
+anchor_right = 0.455193
+anchor_bottom = 0.674503
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0.337255, 0.352941, 0.364706, 1 )
+text = "MONKEYS KILLED;"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MonkeysValue" type="Label" parent="Menu/MonkeysLabel"]
+anchor_left = 0.5
+anchor_top = 0.074
+anchor_right = 0.5
+anchor_bottom = 0.074
+margin_left = 342.405
+margin_top = -4.4
+margin_right = 738.405
+margin_bottom = 95.6
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0.337255, 0.352941, 0.364706, 1 )
+text = "0"
+valign = 1
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Menu"]
+anchor_left = 0.5
+anchor_top = 0.886
+anchor_right = 0.5
+anchor_bottom = 0.886
+margin_left = -304.0
+margin_top = -106.88
+margin_right = 304.0
+margin_bottom = 0.119934
+custom_fonts/font = SubResource( 3 )
+text = "Back to Menu"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="Menu"]
+stream = ExtResource( 5 )
+autoplay = true
+[connection signal="pressed" from="Menu/Button" to="Menu" method="_back_to_menu"]

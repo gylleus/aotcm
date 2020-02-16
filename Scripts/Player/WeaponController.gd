@@ -1,11 +1,12 @@
 extends AnimationTree
 
+export var damage = 5
+export var MAGAZINE_SIZE = 30
+
 var playback : AnimationNodeStateMachinePlayback
 onready var player = get_node("..")
 var fire_ray
 
-export var damage = 5
-var MAGAZINE_SIZE = 300
 var bullets_left
 
 var ammo_label
@@ -13,7 +14,6 @@ var ammo_label
 var BULLET = preload("res://Scenes/Bullet.tscn")
 var BULLET_HIT = preload("res://Scenes/Visuals/BulletHit.tscn")
 var BULLET_PARTICLE_HIT = preload("res://Scenes/Visuals/BulletParticleHit.tscn")
-onready var FIREPOINT = get_node("RotationHelper/Camera/FirePoint")
 
 onready var globals = get_node("/root/Globals")
 
@@ -39,22 +39,24 @@ func fire_bullet():
     if bullets_left == 0:
         return
     bullets_left -= 1
-    globals.play_sound("RifleShot", player.global_transform.origin)
+    $"../GunSound".play()
     fire_ray.force_raycast_update()
     if fire_ray.is_colliding():
         var body = fire_ray.get_collider()
         if body.has_method("bullet_hit"):
             body.bullet_hit(damage)
+            player.current_kube_power += player.kube_power_per_damage_dealt * damage
             var bh = BULLET_HIT.instance()
             get_tree().root.add_child(bh)
-            bh.get_global_transform().origin = fire_ray.get_collision_point()
+            var kekos = fire_ray.get_collision_point()
+            bh.global_transform.origin = fire_ray.get_collision_point()
             bh.transform.basis = player.transform.basis
         else:
             var bh = BULLET_PARTICLE_HIT.instance()
+            get_tree().root.add_child(bh)
             bh.global_transform.origin = fire_ray.get_collision_point()
             # TODO: Make transform basis Z the reflected vector in regard to meshes normal
             #bh.transform.basis.z = player.transform.basis.z
-            get_tree().root.add_child(bh)
             
 
 func finish_reload():

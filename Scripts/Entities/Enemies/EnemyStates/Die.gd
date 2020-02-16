@@ -7,6 +7,7 @@ Output:
 
 """
 
+export var score = 100
 export var decay_time = 10
 
 onready var decay_time_remaining = decay_time

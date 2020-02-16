@@ -1,20 +1,36 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Models/Entities/Kubelet/Explosion.tres" type="Material" id=1]
-[ext_resource path="res://Scripts/Entities/Kubelet/KubeletExplosion.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Entities/Kubelet/KubeletExplosion.gd" type="Script" id=1]
 
-[sub_resource type="Curve" id=1]
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode cull_disabled;
+
+uniform vec4 color : hint_color;
+uniform float alpha : hint_range(0.0,1.0);
+
+void fragment() {
+    ALBEDO = color.rgb;
+    ALPHA = alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.945098, 0.945098, 0.886275, 1 )
+shader_param/alpha = 0.071
+
+[sub_resource type="Curve" id=3]
 max_value = 250.0
 _data = [ Vector2( 0, 250 ), 0.0, -2111.51, 0, 1, Vector2( 0.118399, 0 ), -2111.51, 0.0, 1, 1, Vector2( 0.205184, 0 ), 0.0, 314.538, 0, 1, Vector2( 1, 250 ), 314.538, 0.0, 1, 0 ]
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="SphereShape" id=4]
 
 [node name="Explosion" type="CSGSphere"]
 radial_segments = 36
 rings = 36
-material = ExtResource( 1 )
-script = ExtResource( 2 )
-explosion_size = SubResource( 1 )
+material = SubResource( 2 )
+script = ExtResource( 1 )
+explosion_size = SubResource( 3 )
 explosion_duration = 4.0
 explosion_shape = Vector3( 1, 1, 1 )
 explosion_dir_elevation = 70.0
@@ -25,6 +41,6 @@ explosion_damage = 1500.0
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

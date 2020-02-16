@@ -1,0 +1,629 @@
+[gd_resource type="ShaderMaterial" load_steps=38 format=2]
+
+[ext_resource path="res://addons/fast_fur_skin/fast_fur_skin_base.shader" type="Shader" id=1]
+[ext_resource path="res://addons/fast_fur_skin/fast_fur_grass_selective/fast_fur_grass_selective.shader" type="Shader" id=2]
+[ext_resource path="res://addons/fast_fur_skin/textures/patt.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.382412
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=2]
+next_pass = SubResource( 1 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.370824
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=3]
+next_pass = SubResource( 2 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.359235
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=4]
+next_pass = SubResource( 3 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.347647
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=5]
+next_pass = SubResource( 4 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.336059
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=6]
+next_pass = SubResource( 5 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.324471
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=7]
+next_pass = SubResource( 6 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.312882
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=8]
+next_pass = SubResource( 7 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.301294
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=9]
+next_pass = SubResource( 8 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.289706
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=10]
+next_pass = SubResource( 9 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.278118
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=11]
+next_pass = SubResource( 10 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.266529
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=12]
+next_pass = SubResource( 11 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.254941
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=13]
+next_pass = SubResource( 12 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.243353
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=14]
+next_pass = SubResource( 13 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.231765
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=15]
+next_pass = SubResource( 14 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.220176
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=16]
+next_pass = SubResource( 15 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.208588
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=17]
+next_pass = SubResource( 16 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.197
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=18]
+next_pass = SubResource( 17 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.185412
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=19]
+next_pass = SubResource( 18 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.173824
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=20]
+next_pass = SubResource( 19 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.162235
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=21]
+next_pass = SubResource( 20 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.150647
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=22]
+next_pass = SubResource( 21 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.139059
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=23]
+next_pass = SubResource( 22 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.127471
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=24]
+next_pass = SubResource( 23 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.115882
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=25]
+next_pass = SubResource( 24 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.104294
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=26]
+next_pass = SubResource( 25 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0927059
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=27]
+next_pass = SubResource( 26 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0811176
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=28]
+next_pass = SubResource( 27 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0695294
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=29]
+next_pass = SubResource( 28 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0579412
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=30]
+next_pass = SubResource( 29 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0463529
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=31]
+next_pass = SubResource( 30 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0347647
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=32]
+next_pass = SubResource( 31 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0231765
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=33]
+next_pass = SubResource( 32 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0115882
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=34]
+next_pass = SubResource( 33 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.0823529, 0.247059, 0.2, 1 )
+shader_param/albedo_offset = Color( 0.137255, 0.490196, 0.490196, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = null
+shader_param/grow = 0.0
+shader_param/roughness = 1.59
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv1_scale = 400.0
+shader_param/wind = Vector2( 1.73, 1.19 )
+shader_param/fur_length = 0.394
+shader_param/fur_shape = 4.61
+shader_param/gravity = 0.0
+shader_param/selective_size = Vector2( 1, 1 )
+shader_param/texture_pattern = ExtResource( 3 )
+
+[resource]
+next_pass = SubResource( 34 )
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.0817108, 0.246094, 0.200888, 1 )
+shader_param/specular = 1.45
+shader_param/metallic = 0.0
+shader_param/roughness = 1.59
+shader_param/point_size = null
+shader_param/uv1_scale = null
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null

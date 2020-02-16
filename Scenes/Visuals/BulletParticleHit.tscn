@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Visuals/dirt_test.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Spatial
 
 export var LIFETIME : float = 1
@@ -14,9 +14,10 @@ func _ready():
 func _process(delta):
     time_left -= delta
     if time_left <= 0:
-        queue_free()"
+        queue_free()
+"
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=2]
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
@@ -26,7 +27,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=3]
 spread = 11.2
 gravity = Vector3( 0, 0, -10 )
 initial_velocity = 3.0
@@ -36,17 +37,18 @@ angle_random = 0.13
 scale = 0.25
 color = Color( 0.0980392, 0.054902, 0.0431373, 1 )
 
-[sub_resource type="QuadMesh" id=3]
+[sub_resource type="QuadMesh" id=4]
 
 [node name="BulletParticleHit" type="Spatial"]
-script = SubResource( 4 )
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+script = SubResource( 1 )
 LIFETIME = 0.7
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, -0.000411451, -0.000133583, 0.000133137, -0.00108365, 0.999999, -0.000411592, -0.999999, -0.00108359, 0, 0, 0 )
-material_override = SubResource( 1 )
+material_override = SubResource( 2 )
 cast_shadow = 0
 amount = 20
 explosiveness = 1.0
-process_material = SubResource( 2 )
-draw_pass_1 = SubResource( 3 )
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 4 )

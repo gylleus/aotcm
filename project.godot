@@ -16,13 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Attack of the Chaos Monkeys"
-run/main_scene="res://Scenes/TestArea.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [autoload]
 
 Globals="*res://Scripts/Globals.gd"
+KubernetesServer="*res://Scripts/KubernetesServer.gd"
 
 [debug]
 
@@ -30,8 +31,14 @@ settings/stdout/print_fps=true
 
 [display]
 
-window/size/width=1080
-window/size/height=720
+window/size/width=1920
+window/size/height=1080
+window/size/borderless=true
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "fast_fur_skin" )
 
 [input]
 

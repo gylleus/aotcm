@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/KubeExplosion.wav-d1acaf4a58f6d164de58dbf5d814605c.sample"
+
+[deps]
+
+source_file="res://Audio/KubeExplosion.wav"
+dest_files=[ "res://.import/KubeExplosion.wav-d1acaf4a58f6d164de58dbf5d814605c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

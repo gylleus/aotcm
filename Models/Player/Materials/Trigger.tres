@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Shaders/Toon.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/color = Color( 0, 0, 0, 1 )
+shader_param/useTexture = true
+shader_param/useNormalMap = false
+shader_param/unlit_coefficient = 0.94
+shader_param/normalMapDepth = null
+shader_param/distinct_colors = 2
+shader_param/cutoff_point = 0.2
+shader_param/transition_width = 0.0

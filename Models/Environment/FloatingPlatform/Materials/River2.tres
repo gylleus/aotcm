@@ -1,0 +1,51 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Models/Entities/Portal/PortalNoise.png" type="Texture" id=1]
+[ext_resource path="res://Models/Entities/Portal/PortalPattern.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode cull_disabled;
+
+uniform sampler2D noise_tex;
+uniform sampler2D displace_tex;
+
+uniform float displacement_amount : hint_range(0.0,1.0);
+uniform float displacement_speed_x : hint_range(-1.0,1.0);
+uniform float displacement_speed_y : hint_range(-1.0,1.0);
+uniform float scroll_speed_x : hint_range(-1.0,1.0);
+uniform float scroll_speed_y : hint_range(-1.0,1.0);
+uniform int distinct_colors = 1;
+uniform vec4 color1 : hint_color;
+uniform vec4 color2 : hint_color;
+
+uniform float albedo : hint_range(0.0,1.0);
+uniform float emission : hint_range(0.0,1.0);
+	
+void fragment() {
+    vec2 displacement = texture(displace_tex, UV - TIME * vec2(displacement_speed_x, displacement_speed_y)).rg;
+    displacement = ((displacement * 2.0) - 1.0) * displacement_amount;
+    
+    float noise = texture(noise_tex, vec2(UV.x+TIME*scroll_speed_x, pow(UV.y,0.6)+TIME*scroll_speed_y) + displacement).b;
+    noise = round(noise * float(distinct_colors)) / float(distinct_colors);
+
+    vec3 color = mix(color1, color2, noise).rgb;
+    ALBEDO = color * vec3(albedo);
+    EMISSION = color * emission;
+}"
+
+[resource]
+render_priority = 1
+shader = SubResource( 1 )
+shader_param/displacement_amount = 0.054
+shader_param/displacement_speed_x = 0.0
+shader_param/displacement_speed_y = 0.011
+shader_param/scroll_speed_x = 0.0
+shader_param/scroll_speed_y = -0.08
+shader_param/distinct_colors = 8
+shader_param/color1 = Color( 0.192157, 0.054902, 0.054902, 1 )
+shader_param/color2 = Color( 1, 0.317647, 0.317647, 1 )
+shader_param/albedo = 0.757
+shader_param/emission = 0.29
+shader_param/noise_tex = ExtResource( 2 )
+shader_param/displace_tex = ExtResource( 1 )
