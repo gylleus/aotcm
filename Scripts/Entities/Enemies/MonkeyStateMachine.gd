@@ -13,6 +13,11 @@ export var gravity = 9.82
 export var sound_pitch = 1.0
 export var nav_path_name = ""
 export var stuck_timeout = 0.6
+export var min_y_pos = -100
+export var jump_force = 4000
+
+export(Color, RGBA) var normal_eye_color
+export(Color, RGBA) var chaos_eye_color
 
 onready var current_health = max_health
 onready var vision_ray = $VisionRay
@@ -39,6 +44,7 @@ var last_position : Vector3
 var stuck_counter = 0
 
 func _ready():
+    $MonkeyHolder/Armature/Skeleton/Body.get_surface_material(4).set_shader_param("color", normal_eye_color)
     player = Globals.get_player()
     add_to_group("enemies")
     for state in $States.get_children():
@@ -151,16 +157,17 @@ func in_aggro_range(player, aggro_range):
         return (player.global_transform.origin - global_transform.origin).length() <= aggro_range
     return false
 
+func take_damage(damage):
+    current_health -= damage
+
 func _physics_process(delta):
     validate_target()
     check_not_stuck(delta)
+    check_in_bounds()
     if current_state.has_method("fixed_update"):
         fixed_update_state(delta)
     if in_aggro_range(player, aggro_range):
         current_target = player
-
-func take_damage(damage):
-    current_health -= damage
 
 func _process(delta):
     validate_target()
@@ -181,9 +188,17 @@ func add_flying_force(force, damage=0):
     current_state.init(init_values)
 
 func anti_stuck():
-    var launch_dir = Vector3(rand_range(-0.5,0.5), 0.7, rand_range(-0.5,0.5))
-    add_flying_force(launch_dir.normalized() * 2000, 0)
+    var launch_dir : Vector3
+    if current_target != null:
+        launch_dir = (current_target.global_transform.origin - global_transform.origin).normalized() + Vector3(0,3,0)
+    else:
+        launch_dir = Vector3(rand_range(-0.5,0.5), 0.7, rand_range(-0.5,0.5))
+    add_flying_force(launch_dir.normalized() * jump_force, 0)
     stuck_counter = 0
+
+func check_in_bounds():
+    if global_transform.origin.y <= min_y_pos:
+        queue_free()
 
 func check_not_stuck(delta):
     if last_position != null and (global_transform.origin-last_position).length() < 0.3 and current_state != states["attack"]:
@@ -200,8 +215,10 @@ func check_oob():
 
 func start_chaos():
     chaos_active = true
+    $MonkeyHolder/Armature/Skeleton/Body.get_surface_material(4).set_shader_param("color", chaos_eye_color)
     get_node("MonkeyHolder/ChaosAura").emitting = true
 
 func stop_chaos():
     chaos_active = false
+    $MonkeyHolder/Armature/Skeleton/Body.get_surface_material(4).set_shader_param("color", normal_eye_color)
     get_node("MonkeyHolder/ChaosAura").emitting = false

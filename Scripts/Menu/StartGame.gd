@@ -12,9 +12,14 @@ func _on_ExitGame_pressed():
     get_tree().quit()
 
 func _on_InvasionButton_pressed():
-    Globals.invasion = true
+    Globals.survival = false
     start_game()
 
 func _on_SurvivalButton_pressed():
-    Globals.invasion = false
+    Globals.survival = true
+    Globals.pods_lost = 0
+    Globals.monkeys_killed = 0
     start_game()
+
+func _on_Back_pressed():
+    visible = false

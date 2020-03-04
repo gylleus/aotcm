@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/GameHandler/GameHandler.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/GameHandler/EnemySpawner.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/GameHandler/Enemy.gd" type="Script" id=3]
-[ext_resource path="res://Audio/DoomChaos.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/DoomNormal.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/KubernetesStateHandler.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Audio/DoomChaos2.wav" type="AudioStream" id=6]
 
 [node name="GameHandler" type="Spatial"]
 script = ExtResource( 1 )
+score_per_second = 150
 chaos_spawn_multiplier = 3.0
 chaos_spawn_divider = 3
 
@@ -15,6 +17,7 @@ chaos_spawn_divider = 3
 script = ExtResource( 2 )
 SPAWN_RADIUS = 100
 difficulty_to_points_multiplier = 2.0
+wave_base_points = 36.0
 nav_path_name = "MonkeyNavigation"
 
 [node name="Monkey" type="Spatial" parent="EnemySpawner"]
@@ -23,27 +26,42 @@ difficulty_points = 5
 scene_path = "res://Models/Entities/Enemies/Monkey/Monkey.tscn"
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
 autostart = true
 
 [node name="ChaosStartTimer" type="Timer" parent="."]
-wait_time = 25.0
+wait_time = 120.0
 one_shot = true
 
 [node name="ChaosStopTimer" type="Timer" parent="."]
-wait_time = 90.0
+wait_time = 10.0
 one_shot = true
 
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
+[node name="UpdateState" type="Timer" parent="."]
+wait_time = 10.0
+
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -14.607
+volume_db = -4.496
+
+[node name="ChaosMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -4.496
 
 [node name="KubernetesStateHandler" parent="." instance=ExtResource( 5 )]
+
+[node name="FadeIn" type="Tween" parent="."]
+
+[node name="FadeOut" type="Tween" parent="."]
 [connection signal="spawn_wave" from="." to="EnemySpawner" method="_spawn_wave"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 [connection signal="timeout" from="ChaosStartTimer" to="." method="_start_chaos"]
 [connection signal="timeout" from="ChaosStopTimer" to="." method="_stop_chaos"]
 [connection signal="timeout" from="RespawnTimer" to="." method="respawn_player"]
+[connection signal="timeout" from="UpdateState" to="." method="_on_UpdateState_timeout"]
+[connection signal="finished" from="ChaosMusicPlayer" to="." method="_stop_chaos"]
+[connection signal="state_updated" from="KubernetesStateHandler" to="." method="update_pods"]

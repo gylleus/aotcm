@@ -33,8 +33,7 @@ settings/stdout/print_fps=true
 
 window/size/width=1920
 window/size/height=1080
-window/size/borderless=true
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
@@ -99,4 +98,5 @@ kubelet_clear={
 
 [rendering]
 
+quality/filters/anisotropic_filter_level=1
 environment/default_environment="res://default_env.tres"

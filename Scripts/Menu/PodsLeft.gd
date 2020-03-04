@@ -8,7 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _process(delta):
-    if Globals.invasion:
+    if !Globals.survival:
         $PodsLeftTitle.text = "PODS LOST:"
         $PodsLeft.text = String(floor(Globals.pods_lost))
     else:

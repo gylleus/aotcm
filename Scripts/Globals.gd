@@ -3,8 +3,10 @@ extends Node
 var total_score : float = 0
 var monkeys_killed = 0
 var pods_lost = 0
-var lose_when_pods_killed = 35
-var invasion = false
+var lose_when_pods_killed = 2
+var survival = false
+
+var max_monkeys = 30
 
 var audio_clips = {
     "RifleShot": preload("res://Audio/RifleShot.wav"),
@@ -21,6 +23,8 @@ var chaos_active : bool = false
 var player
 
 signal kill_player
+signal pod_died
+signal pod_launched
 
 func play_sound(sound_name, sound_position=null):
     if audio_clips.has(sound_name):
@@ -36,7 +40,7 @@ func load_new_scene(new_scene_path):
     return get_tree().change_scene(new_scene_path)
 
 func get_player():
-    if player == null:
+    if !is_instance_valid(player):
         player = find_player_node()
     return player
     
@@ -50,5 +54,15 @@ func find_player_node():
         return players[0]
     return null
 
+func pod_died(pod):
+    pods_lost+=1
+    emit_signal("pod_died", pod)
+    
+func pod_launched(pod):
+    emit_signal("pod_launched", pod)
+
 func kill_player():
     emit_signal("kill_player")
+
+func is_max_enemies():
+    return len(get_tree().get_nodes_in_group("enemies")) >= max_monkeys

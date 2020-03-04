@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Menu/ProgressBar.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Menu/Loading.gd" type="Script" id=2]
+[ext_resource path="res://UI/MenuBackground.png" type="Texture" id=3]
 [ext_resource path="res://UI/LoadingTheme.tres" type="Theme" id=4]
 [ext_resource path="res://UI/Monkey face.png" type="Texture" id=5]
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "RotateHead"
@@ -31,6 +31,15 @@ __meta__ = {
 }
 game_scene = "res://Scenes/Main.tscn"
 
+[node name="Background" type="TextureRect" parent="LoadingScreen"]
+show_behind_parent = true
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
 anchor_top = 0.926852
 anchor_right = 1.0
@@ -42,12 +51,12 @@ __meta__ = {
 }
 
 [node name="LoadingText" type="Label" parent="LoadingScreen"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 457.0
-margin_top = 55.0
-margin_right = -458.0
-margin_bottom = -840.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -813.0
+margin_top = 40.0
+margin_right = 813.0
+margin_bottom = 241.0
 rect_pivot_offset = Vector2( 751.187, 476.694 )
 theme = ExtResource( 4 )
 text = "LOADING . . ."

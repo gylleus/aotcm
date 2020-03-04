@@ -4,11 +4,17 @@ export var MAX_HEALTH : float = 100
 export var EXPLOSION_FORCE : float = 500.0
 export var EXPLOSION_DIR_ELEVATION : float = 5
 export var EXPLOSION_DAMAGE : float = 500
+export var MIN_Y_POS : float = -100
 
 onready var health_left = MAX_HEALTH
 onready var playback = get_node("Pod/PodArmature/AnimationTree").get("parameters/playback")
 onready var explosion_area : Area = get_node("ExplosionArea")
 var explosion_particles_scene = preload("res://Models/Entities/Pod/PodExplosion.tscn")
+
+const PodTemplate = preload("res://Scripts/Entities/PodTemplate.gd")
+
+var template : PodTemplate
+var exploding = false
 
 func _ready():
     add_to_group("pods")
@@ -16,11 +22,19 @@ func _ready():
 func _physics_process(delta):
     if get("contact_monitor") && len(get_colliding_bodies()) > 0:
         land()
+    if global_transform.origin.y < MIN_Y_POS:
+        playback.travel("Explode")
+
+func initialize(t):
+    template = t
+    MAX_HEALTH = template.max_health
+    health_left = MAX_HEALTH
 
 func land():
     set("contact_monitor", false)
-    set("axis_lock_linear_x", true)
-    set("axis_lock_linear_z", true)
+    set_linear_velocity(Vector3(0,0,0))
+  #  set("axis_lock_linear_x", true)
+  #  set("axis_lock_linear_z", true)
 
 func bullet_hit(damage):
     take_damage(damage)
@@ -43,10 +57,11 @@ func emitt_particles():
 
 func die():
     # TODO: Send signal that Pod has died
-    Globals.pods_lost += 1
+    Globals.pod_died(self)
     queue_free()
 
 func explode():
+    exploding = true
     var force = EXPLOSION_FORCE
     var blast_targets = explosion_area.get_overlapping_bodies()
     for target in blast_targets:

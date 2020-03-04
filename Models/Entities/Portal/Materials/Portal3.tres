@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Models/Entities/Portal/Materials/Portal.shader" type="Shader" id=1]
+[ext_resource path="res://Models/Entities/Portal/Bt5MSRp.png" type="Texture" id=2]
+
+[resource]
+render_priority = 1
+shader = ExtResource( 1 )
+shader_param/distortion = 0.01
+shader_param/displacement_amount = 0.246
+shader_param/displacement_speed = 0.405
+shader_param/distortion_speed = 40.64
+shader_param/distortion_y_factor = 7.76
+shader_param/scroll_speed = -0.2
+shader_param/distinct_colors = 7
+shader_param/alpha = 1.0
+shader_param/color1 = Color( 0.0666667, 0.741176, 0.756863, 1 )
+shader_param/color2 = Color( 0.0352941, 0.321569, 0.552941, 1 )
+shader_param/albedo = 1.0
+shader_param/emission = 1.0
+shader_param/noise_tex = ExtResource( 2 )

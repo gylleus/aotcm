@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Menu/StartGame.gd" type="Script" id=1]
 [ext_resource path="res://UI/MenuText.png" type="Texture" id=2]
@@ -14,18 +14,9 @@
 [ext_resource path="res://UI/Fonts/FontData/K8sMenuFont.tres" type="DynamicFont" id=12]
 [ext_resource path="res://Scenes/KubernetesStateHandler.tscn" type="PackedScene" id=13]
 [ext_resource path="res://UI/loading.png" type="Texture" id=14]
+[ext_resource path="res://UI/MenuPanelStyle.tres" type="StyleBox" id=15]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.141176, 0.0745098, 0.0745098, 1 )
-border_width_left = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color( 0.466667, 0.466667, 0.466667, 1 )
-border_blend = true
-shadow_color = Color( 0.25098, 0.176471, 0.176471, 0.6 )
-shadow_size = 15
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Bob"
 loop = true
 tracks/0/type = "bezier"
@@ -39,22 +30,22 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 41
 use_filter = true
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 36
 use_filter = true
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 34
 use_filter = true
 font_data = ExtResource( 11 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "Spin"
 loop = true
 tracks/0/type = "bezier"
@@ -79,12 +70,19 @@ thickness = 10
 color = Color( 0.180392, 0.192157, 0.4, 1 )
 thickness = 10
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=9]
 size = 19
 use_filter = true
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=10]
+size = 45
+outline_color = Color( 0.427451, 0.662745, 0.490196, 1 )
+use_filter = true
+extra_spacing_char = 3
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=11]
 size = 60
 outline_size = 1
 outline_color = Color( 0.427451, 0.662745, 0.490196, 1 )
@@ -109,7 +107,7 @@ anchor_right = 0.5
 margin_left = -565.5
 margin_right = 565.5
 margin_bottom = 360.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -127,8 +125,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Menu"]
-visible = false
+[node name="Background" type="TextureRect" parent="CanvasLayer/Menu"]
 show_behind_parent = true
 margin_right = 1920.0
 margin_bottom = 1080.0
@@ -145,7 +142,7 @@ texture = ExtResource( 9 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Menu/Monkey face"]
 autoplay = "Bob"
 playback_speed = 0.15
-anims/Bob = SubResource( 2 )
+anims/Bob = SubResource( 1 )
 
 [node name="FireLeftEye" type="Particles2D" parent="CanvasLayer/Menu/Monkey face"]
 position = Vector2( 411.537, 141.89 )
@@ -168,6 +165,7 @@ texture = ExtResource( 7 )
 [node name="MenuMusic" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource( 10 )
 pitch_scale = 1.05
+autoplay = true
 
 [node name="MenuButtons" type="Control" parent="CanvasLayer"]
 anchor_left = 0.316146
@@ -189,7 +187,7 @@ margin_top = -221.0
 margin_right = 350.001
 margin_bottom = -103.999
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "START GAME"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -205,7 +203,7 @@ margin_top = -61.0
 margin_right = 350.001
 margin_bottom = 56.0008
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "KUBERNETES CONFIGURATION"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -221,9 +219,8 @@ margin_top = 109.0
 margin_right = 350.001
 margin_bottom = 226.001
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "EXIT"
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -234,7 +231,7 @@ anchor_left = 0.24974
 anchor_top = 0.415278
 anchor_right = 0.75026
 anchor_bottom = 0.825463
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = ExtResource( 15 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -258,7 +255,7 @@ margin_left = 372.276
 margin_top = 2.0
 margin_right = 558.276
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 max_length = 5
 clear_button_enabled = true
@@ -274,7 +271,7 @@ margin_left = 585.88
 margin_top = 1.0
 margin_right = 670.88
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.12549, 0.65098, 0.215686, 1 )
 text = "OK"
 valign = 1
@@ -288,7 +285,7 @@ margin_left = 585.88
 margin_top = 1.0
 margin_right = 670.88
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.858824, 0.0980392, 0.0980392, 1 )
 text = "No connection"
 valign = 1
@@ -305,7 +302,7 @@ texture = ExtResource( 14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/KubernetesConfigPanel/PortLabel/LoadingImage"]
 autoplay = "Spin"
-anims/Spin = SubResource( 9 )
+anims/Spin = SubResource( 5 )
 
 [node name="Namespace" type="Label" parent="CanvasLayer/KubernetesConfigPanel"]
 margin_left = -56.0
@@ -325,7 +322,7 @@ margin_left = 388.0
 margin_top = 2.0
 margin_right = 859.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 max_length = 30
 expand_to_text_length = true
@@ -399,7 +396,7 @@ margin_top = 129.5
 margin_right = -32.4992
 margin_bottom = 185.5
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 disabled = true
 text = "OK"
 script = ExtResource( 1 )
@@ -417,7 +414,7 @@ margin_top = 129.5
 margin_right = 305.381
 margin_bottom = 185.5
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "BACK"
 script = ExtResource( 1 )
 __meta__ = {
@@ -427,26 +424,26 @@ __meta__ = {
 [node name="StartGamePanel" type="Panel" parent="CanvasLayer"]
 visible = false
 anchor_left = 0.25
-anchor_top = 0.600926
+anchor_top = 0.415741
 anchor_right = 0.750521
-anchor_bottom = 0.825926
-custom_styles/panel = SubResource( 1 )
+anchor_bottom = 0.887963
+custom_styles/panel = ExtResource( 15 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="SurvivalButton" type="Button" parent="CanvasLayer/StartGamePanel"]
-anchor_left = 0.339
+anchor_left = 0.318188
 anchor_top = 0.292
-anchor_right = 0.339
+anchor_right = 0.318188
 anchor_bottom = 0.292
 margin_left = -172.778
 margin_top = -38.3559
 margin_right = 172.222
 margin_bottom = 30.644
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "SURVIVAL"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -459,7 +456,7 @@ margin_left = -137.494
 margin_top = 86.0
 margin_right = 151.506
 margin_bottom = 193.0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 9 )
 text = "- Defeat after losing certain amount of pods
 - Gradually increasing difficulty"
 scroll_active = false
@@ -467,17 +464,33 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="Back" type="Button" parent="CanvasLayer/StartGamePanel"]
+anchor_left = 0.515666
+anchor_top = 0.85835
+anchor_right = 0.515666
+anchor_bottom = 0.85835
+margin_left = -172.778
+margin_top = -38.3559
+margin_right = 172.222
+margin_bottom = 30.644
+theme = ExtResource( 4 )
+custom_fonts/font = SubResource( 2 )
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="InvasionButton" type="Button" parent="CanvasLayer/StartGamePanel"]
-anchor_left = 0.734
+anchor_left = 0.713188
 anchor_top = 0.283
-anchor_right = 0.734
+anchor_right = 0.713188
 anchor_bottom = 0.283
 margin_left = -172.373
 margin_top = -34.3689
 margin_right = 172.627
 margin_bottom = 34.6311
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "INVASION"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -490,7 +503,7 @@ margin_left = -147.494
 margin_top = 86.0
 margin_right = 141.506
 margin_bottom = 193.0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 9 )
 text = "- No defeat condition
 - Static difficulty"
 scroll_active = false
@@ -498,12 +511,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Connected" type="Label" parent="CanvasLayer"]
-margin_left = 7.0
-margin_right = 353.0
+[node name="StartGameLabel" type="Label" parent="CanvasLayer/StartGamePanel"]
+margin_left = 313.501
+margin_right = 666.501
 margin_bottom = 101.0
 custom_fonts/font = SubResource( 10 )
-custom_colors/font_color = Color( 0.141176, 0.490196, 0.0705882, 1 )
+custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
+text = "START GAME"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connected" type="Label" parent="CanvasLayer"]
+margin_left = 15.0
+margin_right = 368.0
+margin_bottom = 101.0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.231373, 0.403922, 0.196078, 1 )
 text = "CONNECTED"
 valign = 1
 uppercase = true
@@ -512,7 +539,7 @@ __meta__ = {
 }
 [connection signal="pressed" from="CanvasLayer/MenuButtons/StartGame" to="CanvasLayer/StartGamePanel" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuButtons/KubernetesConnect" to="CanvasLayer/KubernetesConfigPanel" method="_on_KubernetesConnect_pressed"]
-[connection signal="pressed" from="CanvasLayer/MenuButtons/ExitGame" to="CanvasLayer/MenuButtons/StartGame" method="_on_ExitGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuButtons/ExitGame" to="CanvasLayer/StartGamePanel" method="_on_ExitGame_pressed"]
 [connection signal="focus_exited" from="CanvasLayer/KubernetesConfigPanel/PortLabel/LineEdit" to="CanvasLayer/KubernetesConfigPanel" method="port_updated"]
 [connection signal="text_changed" from="CanvasLayer/KubernetesConfigPanel/PortLabel/LineEdit" to="CanvasLayer/KubernetesConfigPanel" method="port_changed"]
 [connection signal="state_updated" from="CanvasLayer/KubernetesConfigPanel/KubernetesStateHandler" to="CanvasLayer/KubernetesConfigPanel" method="_on_KubernetesStateHandler_state_updated"]
@@ -520,4 +547,5 @@ __meta__ = {
 [connection signal="pressed" from="CanvasLayer/KubernetesConfigPanel/OKButton" to="CanvasLayer/KubernetesConfigPanel" method="_on_OKButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/KubernetesConfigPanel/BackButton" to="CanvasLayer/KubernetesConfigPanel" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartGamePanel/SurvivalButton" to="CanvasLayer/StartGamePanel" method="_on_SurvivalButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartGamePanel/Back" to="CanvasLayer/StartGamePanel" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartGamePanel/InvasionButton" to="CanvasLayer/StartGamePanel" method="_on_InvasionButton_pressed"]

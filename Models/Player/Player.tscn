@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/MonkeyTest.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Scripts/Player/HealthBar.gd" type="Script" id=12]
 [ext_resource path="res://Audio/Shoot.wav" type="AudioStream" id=13]
 [ext_resource path="res://Scripts/Menu/PodsLeft.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/Menu/PodLog.gd" type="Script" id=15]
+[ext_resource path="res://UI/Fonts/Cascadia.ttf" type="DynamicFontData" id=16]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 0.002
@@ -363,6 +365,7 @@ font_data = ExtResource( 10 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.12549, 0.137255, 0.172549, 1 )
+border_width_left = 9
 border_width_right = 9
 border_width_bottom = 9
 border_color = Color( 0.65098, 0.65098, 0.65098, 1 )
@@ -370,12 +373,26 @@ border_blend = true
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
+[sub_resource type="StyleBoxFlat" id=26]
+bg_color = Color( 0.0588235, 0.0470588, 0.105882, 0.321569 )
+border_width_top = 3
+border_width_right = 3
+border_color = Color( 0.380392, 0.372549, 0.372549, 1 )
+border_blend = true
+
+[sub_resource type="DynamicFont" id=27]
+size = 13
+use_filter = true
+font_data = ExtResource( 16 )
+
 [node name="PlayerCharacter" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00405693, 0.0412759, -0.00859356 )
 collision_layer = 2
 script = ExtResource( 1 )
-GRAVITY = -30
-WEIGHT = 90.0
+JUMP_VELOCITY = 35
+GRAVITY = -50
+WEIGHT = 450.0
+kube_power_per_second = 100
 
 [node name="BodyCollider" type="CollisionShape" parent="."]
 transform = Transform( 0.82, 0, 0, 0, 2.1, 0, 0, 0, 0.425, 0, 1.10941, 0.0560107 )
@@ -579,9 +596,10 @@ __meta__ = {
 }
 
 [node name="PodBar" type="Panel" parent="HUD"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -316.0
+anchor_left = 0.329
+anchor_right = 0.329
+margin_left = -157.68
+margin_right = 158.32
 margin_bottom = 87.0
 custom_styles/panel = SubResource( 25 )
 script = ExtResource( 14 )
@@ -613,6 +631,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LogPanel" type="Panel" parent="HUD"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -145.0
+margin_right = 406.0
+custom_styles/panel = SubResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PodLog" type="RichTextLabel" parent="HUD/LogPanel"]
+anchor_left = 0.0172414
+anchor_right = 1.0
+anchor_bottom = 0.993464
+custom_fonts/normal_font = SubResource( 27 )
+text = "test
+test
+test
+test
+test
+test
+test
+test"
+scroll_active = false
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+max_length = 9
+
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
@@ -620,8 +668,8 @@ one_shot = true
 [node name="GunSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83986, 0 )
 stream = ExtResource( 13 )
-unit_db = -5.0
+unit_db = -1.5
 unit_size = 10.0
-max_db = -5.0
-pitch_scale = 0.6
+max_db = -1.5
+pitch_scale = 0.9
 [connection signal="timeout" from="RespawnTimer" to="." method="_respawn"]

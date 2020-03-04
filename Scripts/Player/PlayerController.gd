@@ -9,6 +9,7 @@ export var health_recover_per_second = 1
 export var kube_power_per_second = 1
 export var kube_power_per_health = 1
 export var kube_power_per_damage_dealt = 0.05
+export var min_y_pos = -250
 
 export var accel = 8
 export var deaccel = 11
@@ -53,6 +54,8 @@ func _physics_process(delta):
         current_kube_power = 0
         for k in get_tree().get_nodes_in_group("kubelet"):
             k.trigger_emergency_clear()
+    if global_transform.origin.y < min_y_pos:
+        die()
 
 func move(delta):
     var dir = Vector3()

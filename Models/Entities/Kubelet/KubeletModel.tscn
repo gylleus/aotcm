@@ -127,7 +127,7 @@ start_node = "Idle"
 script = ExtResource( 2 )
 
 [node name="KubeletArmature" parent="." index="0"]
-transform = Transform( -3.22506, 0, 4.86971e-07, 0, 2.41414, 0, -4.86971e-07, 0, -3.22506, 0, -0.712989, 0 )
+transform = Transform( -3.22506, 0, 4.8697e-07, 0, 2.41414, 0, -4.8697e-07, 0, -3.22506, 0, -0.712989, 0 )
 
 [node name="KubeletHead" parent="KubeletArmature/Skeleton" index="0"]
 transform = Transform( 1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 0, 0, 0 )

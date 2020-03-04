@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/Fonts/FontData/UIFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/MenuBackground.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Audio/DoomPeace.wav" type="AudioStream" id=5]
 [ext_resource path="res://Scripts/ScoreDisplay.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/MonkeysValue.gd" type="Script" id=7]
+[ext_resource path="res://UI/HUDTheme.tres" type="Theme" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -131,7 +132,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Menu"]
+[node name="BackToMenu" type="Button" parent="Menu"]
 anchor_left = 0.5
 anchor_top = 0.886
 anchor_right = 0.5
@@ -140,6 +141,7 @@ margin_left = -304.0
 margin_top = -106.88
 margin_right = 304.0
 margin_bottom = 0.119934
+theme = ExtResource( 8 )
 custom_fonts/font = SubResource( 3 )
 text = "Back to Menu"
 __meta__ = {
@@ -149,4 +151,4 @@ __meta__ = {
 [node name="GameOverMusic" type="AudioStreamPlayer" parent="Menu"]
 stream = ExtResource( 5 )
 autoplay = true
-[connection signal="pressed" from="Menu/Button" to="Menu" method="_back_to_menu"]
+[connection signal="pressed" from="Menu/BackToMenu" to="Menu" method="_back_to_menu"]

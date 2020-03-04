@@ -12,16 +12,20 @@ uniform float alpha : hint_range(0.0,1.0);
 void fragment() {
     ALBEDO = color.rgb;
     ALPHA = alpha;
+}
+
+void light() {
+    DIFFUSE_LIGHT = color.rgb;
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/color = Color( 0.945098, 0.945098, 0.886275, 1 )
-shader_param/alpha = 0.071
+shader_param/color = Color( 1, 1, 0.85098, 1 )
+shader_param/alpha = 0.034
 
 [sub_resource type="Curve" id=3]
 max_value = 250.0
-_data = [ Vector2( 0, 250 ), 0.0, -2111.51, 0, 1, Vector2( 0.118399, 0 ), -2111.51, 0.0, 1, 1, Vector2( 0.205184, 0 ), 0.0, 314.538, 0, 1, Vector2( 1, 250 ), 314.538, 0.0, 1, 0 ]
+_data = [ Vector2( 0, 250 ), 0.0, -1946.97, 0, 1, Vector2( 0.128405, 0 ), -1946.97, 0.0, 1, 0, Vector2( 0.330739, 0 ), 0.0, 373.546, 0, 1, Vector2( 1, 250 ), 373.546, 0.0, 1, 0 ]
 
 [sub_resource type="SphereShape" id=4]
 
@@ -31,11 +35,11 @@ rings = 36
 material = SubResource( 2 )
 script = ExtResource( 1 )
 explosion_size = SubResource( 3 )
-explosion_duration = 4.0
+explosion_duration = 2.5
 explosion_shape = Vector3( 1, 1, 1 )
-explosion_dir_elevation = 70.0
-explosion_force = 45.0
-implosion_force = 40.0
+explosion_dir_elevation = 60.0
+explosion_force = 75.0
+implosion_force = 65.0
 explosion_damage = 1500.0
 
 [node name="Area" type="Area" parent="."]

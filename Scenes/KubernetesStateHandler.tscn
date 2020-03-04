@@ -5,6 +5,8 @@
 [node name="KubernetesStateHandler" type="Node"]
 script = ExtResource( 1 )
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="PodGetter" type="HTTPRequest" parent="."]
 timeout = 5
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_pod_request_completed"]
+
+[node name="PodDeleter" type="HTTPRequest" parent="."]
+[connection signal="request_completed" from="PodGetter" to="." method="_on_pod_request_completed"]

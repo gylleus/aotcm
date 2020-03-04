@@ -22,7 +22,7 @@ func port_changed(new_text):
     connection_ok = false
     update_connection_state()
 
-func _on_KubernetesStateHandler_state_updated():
+func _on_KubernetesStateHandler_state_updated(_pod_templates):
     connection_ok = true    
     update_connection_state()
     
@@ -37,6 +37,8 @@ func update_connection_state():
 
 func _on_BackButton_pressed():
     visible = false
+    update_connection_state()
+    KubernetesServer.connected = namespace_ok and connection_ok
 
 func _on_OKButton_pressed():
     KubernetesServer.proxy_port = int($PortLabel/LineEdit.text)

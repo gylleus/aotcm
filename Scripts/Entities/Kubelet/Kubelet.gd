@@ -11,8 +11,6 @@ export var MIN_SPIN_ANGLE = 60
 export var MAX_SPIN_ANGLE = 90
 export var POD_AIR_TIME = 2.0
 export var SPIN_TIME = 1.0
-export var pods_amount = 9
-export var pod_health = 100
 
 var pod_queue = []
 var next_pod = null
@@ -39,20 +37,13 @@ func _ready():
     # Set a random "previous" launch angle 
     last_launch_angle = rng.randf_range(0.0, 360.0)
     
-    for i in range(pods_amount):
-        queue_pod(PodTemplate.new(pod_health,"test"))
-    initiate_next_pod()
-    
 
-func _physics_process(delta):
-    if len(get_tree().get_nodes_in_group("pods")) + len(pod_queue) < pods_amount:
-        queue_pod(PodTemplate.new(pod_health,"test"))
-                
+func _physics_process(delta):  
     if next_pod != null:
         spin_lerp_value += delta / SPIN_TIME
         rotate_towards_direction(pod_launch_vector, spin_lerp_value, spin_start)
         if spin_lerp_value >= 1:
-            emit_signal("spit_pod", pod_launch_vector)
+            emit_signal("spit_pod", pod_launch_vector, next_pod)
     elif len(pod_queue) > 0:
         initiate_next_pod()
     elif len(pod_queue) == 0:

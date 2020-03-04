@@ -1,32 +1,12 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/Entities/Portal.gd" type="Script" id=1]
-[ext_resource path="res://Models/Entities/Portal/Materials/Portal.shader" type="Shader" id=2]
-[ext_resource path="res://Models/Entities/Portal/PortalNoise.png" type="Texture" id=3]
-[ext_resource path="res://Models/Entities/Portal/Bt5MSRp.png" type="Texture" id=4]
+[ext_resource path="res://Models/Entities/Portal/Materials/Portal3.tres" type="Material" id=2]
 [ext_resource path="res://Scenes/Visuals/star.png" type="Texture" id=5]
 [ext_resource path="res://Models/Entities/Portal/PortalWave.png" type="Texture" id=6]
+[ext_resource path="res://Audio/Portal.wav" type="AudioStream" id=7]
 
-[sub_resource type="ShaderMaterial" id=1]
-resource_local_to_scene = true
-render_priority = 1
-shader = ExtResource( 2 )
-shader_param/distortion = 0.01
-shader_param/displacement_amount = 0.023
-shader_param/displacement_speed = 0.046
-shader_param/distortion_speed = 20.0
-shader_param/distortion_y_factor = 2.78
-shader_param/scroll_speed = 0.05
-shader_param/distinct_colors = 4
-shader_param/alpha = 0.814
-shader_param/color1 = Color( 0.858824, 0.192157, 0.34902, 1 )
-shader_param/color2 = Color( 0.419608, 0.0862745, 0.337255, 1 )
-shader_param/albedo = 1.0
-shader_param/emission = 0.21
-shader_param/noise_tex = ExtResource( 4 )
-shader_param/displace_tex = ExtResource( 3 )
-
-[sub_resource type="ArrayMesh" id=2]
+[sub_resource type="ArrayMesh" id=1]
 resource_local_to_scene = true
 surfaces/0 = {
 "aabb": AABB( -3.8058, 0.00375509, -0.0178087, 7.60969, 9.15909, 0.0356174 ),
@@ -35,14 +15,14 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 6456,
-"material": SubResource( 1 ),
+"material": ExtResource( 2 ),
 "name": "Portal",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 5588
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 1.41667
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Spatial/Portal")
@@ -52,7 +32,7 @@ tracks/0/imported = true
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 0.000277318, 0.011626, 0.020378, 0.0416667, 1, 0, 0, 0, 0, 0, 0, 1, 0.000301259, 0.0322845, 0.0408536, 0.0833333, 1, 0, 0, 0, 0, 0, 0, 1, 0.000366242, 0.0648902, 0.0731705, 0.166667, 1, 0, 0, 0, 0, 0, 0, 1, 0.000701418, 0.159969, 0.167408, 0.75, 1, 0, 0, 0, 0, 0, 0, 1, 0.0237328, 0.992782, 0.992846, 0.791667, 1, 0, 0, 0, 0, 0, 0, 1, 0.0276352, 1, 1, 0.833333, 1, 0, 0, 0, 0, 0, 0, 1, 0.114191, 1, 1, 0.875, 1, 0, 0, 0, 0, 0, 0, 1, 0.324253, 1, 1, 0.958333, 1, 0, 0, 0, 0, 0, 0, 1, 0.866515, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1.07453, 1, 1, 1.04167, 1, 0, 0, 0, 0, 0, 0, 1, 1.15766, 1, 1, 1.125, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1.41667, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=3]
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_diffuse_mode = 4
@@ -68,13 +48,13 @@ particles_anim_loop = false
 albedo_color = Color( 0.796078, 0.164706, 0.196078, 1 )
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0.00138526, 0.0149 ), 0.0, 0.0, 0, 0, Vector2( 0.0367095, 0.9741 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 4, 1 )
 spread = 180.0
@@ -85,45 +65,45 @@ angular_velocity = 35.0
 angular_velocity_random = 0.17
 linear_accel = -15.0
 tangential_accel = 15.0
-scale_curve = SubResource( 6 )
+scale_curve = SubResource( 5 )
 
-[sub_resource type="QuadMesh" id=8]
+[sub_resource type="QuadMesh" id=7]
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 params_diffuse_mode = 4
 params_specular_mode = 3
 params_blend_mode = 1
 params_cull_mode = 2
-albedo_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+albedo_color = Color( 0.270588, 0.235294, 0.52549, 1 )
 albedo_texture = ExtResource( 6 )
 
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=9]
 max_value = 5.0
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.903565, 0.443 ), 2.24189, 2.24189, 0, 0, Vector2( 1, 1.675 ), 29.6929, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
 
-[sub_resource type="Gradient" id=12]
+[sub_resource type="Gradient" id=11]
 
-[sub_resource type="GradientTexture" id=13]
-gradient = SubResource( 12 )
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
 
-[sub_resource type="ParticlesMaterial" id=14]
+[sub_resource type="ParticlesMaterial" id=13]
 emission_shape = 2
 emission_box_extents = Vector3( 0.1, 3.61, 0.1 )
 flag_rotate_y = true
 gravity = Vector3( 0, 0, 0 )
 angular_velocity = 1.0
-angular_velocity_curve = SubResource( 11 )
+angular_velocity_curve = SubResource( 10 )
 angle = 1.0
 scale = 5.5
 scale_random = 0.79
-color_ramp = SubResource( 13 )
+color_ramp = SubResource( 12 )
 
-[sub_resource type="SphereMesh" id=15]
+[sub_resource type="SphereMesh" id=14]
 radial_segments = 16
 rings = 16
 
@@ -137,38 +117,45 @@ transform = Transform( 1.1, 0, 0, 0, 1.4, 0, 0, 0, 1.1, 0, 0, 0 )
 
 [node name="Portal" type="MeshInstance" parent="Spatial"]
 transform = Transform( 2, 0, 0, 0, 1.4, 0, 0, 0, 2, 0, 0, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial"]
 autoplay = "default"
-anims/default = SubResource( 3 )
+anims/default = SubResource( 2 )
 
 [node name="Stars" type="Particles" parent="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.43786, 0 )
 visible = false
-material_override = SubResource( 4 )
+material_override = SubResource( 3 )
 amount = 32
 lifetime = 4.0
 randomness = 1.0
-process_material = SubResource( 7 )
-draw_pass_1 = SubResource( 8 )
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 7 )
 
 [node name="Waves" type="Particles" parent="Spatial"]
 transform = Transform( 0.505699, -0.00661709, -0.8627, 0.00182158, 0.999964, -0.00660258, 0.86271, 0.00176738, 0.505707, 5.38885, 4.18841, -0.315153 )
-material_override = SubResource( 9 )
+material_override = SubResource( 8 )
 amount = 25
-lifetime = 2.0
-process_material = SubResource( 14 )
-draw_pass_1 = SubResource( 15 )
+speed_scale = 0.5
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 14 )
 
 [node name="Waves2" type="Particles" parent="Spatial"]
 transform = Transform( -0.590914, 0.00626775, 0.806725, -0.00580868, -0.999964, 0.00351466, 0.806715, -0.00260906, 0.590947, -4.95513, 4.08606, -0.325103 )
-material_override = SubResource( 9 )
+material_override = SubResource( 8 )
 amount = 25
-lifetime = 2.0
-process_material = SubResource( 14 )
-draw_pass_1 = SubResource( 15 )
+speed_scale = 0.5
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 14 )
 
 [node name="SpawnPosition" type="Spatial" parent="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76133, 1.11577 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 7 )
+unit_db = 3.0
+unit_size = 40.0
+pitch_scale = 0.8
+autoplay = true

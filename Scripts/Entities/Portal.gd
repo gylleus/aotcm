@@ -12,7 +12,7 @@ var enemies = []
 var enemy_spawn_timer : float = 0
 
 func _ready():
-    var kek = $Spatial/Portal
+    add_to_group("portals")
     mat = $Spatial/Portal.mesh.get("surface_1/material")
     mat = mat.duplicate()
     $Spatial/Portal.mesh.set("surface_1/material", mat)
@@ -33,11 +33,12 @@ func _process(delta):
 func spawn_next_enemy():
     var spawn_pos = $Spatial/SpawnPosition.global_transform.origin
     var next_enemy = enemies.pop_front()
-    var new_enemy = next_enemy.scene.instance()
-    var new_effect = spawn_effect.instance()
-    get_tree().get_root().add_child(new_effect)
-    get_tree().get_root().add_child(new_enemy)
-    new_effect.global_transform.origin = spawn_pos
-    new_enemy.global_transform.origin = spawn_pos
-    if Globals.chaos_active:
-        new_enemy.start_chaos()
+    if !Globals.is_max_enemies():
+        var new_enemy = next_enemy.scene.instance()
+        var new_effect = spawn_effect.instance()
+        get_tree().get_root().add_child(new_effect)
+        get_tree().get_root().add_child(new_enemy)
+        new_effect.global_transform.origin = spawn_pos
+        new_enemy.global_transform.origin = spawn_pos
+        if Globals.chaos_active:
+            new_enemy.start_chaos()
