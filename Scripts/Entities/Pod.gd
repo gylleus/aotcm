@@ -64,6 +64,7 @@ func explode():
     exploding = true
     var force = EXPLOSION_FORCE
     var blast_targets = explosion_area.get_overlapping_bodies()
+    Globals.shake_camera(0.25,0.8)
     for target in blast_targets:
         if target.has_method("add_flying_force"):
             var force_dir = target.global_transform.origin - global_transform.origin + Vector3(0, EXPLOSION_DIR_ELEVATION, 0)  

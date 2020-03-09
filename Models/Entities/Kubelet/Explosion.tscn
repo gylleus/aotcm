@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Entities/Kubelet/KubeletExplosion.gd" type="Script" id=1]
+[ext_resource path="res://Audio/KubeExplosion.wav" type="AudioStream" id=2]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -25,7 +26,7 @@ shader_param/alpha = 0.034
 
 [sub_resource type="Curve" id=3]
 max_value = 250.0
-_data = [ Vector2( 0, 250 ), 0.0, -1946.97, 0, 1, Vector2( 0.128405, 0 ), -1946.97, 0.0, 1, 0, Vector2( 0.330739, 0 ), 0.0, 373.546, 0, 1, Vector2( 1, 250 ), 373.546, 0.0, 1, 0 ]
+_data = [ Vector2( 0, 250 ), 0.0, -1168.18, 0, 1, Vector2( 0.214008, 0 ), -1168.18, 0.0, 1, 0, Vector2( 0.40856, 0 ), 0.0, 422.697, 0, 1, Vector2( 1, 250 ), 422.697, 0.0, 1, 0 ]
 
 [sub_resource type="SphereShape" id=4]
 
@@ -41,10 +42,16 @@ explosion_dir_elevation = 60.0
 explosion_force = 75.0
 implosion_force = 65.0
 explosion_damage = 1500.0
+implosion_time_scale = 0.7
+camera_shake_magnitude = 0.25
 
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 4 )
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+pitch_scale = 0.7
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

@@ -4,7 +4,7 @@
 [ext_resource path="res://Models/Entities/Pod/PodExplosion.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Models/Entities/Pod/PodSurface.material" type="Material" id=3]
 [ext_resource path="res://Models/Entities/Pod/Materials/OutlinePodMaterial.tres" type="Material" id=4]
-[ext_resource path="res://Audio/PodExplosion.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/PodExplosion2.wav" type="AudioStream" id=5]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -314,4 +314,4 @@ stream = ExtResource( 5 )
 unit_db = 6.0
 unit_size = 10.0
 max_db = 6.0
-pitch_scale = 1.1
+pitch_scale = 0.9

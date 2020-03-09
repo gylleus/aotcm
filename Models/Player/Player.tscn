@@ -1,7 +1,7 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Entities/Enemies/MonkeyTest.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player/Camera.gd" type="Script" id=2]
 [ext_resource path="res://Models/Player/Rifle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Muzzle.gd" type="Script" id=4]
 [ext_resource path="res://Models/Player/Weapon/Fire/fire1.png" type="Texture" id=5]
@@ -16,12 +16,18 @@
 [ext_resource path="res://Scripts/Menu/PodsLeft.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Menu/PodLog.gd" type="Script" id=15]
 [ext_resource path="res://UI/Fonts/Cascadia.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://Scripts/Menu/PauseMenu.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/Menu/StartGame.gd" type="Script" id=18]
+[ext_resource path="res://UI/MenuPanelStyle.tres" type="StyleBox" id=19]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 0.002
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.336309, 1, 1 )
+
+[sub_resource type="Curve" id=30]
+_data = [ Vector2( 0, 1 ), 0.0, -2.96538, 0, 0, Vector2( 0.44358, 0.254545 ), -0.856667, -0.856667, 0, 0, Vector2( 0.984436, 0.0090909 ), -0.380338, 0.0, 0, 0 ]
 
 [sub_resource type="AnimationNodeAnimation" id=3]
 animation = "fire"
@@ -385,6 +391,14 @@ size = 13
 use_filter = true
 font_data = ExtResource( 16 )
 
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.101961, 0.101961, 0.101961, 0.545098 )
+
+[sub_resource type="DynamicFont" id=29]
+size = 41
+use_filter = true
+font_data = ExtResource( 10 )
+
 [node name="PlayerCharacter" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00405693, 0.0412759, -0.00859356 )
 collision_layer = 2
@@ -412,6 +426,7 @@ fov = 75.0
 near = 0.07
 far = 1000.0
 script = ExtResource( 2 )
+magnitude_curve = SubResource( 30 )
 
 [node name="FirePoint" type="Spatial" parent="RotationHelper/Camera"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
@@ -661,6 +676,66 @@ __meta__ = {
 }
 max_length = 9
 
+[node name="PausePanel" type="Panel" parent="HUD"]
+visible = false
+margin_top = 5.48363e-06
+margin_right = 1920.0
+margin_bottom = 1080.0
+custom_styles/panel = SubResource( 28 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+main_menu_scene = "res://Scenes/UI/Menu.tscn"
+
+[node name="PauseMenu" type="Panel" parent="HUD/PausePanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.5
+margin_top = -114.0
+margin_right = 203.5
+margin_bottom = 114.0
+custom_styles/panel = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="Button" parent="HUD/PausePanel/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -119.5
+margin_top = -74.0
+margin_right = 119.5
+margin_bottom = -18.0
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 29 )
+text = "RESUME"
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ExitButton" type="Button" parent="HUD/PausePanel/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -119.5
+margin_top = 18.0
+margin_right = 119.5
+margin_bottom = 74.0
+theme = ExtResource( 9 )
+custom_fonts/font = SubResource( 29 )
+text = "EXIT"
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
@@ -672,4 +747,6 @@ unit_db = -1.5
 unit_size = 10.0
 max_db = -1.5
 pitch_scale = 0.9
+[connection signal="pressed" from="HUD/PausePanel/PauseMenu/ResumeButton" to="HUD/PausePanel" method="unpause"]
+[connection signal="pressed" from="HUD/PausePanel/PauseMenu/ExitButton" to="HUD/PausePanel" method="_back_to_menu"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_respawn"]

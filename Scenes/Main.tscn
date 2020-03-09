@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Models/Entities/Kubelet/Kubelet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Environment/Stones/stone1.tscn" type="PackedScene" id=2]
@@ -18,9 +18,8 @@
 [ext_resource path="res://Models/Environment/MonkeySkull/MonkeySkull.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Models/Environment/KubeStone/KubeStone.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Models/Environment/KubeStone/KubeStoneOrbiting.tscn" type="PackedScene" id=18]
-[ext_resource path="res://space_painted2.png" type="Texture" id=19]
+[ext_resource path="res://space_painted3.png" type="Texture" id=19]
 [ext_resource path="res://Models/Environment/KubeStone/KubeStoneRotating.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Models/Entities/Kubelet/Explosion.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Models/Environment/Mushrooms/Scenes/Mushroom.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Models/Environment/Mushrooms/Scenes/Mushroom2.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Models/Environment/Mushrooms/Scenes/Mushroom4.tscn" type="PackedScene" id=25]
@@ -361,6 +360,9 @@ transform = Transform( 28.9117, 0, 0, 0, 12.2044, -26.2095, 0, 26.2095, 12.2044,
 [node name="SpinningStone" parent="MonkeyNavigation/NavigationMeshInstance/KubeStones" instance=ExtResource( 20 )]
 transform = Transform( 27.3833, -8.06382, -21.5803, 23.0377, 9.58492, 25.651, 0, -33.5214, 12.5258, 326.217, 57.8587, -509.742 )
 
+[node name="SpinningStone2" parent="MonkeyNavigation/NavigationMeshInstance/KubeStones" instance=ExtResource( 20 )]
+transform = Transform( -34.814, -0.343948, -27.4119, -27.3328, 3.84441, 34.6652, 2.10915, 44.1434, -3.23255, -171.848, 57.8587, 268.187 )
+
 [node name="SpinningKubeStone" parent="MonkeyNavigation/NavigationMeshInstance/KubeStones" instance=ExtResource( 20 )]
 transform = Transform( 18.2733, -3.5757, 14.0785, 12.1958, 16.0662, -11.7491, -7.89002, 16.5527, 14.445, -288.683, 19.4805, -125.535 )
 
@@ -369,21 +371,23 @@ transform = Transform( 18.2733, -3.5757, 14.0785, 12.1958, 16.0662, -11.7491, -7
 [node name="GameHandler" parent="." instance=ExtResource( 14 )]
 pause_mode = 2
 game_over_scene = "res://Scenes/UI/GameOver.tscn"
-chaos_spawn_divider = 4
+chaos_spawn_multiplier = 12.0
 start_difficulty = 0.6
 difficulty_increment_per_minute = 0.6
+music_max_db = 0.0
 
 [node name="PlayerSpawn" type="Spatial" parent="GameHandler"]
 transform = Transform( 0.668378, 0, -0.743822, 0, 1, 0, 0.743822, 0, 0.668378, 88.0986, 14.4995, -89.9171 )
 
 [node name="PlayerCharacter" parent="GameHandler/PlayerSpawn" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-WEIGHT = 350.0
+WEIGHT = 75.0
 MAX_HEALTH = 50
 kube_power_per_damage_dealt = 0.5
 accel = 19
 deaccel = 18
 max_speed = 32
+damage_shake_duration = 0.4
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.860058, -0.230467, 0.455177, 0, 0.892159, 0.451722, -0.510197, -0.388507, 0.767308, 38.9717, 72.8735, 113.309 )
@@ -391,7 +395,3 @@ far = 1000.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
-
-[node name="Explosion" parent="." instance=ExtResource( 21 )]
-transform = Transform( 54.1531, 0, -60.2657, 0, 81.0217, 0, 60.2657, 0, 54.1531, 1.96573, 15.606, 83.6062 )
-visible = false

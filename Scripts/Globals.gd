@@ -19,12 +19,14 @@ var audio_clips = {
 const AUDIO_PLAYER_SCENE = preload("res://Scenes/AudioPlayer.tscn")
 var created_audio = []
 
+var paused = false
 var chaos_active : bool = false
 var player
 
 signal kill_player
 signal pod_died
 signal pod_launched
+signal shake_camera
 
 func play_sound(sound_name, sound_position=null):
     if audio_clips.has(sound_name):
@@ -66,3 +68,14 @@ func kill_player():
 
 func is_max_enemies():
     return len(get_tree().get_nodes_in_group("enemies")) >= max_monkeys
+
+func clean_scene():
+    for enemy in get_tree().get_nodes_in_group("enemies"):
+        enemy.queue_free()
+    for pod in get_tree().get_nodes_in_group("pods"):
+        pod.queue_free()
+    for portal in get_tree().get_nodes_in_group("portals"):
+        portal.queue_free()
+
+func shake_camera(magnitude, duration):
+    emit_signal("shake_camera", magnitude, duration)

@@ -140,7 +140,6 @@ func find_valid_pod_position(possible_positions):
 
 func trigger_emergency_clear():
     playback.travel("Purge")
-    $ExplosionSound.play()
     explode()
 
 func explode():

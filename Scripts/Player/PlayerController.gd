@@ -15,6 +15,9 @@ export var accel = 8
 export var deaccel = 11
 export var max_speed = 14
 
+export var damage_shake_magnitude : float = 0.1 
+export var damage_shake_duration : float = 1
+
 onready var current_health : float = MAX_HEALTH
 
 const MAX_SLOPE_ANGLE = 60
@@ -45,11 +48,6 @@ func _process(delta):
 func _physics_process(delta):
     move(delta)
     # Capturing/Freeing the cursor
-    if Input.is_action_just_pressed("ui_cancel"):
-        if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-            Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-        else:
-            Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)	
     if Input.is_action_just_pressed("kubelet_clear") and current_kube_power >= max_kube_power:
         current_kube_power = 0
         for k in get_tree().get_nodes_in_group("kubelet"):
@@ -109,6 +107,7 @@ func die():
 func take_damage(amount):
     current_health -= amount
     current_kube_power += kube_power_per_health * amount
+    Globals.shake_camera(damage_shake_magnitude, damage_shake_duration)
     if current_health <= 0:
         die()
 
@@ -119,3 +118,4 @@ func add_flying_force(force, damage=0):
 func revive():
     current_health = MAX_HEALTH
     is_alive = true
+

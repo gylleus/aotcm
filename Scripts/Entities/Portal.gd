@@ -18,6 +18,9 @@ func _ready():
     $Spatial/Portal.mesh.set("surface_1/material", mat)
     start_alpha = mat.get("shader_param/alpha")
 
+func stop():
+    enemies = []
+
 func _process(delta):
     if enemies != null && len(enemies) > 0:
         enemy_spawn_timer += delta

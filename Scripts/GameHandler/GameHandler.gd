@@ -8,7 +8,6 @@ export var game_over_scene : String
 export var score_per_second = 75
 export var spawn_interval = 15
 export var chaos_spawn_multiplier = 2.5
-export var chaos_spawn_divider = 2
 export var start_difficulty : float = 1
 export var difficulty_increment_per_minute : float = 1
 export var pod_health = 100
@@ -67,12 +66,7 @@ func _process(delta):
             end_game()
 
 func end_game():        
-    for enemy in get_tree().get_nodes_in_group("enemies"):
-        enemy.queue_free()
-    for pod in get_tree().get_nodes_in_group("pods"):
-        pod.queue_free()
-    for portal in get_tree().get_nodes_in_group("portals"):
-        portal.queue_free()
+    Globals.clean_scene()
     Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
     get_tree().change_scene(game_over_scene)
 
@@ -84,16 +78,17 @@ func get_next_spawn_timer():
 
 func _on_EnemySpawnTimer_timeout():
     $EnemySpawnTimer.wait_time = get_next_spawn_timer()
-    var wave_difficulty = current_difficulty
-    if Globals.chaos_active:
-        wave_difficulty /= chaos_spawn_divider
-    emit_signal("spawn_wave", wave_difficulty)
+    emit_signal("spawn_wave", current_difficulty)
+
+func clear_portals():
+    for portal in get_tree().get_nodes_in_group("portals"):
+        portal.stop()
 
 func _start_chaos():
     $FadeOut.interpolate_property($MusicPlayer, "volume_db", music_max_db,
-    music_min_db, 5.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+    music_min_db, 2.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
     $FadeIn.interpolate_property($ChaosMusicPlayer, "volume_db", music_min_db,
-    music_max_db, 2.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+    music_max_db, 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
     $FadeOut.start()
     $FadeIn.start()
     $ChaosMusicPlayer.volume_db = music_min_db
@@ -102,6 +97,8 @@ func _start_chaos():
     for enemy in enemies:
         enemy.start_chaos()
     Globals.chaos_active = true
+    clear_portals()
+    _on_EnemySpawnTimer_timeout()
 
 func _stop_chaos():
     $ChaosMusicPlayer.stop()
@@ -129,20 +126,23 @@ func respawn_player():
 
 func update_pods(pod_templates):
     var kubelet = get_tree().get_nodes_in_group("kubelet")[0]
-    var current_pods = get_tree().get_nodes_in_group("pods") + kubelet.pod_queue
+    var current_pods = get_tree().get_nodes_in_group("pods")
+    var current_pod_templates = kubelet.pod_queue
+    for p in current_pods:
+        current_pod_templates += [p.template]
     var matching_templates = []
     var matching_pods = []
     for t in pod_templates:
-        for p in current_pods:
-            if t.name == p.template.name:
+        for pt in current_pod_templates:
+            if t.name == pt.name:
                 matching_templates.push_back(t)
-                matching_pods.push_back(p)
+                matching_pods.push_back(pt)
                 continue
     for t in pod_templates:
         if !exists_in(t, matching_templates):
             kubelet.queue_pod(t)
     for p in current_pods:
-        if !exists_in(p, matching_pods) and !p.exploding:
+        if !exists_in(p.template, matching_pods) and !p.exploding:
             p.explode()              
     
 func exists_in(element, list):

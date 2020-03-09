@@ -2,6 +2,7 @@ extends Spatial
 
 export var SPAWN_RADIUS = 20
 export var SPAWN_PADDING = 3
+export var chaos_spawn_divider = 8
 export var difficulty_to_points_multiplier : float
 export var wave_base_points : float = 18
 export var nav_path_name : String
@@ -64,6 +65,8 @@ func select_enemy(points):
 
 func get_wave_enemies(difficulty):
     var difficulty_points = wave_base_points + difficulty * difficulty_to_points_multiplier
+    if Globals.chaos_active:
+        difficulty_points /= chaos_spawn_divider
     var enemies = []
     while difficulty_points > 0:
         var next_enemy = select_enemy(difficulty_points)

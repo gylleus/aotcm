@@ -11,11 +11,11 @@
 script = ExtResource( 1 )
 score_per_second = 150
 chaos_spawn_multiplier = 3.0
-chaos_spawn_divider = 3
 
 [node name="EnemySpawner" type="Spatial" parent="."]
 script = ExtResource( 2 )
 SPAWN_RADIUS = 100
+chaos_spawn_divider = 4
 difficulty_to_points_multiplier = 2.0
 wave_base_points = 36.0
 nav_path_name = "MonkeyNavigation"
@@ -30,7 +30,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="ChaosStartTimer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 10.0
 one_shot = true
 
 [node name="ChaosStopTimer" type="Timer" parent="."]
