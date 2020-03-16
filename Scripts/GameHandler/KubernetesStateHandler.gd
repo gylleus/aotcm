@@ -3,15 +3,13 @@ extends Node
 signal state_updated
 signal update_failed
 
-const PodTemplate = preload("res://Scripts/Entities/PodTemplate.gd")
+const PodTemplate = preload("res://Models/Entities/Pod/Scripts/PodTemplate.gd")
 
 var pod_templates = []
 
-func _ready():
-    get_pod_list()
-
 func update_state():
-    read_pods_from_api(KubernetesServer.namespace)
+    if KubernetesServer.connected:
+        read_pods_from_api(KubernetesServer.namespace)
 
 func get_pod_list():
     return pod_templates

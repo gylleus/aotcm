@@ -1,10 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scripts/Menu/ProgressBar.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Menu/Loading.gd" type="Script" id=2]
-[ext_resource path="res://UI/MenuBackground.png" type="Texture" id=3]
-[ext_resource path="res://UI/LoadingTheme.tres" type="Theme" id=4]
-[ext_resource path="res://UI/Monkey face.png" type="Texture" id=5]
+[ext_resource path="res://UI/Scripts/ProgressBar.gd" type="Script" id=1]
+[ext_resource path="res://UI/Scripts/Loading.gd" type="Script" id=2]
+[ext_resource path="res://UI/Images/MenuBackground.png" type="Texture" id=3]
+[ext_resource path="res://UI/Themes/LoadingTheme.tres" type="Theme" id=4]
+[ext_resource path="res://UI/Images/Monkey face.png" type="Texture" id=5]
+
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "RotateHead"

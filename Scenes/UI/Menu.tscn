@@ -1,52 +1,68 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://Scripts/Menu/StartGame.gd" type="Script" id=1]
-[ext_resource path="res://UI/MenuText.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Menu/KubernetesMenu.gd" type="Script" id=3]
-[ext_resource path="res://UI/HUDTheme.tres" type="Theme" id=4]
-[ext_resource path="res://UI/MenuBackground.png" type="Texture" id=5]
+[ext_resource path="res://UI/Scripts/StartGame.gd" type="Script" id=1]
+[ext_resource path="res://UI/Images/MenuText.png" type="Texture" id=2]
+[ext_resource path="res://UI/Scripts/KubernetesMenu.gd" type="Script" id=3]
+[ext_resource path="res://UI/Themes/HUDTheme.tres" type="Theme" id=4]
+[ext_resource path="res://UI/Images/MenuBackground.png" type="Texture" id=5]
 [ext_resource path="res://UI/Fonts/minotaur.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://UI/testfire.png" type="Texture" id=7]
-[ext_resource path="res://UI/BurningEye.tres" type="Material" id=8]
+[ext_resource path="res://UI/Images/testfire.png" type="Texture" id=7]
+[ext_resource path="res://UI/Particles/BurningEye.tres" type="Material" id=8]
 [ext_resource path="res://UI/Images/MonkeyFaceRedEyes - Copy.png" type="Texture" id=9]
 [ext_resource path="res://Audio/DoomMenu.wav" type="AudioStream" id=10]
 [ext_resource path="res://UI/Fonts/Plug-NickelBlack.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://UI/Fonts/FontData/K8sMenuFont.tres" type="DynamicFont" id=12]
 [ext_resource path="res://Scenes/KubernetesStateHandler.tscn" type="PackedScene" id=13]
-[ext_resource path="res://UI/loading.png" type="Texture" id=14]
-[ext_resource path="res://UI/MenuPanelStyle.tres" type="StyleBox" id=15]
+[ext_resource path="res://UI/Images/loading.png" type="Texture" id=14]
+[ext_resource path="res://UI/Themes/MenuPanelStyle.tres" type="StyleBox" id=15]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Bob"
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 1920, 1080 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 2890, 1779 )
+
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "bezier"
-tracks/0/path = NodePath(".:position:y")
+tracks/0/path = NodePath(".:rect_position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 1000, -0.25, 0, 0.25, 0, 880, -0.25, 0, 0.25, 0, 1000, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 240, -0.25, 0, 0.25, 0, 240, -0.25, 0, 0.25, 0, 240, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 491, -0.25, 0, 0.25, 0, 431, -0.25, 0, 0.25, 0, 491, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 41
 use_filter = true
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 36
 use_filter = true
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 34
 use_filter = true
 font_data = ExtResource( 11 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "Spin"
+[sub_resource type="Animation" id=7]
 loop = true
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -59,30 +75,30 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 )
 }
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 6 )
 
-[sub_resource type="StyleBoxLine" id=7]
+[sub_resource type="StyleBoxLine" id=9]
 color = Color( 0.415686, 0.384314, 0.384314, 1 )
 thickness = 10
 
-[sub_resource type="StyleBoxLine" id=8]
+[sub_resource type="StyleBoxLine" id=10]
 color = Color( 0.180392, 0.192157, 0.4, 1 )
 thickness = 10
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=11]
 size = 19
 use_filter = true
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=12]
 size = 45
 outline_color = Color( 0.427451, 0.662745, 0.490196, 1 )
 use_filter = true
 extra_spacing_char = 3
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=13]
 size = 60
 outline_size = 1
 outline_color = Color( 0.427451, 0.662745, 0.490196, 1 )
@@ -93,6 +109,14 @@ font_data = ExtResource( 6 )
 [node name="Node" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="Panel" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Menu" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -125,27 +149,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="TextureRect" parent="CanvasLayer/Menu"]
-show_behind_parent = true
-margin_right = 1920.0
-margin_bottom = 1080.0
-texture = ExtResource( 5 )
+[node name="MonkeyFace" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Monkey face" type="Sprite" parent="CanvasLayer/Menu"]
-position = Vector2( 943.55, 967.216 )
+[node name="MonkeyFace" type="Panel" parent="CanvasLayer/MonkeyFace"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -720.0
+margin_top = -589.0
+margin_right = 720.0
+margin_bottom = 370.001
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FireLeftEye" type="Particles2D" parent="CanvasLayer/MonkeyFace/MonkeyFace"]
+position = Vector2( 939.255, 540.833 )
 scale = Vector2( 0.505918, 0.505918 )
-texture = ExtResource( 9 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Menu/Monkey face"]
-autoplay = "Bob"
-playback_speed = 0.15
-anims/Bob = SubResource( 1 )
-
-[node name="FireLeftEye" type="Particles2D" parent="CanvasLayer/Menu/Monkey face"]
-position = Vector2( 411.537, 141.89 )
 amount = 200
 lifetime = 1.4
 speed_scale = 0.35
@@ -153,14 +180,20 @@ randomness = 0.88
 process_material = ExtResource( 8 )
 texture = ExtResource( 7 )
 
-[node name="FireRightEye" type="Particles2D" parent="CanvasLayer/Menu/Monkey face"]
-position = Vector2( -378.606, 141.89 )
+[node name="FireRightEye" type="Particles2D" parent="CanvasLayer/MonkeyFace/MonkeyFace"]
+position = Vector2( 539.508, 540.833 )
+scale = Vector2( 0.505918, 0.505918 )
 amount = 200
 lifetime = 1.4
 speed_scale = 0.35
 randomness = 0.84
 process_material = ExtResource( 8 )
 texture = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/MonkeyFace/MonkeyFace"]
+autoplay = "Bob"
+playback_speed = 0.15
+anims/Bob = SubResource( 3 )
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource( 10 )
@@ -187,7 +220,7 @@ margin_top = -221.0
 margin_right = 350.001
 margin_bottom = -103.999
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "START GAME"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -203,7 +236,7 @@ margin_top = -61.0
 margin_right = 350.001
 margin_bottom = 56.0008
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "KUBERNETES CONFIGURATION"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -219,7 +252,7 @@ margin_top = 109.0
 margin_right = 350.001
 margin_bottom = 226.001
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "EXIT"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -255,7 +288,7 @@ margin_left = 372.276
 margin_top = 2.0
 margin_right = 558.276
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 align = 1
 max_length = 5
 clear_button_enabled = true
@@ -271,7 +304,7 @@ margin_left = 585.88
 margin_top = 1.0
 margin_right = 670.88
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.12549, 0.65098, 0.215686, 1 )
 text = "OK"
 valign = 1
@@ -285,7 +318,7 @@ margin_left = 585.88
 margin_top = 1.0
 margin_right = 670.88
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.858824, 0.0980392, 0.0980392, 1 )
 text = "No connection"
 valign = 1
@@ -302,7 +335,7 @@ texture = ExtResource( 14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/KubernetesConfigPanel/PortLabel/LoadingImage"]
 autoplay = "Spin"
-anims/Spin = SubResource( 5 )
+anims/Spin = SubResource( 7 )
 
 [node name="Namespace" type="Label" parent="CanvasLayer/KubernetesConfigPanel"]
 margin_left = -56.0
@@ -322,7 +355,7 @@ margin_left = 388.0
 margin_top = 2.0
 margin_right = 859.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 align = 1
 max_length = 30
 expand_to_text_length = true
@@ -339,7 +372,7 @@ margin_left = 420.317
 margin_top = 33.0
 margin_right = 587.317
 margin_bottom = 87.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 custom_constants/check_vadjust = 0
 custom_constants/hseparation = 2
 text = "ALL NAMESPACES"
@@ -362,8 +395,8 @@ margin_left = 375.0
 margin_top = 3.0
 margin_right = 839.0
 margin_bottom = 51.0
-custom_styles/slider = SubResource( 7 )
-custom_styles/grabber_area = SubResource( 8 )
+custom_styles/slider = SubResource( 9 )
+custom_styles/grabber_area = SubResource( 10 )
 min_value = 1.0
 max_value = 30.0
 value = 10.0
@@ -396,7 +429,7 @@ margin_top = 129.5
 margin_right = -32.4992
 margin_bottom = 185.5
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 disabled = true
 text = "OK"
 script = ExtResource( 1 )
@@ -414,7 +447,7 @@ margin_top = 129.5
 margin_right = 305.381
 margin_bottom = 185.5
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "BACK"
 script = ExtResource( 1 )
 __meta__ = {
@@ -443,7 +476,7 @@ margin_top = -38.3559
 margin_right = 172.222
 margin_bottom = 30.644
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "SURVIVAL"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -456,7 +489,7 @@ margin_left = -137.494
 margin_top = 86.0
 margin_right = 151.506
 margin_bottom = 193.0
-custom_fonts/normal_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 11 )
 text = "- Defeat after losing certain amount of pods
 - Gradually increasing difficulty"
 scroll_active = false
@@ -474,7 +507,7 @@ margin_top = -38.3559
 margin_right = 172.222
 margin_bottom = 30.644
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -490,7 +523,7 @@ margin_top = -34.3689
 margin_right = 172.627
 margin_bottom = 34.6311
 theme = ExtResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "INVASION"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -503,7 +536,7 @@ margin_left = -147.494
 margin_top = 86.0
 margin_right = 141.506
 margin_bottom = 193.0
-custom_fonts/normal_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 11 )
 text = "- No defeat condition
 - Static difficulty"
 scroll_active = false
@@ -515,7 +548,7 @@ __meta__ = {
 margin_left = 313.501
 margin_right = 666.501
 margin_bottom = 101.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0.572549, 0.572549, 0.572549, 1 )
 text = "START GAME"
 align = 1
@@ -529,7 +562,7 @@ __meta__ = {
 margin_left = 15.0
 margin_right = 368.0
 margin_bottom = 101.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0.231373, 0.403922, 0.196078, 1 )
 text = "CONNECTED"
 valign = 1

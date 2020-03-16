@@ -1,6 +1,38 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Bullet.gd" type="Script" id=1]
+[sub_resource type="GDScript" id=3]
+script/source = "extends Spatial
+
+var max_range
+var travel_speed
+var damage
+var distance_travelled = 0
+
+var has_hit = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+    $Area.connect(\"body_entered\", self, \"on_hit\")
+
+func initialize_bullet(dmg, spd, max_rng):
+        max_range = max_rng
+        damage = dmg
+        travel_speed = spd
+
+func _physics_process(delta):
+    global_translate(transform.basis.z.normalized() * travel_speed * delta)
+    distance_travelled += travel_speed * delta
+    
+    if distance_travelled >= max_range:
+        queue_free()
+
+func on_hit(body):
+    if !has_hit:
+        if body.has_method(\"bullet_hit\"):
+            body.bullet_hit(damage)
+    has_hit = true
+   #queue_free()
+"
 
 [sub_resource type="SphereMesh" id=1]
 radial_segments = 4
@@ -10,7 +42,7 @@ rings = 4
 
 [node name="Bullet" type="Spatial"]
 transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
-script = ExtResource( 1 )
+script = SubResource( 3 )
 
 [node name="CSGMesh" type="CSGMesh" parent="."]
 mesh = SubResource( 1 )

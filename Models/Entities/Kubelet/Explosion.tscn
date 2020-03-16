@@ -1,7 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scripts/Entities/Kubelet/KubeletExplosion.gd" type="Script" id=1]
+[ext_resource path="res://Models/Entities/Kubelet/Scripts/KubeletExplosion.gd" type="Script" id=1]
 [ext_resource path="res://Audio/KubeExplosion.wav" type="AudioStream" id=2]
+
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -9,10 +10,11 @@ render_mode cull_disabled;
 
 uniform vec4 color : hint_color;
 uniform float alpha : hint_range(0.0,1.0);
+uniform float alpha_decay;
 
 void fragment() {
     ALBEDO = color.rgb;
-    ALPHA = alpha;
+    ALPHA = max(alpha - alpha_decay, 0);
 }
 
 void light() {
@@ -22,7 +24,8 @@ void light() {
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/color = Color( 1, 1, 0.85098, 1 )
-shader_param/alpha = 0.034
+shader_param/alpha = 0.497
+shader_param/alpha_decay = null
 
 [sub_resource type="Curve" id=3]
 max_value = 250.0
@@ -38,12 +41,13 @@ script = ExtResource( 1 )
 explosion_size = SubResource( 3 )
 explosion_duration = 2.5
 explosion_shape = Vector3( 1, 1, 1 )
-explosion_dir_elevation = 60.0
-explosion_force = 75.0
-implosion_force = 65.0
+explosion_dir_elevation = 75.0
+explosion_force = 120.0
+implosion_force = 95.0
 explosion_damage = 1500.0
 implosion_time_scale = 0.7
-camera_shake_magnitude = 0.25
+camera_shake_magnitude = 0.35
+camera_shake_duration = 5.0
 
 [node name="Area" type="Area" parent="."]
 

@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/GameHandler/Enemy.gd" type="Script" id=3]
 [ext_resource path="res://Audio/DoomNormal.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/KubernetesStateHandler.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Audio/DoomChaos2.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/DoomChaos.wav" type="AudioStream" id=6]
 
 [node name="GameHandler" type="Spatial"]
 script = ExtResource( 1 )
@@ -30,7 +30,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="ChaosStartTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 120.0
 one_shot = true
 
 [node name="ChaosStopTimer" type="Timer" parent="."]

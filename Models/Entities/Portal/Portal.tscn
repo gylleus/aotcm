@@ -1,10 +1,11 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Scripts/Entities/Portal.gd" type="Script" id=1]
+[ext_resource path="res://Models/Entities/Portal/Scripts/Portal.gd" type="Script" id=1]
 [ext_resource path="res://Models/Entities/Portal/Materials/Portal3.tres" type="Material" id=2]
 [ext_resource path="res://Scenes/Visuals/star.png" type="Texture" id=5]
 [ext_resource path="res://Models/Entities/Portal/PortalWave.png" type="Texture" id=6]
 [ext_resource path="res://Audio/Portal.wav" type="AudioStream" id=7]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_local_to_scene = true

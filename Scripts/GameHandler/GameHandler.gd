@@ -15,6 +15,7 @@ export var max_pod_amount = 10
 
 export var music_min_db : float = -80
 export var music_max_db : float = -4.5
+export var chaos_music_max_db : float = -8.5
 
 onready var chaos_start_timer = get_node("ChaosStartTimer")
 onready var chaos_stop_timer = get_node("ChaosStopTimer")
@@ -26,7 +27,7 @@ onready var current_difficulty : float = start_difficulty
 var chaos_active = false
 var dummy_pods_launched = 0
 
-const PodTemplate = preload("res://Scripts/Entities/PodTemplate.gd")
+const PodTemplate = preload("res://Models/Entities/Pod/Scripts/PodTemplate.gd")
 
 func _ready():
     $MusicPlayer.play()
@@ -88,7 +89,7 @@ func _start_chaos():
     $FadeOut.interpolate_property($MusicPlayer, "volume_db", music_max_db,
     music_min_db, 2.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
     $FadeIn.interpolate_property($ChaosMusicPlayer, "volume_db", music_min_db,
-    music_max_db, 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+    chaos_music_max_db, 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
     $FadeOut.start()
     $FadeIn.start()
     $ChaosMusicPlayer.volume_db = music_min_db

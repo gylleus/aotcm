@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/BulletHit.gd" type="Script" id=1]
+[ext_resource path="res://Models/Player/Scripts/BulletHit.gd" type="Script" id=1]
 [ext_resource path="res://Models/Sprites/BulletHits/bullet_hit1.png" type="Texture" id=2]
+
 
 [node name="BulletHit" type="Spatial"]
 script = ExtResource( 1 )

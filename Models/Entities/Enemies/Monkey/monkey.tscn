@@ -1,12 +1,12 @@
 [gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://Scripts/Entities/Enemies/MonkeyStateMachine.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Idle.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Falling.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Attack.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Stagger.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Move.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Entities/Enemies/EnemyStates/Die.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Enemies/MonkeyStateMachine.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Enemies/EnemyStates/Idle.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/EnemyStates/Falling.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/EnemyStates/Attack.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Enemies/EnemyStates/Stagger.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Enemies/EnemyStates/Move.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Enemies/EnemyStates/Die.gd" type="Script" id=7]
 [ext_resource path="res://Models/Entities/Enemies/Monkey/Materials/Fur.tres" type="Material" id=8]
 [ext_resource path="res://Models/Entities/Enemies/Monkey/Face.material" type="Material" id=9]
 [ext_resource path="res://Models/Entities/Enemies/Monkey/Materials/Eyebrow.tres" type="Material" id=10]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Audio/MonkeyPunch.wav" type="AudioStream" id=13]
 [ext_resource path="res://Scripts/AudioPlayer.gd" type="Script" id=14]
 [ext_resource path="res://Audio/MonkeyScream2.wav" type="AudioStream" id=15]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Attack"

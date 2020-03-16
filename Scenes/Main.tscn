@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Models/Entities/Kubelet/Kubelet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Models/Environment/Stones/stone1.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Models/Environment/KubeStone/KubeStoneOrbiting.tscn" type="PackedScene" id=18]
 [ext_resource path="res://space_painted3.png" type="Texture" id=19]
 [ext_resource path="res://Models/Environment/KubeStone/KubeStoneRotating.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Models/Entities/Enemies/Monkey/Monkey.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Models/Environment/Mushrooms/Scenes/Mushroom.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Models/Environment/Mushrooms/Scenes/Mushroom2.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Models/Environment/Mushrooms/Scenes/Mushroom4.tscn" type="PackedScene" id=25]
@@ -332,7 +333,7 @@ transform = Transform( -0.635936, 0.0320068, -0.0681176, 0.061817, 0.452407, -0.
 [node name="Structures" type="Spatial" parent="MonkeyNavigation/NavigationMeshInstance"]
 
 [node name="KubeletTemple" parent="MonkeyNavigation/NavigationMeshInstance/Structures" instance=ExtResource( 10 )]
-transform = Transform( 0.27547, 0, 0.157409, 0, 0.236024, 0, -0.157409, 0, 0.27547, -87.7981, -22.7298, -75.663 )
+transform = Transform( 0.27547, 0, 0.157409, 0, 0.236024, 0, -0.157409, 0, 0.27547, -87.7981, -23.7329, -75.663 )
 
 [node name="Pavilion" parent="MonkeyNavigation/NavigationMeshInstance/Structures" instance=ExtResource( 11 )]
 transform = Transform( 0.323434, 0, -0.505361, 0, 0.6, 0, 0.505361, 0, 0.323434, -113.938, -23.839, 24.3266 )
@@ -382,7 +383,6 @@ transform = Transform( 0.668378, 0, -0.743822, 0, 1, 0, 0.743822, 0, 0.668378, 8
 [node name="PlayerCharacter" parent="GameHandler/PlayerSpawn" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 WEIGHT = 75.0
-MAX_HEALTH = 50
 kube_power_per_damage_dealt = 0.5
 accel = 19
 deaccel = 18
@@ -395,3 +395,6 @@ far = 1000.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
+
+[node name="Monkey" parent="." instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.1201, -7.30559, -46.7298 )

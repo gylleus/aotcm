@@ -1,13 +1,18 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/Fonts/FontData/UIFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://UI/MenuBackground.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Menu/GameOver.gd" type="Script" id=3]
+[ext_resource path="res://UI/Images/MenuBackground.png" type="Texture" id=2]
+[ext_resource path="res://UI/Scripts/GameOver.gd" type="Script" id=3]
 [ext_resource path="res://UI/Fonts/Plug-NickelBlack.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Audio/DoomPeace.wav" type="AudioStream" id=5]
-[ext_resource path="res://Scripts/ScoreDisplay.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/MonkeysValue.gd" type="Script" id=7]
-[ext_resource path="res://UI/HUDTheme.tres" type="Theme" id=8]
+[ext_resource path="res://UI/Scripts/ScoreDisplay.gd" type="Script" id=6]
+[ext_resource path="res://UI/Scripts/MonkeysValue.gd" type="Script" id=7]
+[ext_resource path="res://UI/Themes/HUDTheme.tres" type="Theme" id=8]
+
+
+
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 60

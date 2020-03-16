@@ -1,10 +1,11 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Scripts/Entities/Kubelet/PodShooter.gd" type="Script" id=1]
+[ext_resource path="res://Models/Entities/Kubelet/Scripts/PodShooter.gd" type="Script" id=1]
 [ext_resource path="res://Models/Entities/Kubelet/KubeletStone.material" type="Material" id=2]
 [ext_resource path="res://Models/Entities/Kubelet/KubeletEye.material" type="Material" id=3]
 [ext_resource path="res://Models/Entities/Kubelet/Materials/Surface.tres" type="Material" id=4]
 [ext_resource path="res://Models/Entities/Kubelet/Materials/Eye.tres" type="Material" id=5]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Sphere"

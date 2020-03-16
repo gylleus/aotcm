@@ -3,7 +3,7 @@ extends Node
 var total_score : float = 0
 var monkeys_killed = 0
 var pods_lost = 0
-var lose_when_pods_killed = 2
+var lose_when_pods_killed = 25
 var survival = false
 
 var max_monkeys = 30

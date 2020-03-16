@@ -24,7 +24,7 @@ config/icon="res://UI/Images/MonkeyIcon.png"
 [autoload]
 
 Globals="*res://Scripts/Globals.gd"
-KubernetesServer="*res://Scripts/KubernetesServer.gd"
+KubernetesServer="*res://Scripts/GameHandler/KubernetesServer.gd"
 
 [debug]
 
