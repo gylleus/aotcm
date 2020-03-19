@@ -9,6 +9,7 @@ export var score_per_second = 75
 export var spawn_interval = 15
 export var chaos_spawn_multiplier = 2.5
 export var start_difficulty : float = 1
+export var invasion_difficulty : float = 1
 export var difficulty_increment_per_minute : float = 1
 export var pod_health = 100
 export var max_pod_amount = 10
@@ -23,13 +24,17 @@ onready var spawn_timer = get_node("ChaosStopTimer")
 onready var spawn_pos = $PlayerSpawn
 
 var k8s_handler
-onready var current_difficulty : float = start_difficulty
+var current_difficulty : float = start_difficulty
 var chaos_active = false
 var dummy_pods_launched = 0
 
 const PodTemplate = preload("res://Models/Entities/Pod/Scripts/PodTemplate.gd")
 
 func _ready():
+    if Globals.survival:
+        current_difficulty = start_difficulty
+    else:
+        current_difficulty = invasion_difficulty
     $MusicPlayer.play()
     $MusicPlayer.volume_db = music_max_db
     chaos_start_timer.start()
@@ -52,7 +57,7 @@ func queue_dummy_pods():
     var templates = []
     for p in current_pods:
         templates.push_back(p.template)
-    for i in range(pod_amount):
+    for _i in range(pod_amount):
         dummy_pods_launched += 1
         templates.push_back(PodTemplate.new("pod-%s" % dummy_pods_launched, pod_health))
     update_pods(templates)
@@ -78,7 +83,11 @@ func get_next_spawn_timer():
     return time
 
 func _on_EnemySpawnTimer_timeout():
+    spawn_enemies()
+
+func spawn_enemies():
     $EnemySpawnTimer.wait_time = get_next_spawn_timer()
+    $EnemySpawnTimer.start()
     emit_signal("spawn_wave", current_difficulty)
 
 func clear_portals():
@@ -99,7 +108,7 @@ func _start_chaos():
         enemy.start_chaos()
     Globals.chaos_active = true
     clear_portals()
-    _on_EnemySpawnTimer_timeout()
+    spawn_enemies()
 
 func _stop_chaos():
     $ChaosMusicPlayer.stop()

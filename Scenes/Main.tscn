@@ -159,7 +159,7 @@ transform = Transform( 0.502191, -0.0682534, 2.12197, 0.196897, 1.34634, 0.06626
 transform = Transform( 3.57163, 0.00780255, 0.193931, -0.0870839, 3.23758, -0.173699, -0.196802, 0.0477583, 3.57154, 12.572, 2.13131, -36.9318 )
 
 [node name="small_tree4" parent="MonkeyNavigation/NavigationMeshInstance/Environment/Trees/KapokTree" instance=ExtResource( 27 )]
-transform = Transform( 2.12394, 0.11813, -2.87183, -1.35797, 3.14222, -0.577064, 2.75309, 0.470995, 2.10473, 100.253, -10.0458, 22.9962 )
+transform = Transform( -1.737, -0.222871, -3.09686, -0.809754, 3.20699, -0.352989, 3.08698, 0.168321, -1.77953, 101.134, -13.7793, 2.0888 )
 
 [node name="small_tree5" parent="MonkeyNavigation/NavigationMeshInstance/Environment/Trees/KapokTree" instance=ExtResource( 27 )]
 transform = Transform( -0.754475, 0.215794, 2.60108, -0.567227, 2.41975, -0.812219, -2.60583, -0.244459, -0.684276, 3.22327, -3.61001, 42.793 )
@@ -372,9 +372,9 @@ transform = Transform( 18.2733, -3.5757, 14.0785, 12.1958, 16.0662, -11.7491, -7
 [node name="GameHandler" parent="." instance=ExtResource( 14 )]
 pause_mode = 2
 game_over_scene = "res://Scenes/UI/GameOver.tscn"
-chaos_spawn_multiplier = 12.0
-start_difficulty = 0.6
-difficulty_increment_per_minute = 0.6
+chaos_spawn_multiplier = 2.5
+start_difficulty = 0.4
+difficulty_increment_per_minute = 0.2
 music_max_db = 0.0
 
 [node name="PlayerSpawn" type="Spatial" parent="GameHandler"]

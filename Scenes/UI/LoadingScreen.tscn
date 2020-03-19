@@ -4,23 +4,20 @@
 [ext_resource path="res://UI/Scripts/Loading.gd" type="Script" id=2]
 [ext_resource path="res://UI/Images/MenuBackground.png" type="Texture" id=3]
 [ext_resource path="res://UI/Themes/LoadingTheme.tres" type="Theme" id=4]
-[ext_resource path="res://UI/Images/Monkey face.png" type="Texture" id=5]
-
-
-
+[ext_resource path="res://UI/Images/MonkeyFaceRedEyes - Copy.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "RotateHead"
 loop = true
 tracks/0/type = "bezier"
-tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/path = NodePath(".:rect_rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.280192, -4.77927, 360, -0.24119, -42.293, 0.25, 0, 360, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.8, 1 )
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 320, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8 )
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -36,11 +33,12 @@ game_scene = "res://Scenes/Main.tscn"
 
 [node name="Background" type="TextureRect" parent="LoadingScreen"]
 show_behind_parent = true
-margin_right = 1920.0
-margin_bottom = 1080.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 3 )
+expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
@@ -77,10 +75,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Monkey face" type="Sprite" parent="LoadingScreen/MonkeyFace"]
-position = Vector2( 921.864, 524.534 )
-rotation = 6.28319
+[node name="Monkey face" type="TextureRect" parent="LoadingScreen/MonkeyFace"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -165.0
+margin_right = 250.0
+margin_bottom = 165.0
+rect_rotation = 360.0
+rect_pivot_offset = Vector2( 250, 165 )
 texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingScreen/MonkeyFace/Monkey face"]
 autoplay = "RotateHead"

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Shoot.wav-bdd01363935ba8177dce8b3b512d355e.sample"
+path="res://.import/Shoot2.wav-e578abdb5e1d6cc7f3acdee7bcace35d.sample"
 
 [deps]
 
-source_file="res://Audio/Shoot.wav"
-dest_files=[ "res://.import/Shoot.wav-bdd01363935ba8177dce8b3b512d355e.sample" ]
+source_file="res://Models/Player/Audio/Shoot2.wav"
+dest_files=[ "res://.import/Shoot2.wav-e578abdb5e1d6cc7f3acdee7bcace35d.sample" ]
 
 [params]
 

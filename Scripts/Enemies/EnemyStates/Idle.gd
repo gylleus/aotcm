@@ -1,4 +1,4 @@
-extends "res://Scripts/Entities/Enemies/EnemyStates/FSMState.gd"
+extends "res://Scripts/Enemies/EnemyStates/FSMState.gd"
 
 func update(input):
     var output = {}    

@@ -12,7 +12,7 @@
 [ext_resource path="res://UI/Fonts/minotaur.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://UI/Scripts/Score.gd" type="Script" id=11]
 [ext_resource path="res://Models/Player/Scripts/HealthBar.gd" type="Script" id=12]
-[ext_resource path="res://Audio/Shoot.wav" type="AudioStream" id=13]
+[ext_resource path="res://Models/Player/Audio/Shoot2.wav" type="AudioStream" id=13]
 [ext_resource path="res://UI/Scripts/PodsLeft.gd" type="Script" id=14]
 [ext_resource path="res://UI/Scripts/PodLog.gd" type="Script" id=15]
 [ext_resource path="res://UI/Fonts/Cascadia.ttf" type="DynamicFontData" id=16]
@@ -26,10 +26,11 @@
 [ext_resource path="res://Models/Player/Audio/Hitmark.wav" type="AudioStream" id=24]
 
 [sub_resource type="CapsuleShape" id=1]
-height = 0.002
+radius = 1.78278
+height = 1.15916
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.336309, 1, 1 )
+extents = Vector3( 0.639604, 1, 1.84697 )
 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, -2.96538, 0, 0, Vector2( 0.44358, 0.254545 ), -0.856667, -0.856667, 0, 0, Vector2( 0.984436, 0.0090909 ), -0.380338, 0.0, 0, 0 ]
@@ -416,7 +417,7 @@ WEIGHT = 450.0
 kube_power_per_second = 100
 
 [node name="BodyCollider" type="CollisionShape" parent="."]
-transform = Transform( 0.82, 0, 0, 0, 2.1, 0, 0, 0, 0.425, 0, 1.10941, 0.0560107 )
+transform = Transform( 0.82, 0, 0, 0, 2.1, 0, 0, 0, 0.425, 0, 2.73779, 0.0560107 )
 shape = SubResource( 1 )
 
 [node name="FeetCollider" type="CollisionShape" parent="."]
@@ -424,7 +425,7 @@ transform = Transform( 1.41271, 0, 0, 0, 0.0704462, 0, 0, 0, 0.465509, 0, -0.847
 shape = SubResource( 2 )
 
 [node name="RotationHelper" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92441, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87619, 0 )
 
 [node name="Camera" type="Camera" parent="RotationHelper"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.0411232, -0.523437 )
@@ -499,6 +500,7 @@ __meta__ = {
 }
 
 [node name="Hitmark" type="TextureRect" parent="HUD"]
+self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -516,7 +518,7 @@ script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-lifetime = 1.0
+lifetime = 0.4
 
 [node name="AmmoBar" type="Panel" parent="HUD"]
 anchor_left = 1.0
@@ -771,9 +773,9 @@ one_shot = true
 [node name="GunSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83986, 0 )
 stream = ExtResource( 13 )
-unit_db = -1.5
+unit_db = -2.0
 unit_size = 10.0
-max_db = -1.5
+max_db = 0.0
 pitch_scale = 0.9
 
 [node name="HurtSound" type="AudioStreamPlayer3D" parent="."]

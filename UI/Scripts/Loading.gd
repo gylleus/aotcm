@@ -15,8 +15,8 @@ func load_game():
         var current_stage = float(loader.get_stage())+1
         var total_stage = float(loader.get_stage_count())
 
-        var attack_timer = get_tree().create_timer(0.01)
-        yield(attack_timer, "timeout")
+        var timer = get_tree().create_timer(0.01)
+        yield(timer, "timeout")
         
         update_progress( float(current_stage / total_stage)) 
         if err == ERR_FILE_EOF:

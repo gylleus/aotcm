@@ -6,6 +6,7 @@ export var chaos_spawn_divider = 8
 export var difficulty_to_points_multiplier : float
 export var wave_base_points : float = 18
 export var nav_path_name : String
+export var portal_spawn_angle_threshold : float = 0.7
 
 onready var navmesh = get_tree().get_root().find_node(nav_path_name, true, false)
 
@@ -30,7 +31,7 @@ func is_valid_spawn_location(location):
     var path = navmesh.get_simple_path(location, origin_point) 
     return path != null
 
-func select_spawn_location(max_attempts=10):
+func select_spawn_location(max_attempts=30):
     var spawn_location = null
     var attempts = 0
     while !is_valid_spawn_location(spawn_location) and attempts < max_attempts:   
@@ -45,7 +46,7 @@ func raycast_from_sky(pos2d):
     var from = Vector3(pos2d.x, 5, pos2d.y)
     var to = Vector3(pos2d.x, -50, pos2d.y)
     var col_info = world_state.intersect_ray(from, to)
-    if col_info.size() > 0:
+    if col_info.size() > 0 and col_info["normal"].dot(Vector3(0, 1, 0)) > portal_spawn_angle_threshold:
         return col_info.position
     else:
         return null

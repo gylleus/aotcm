@@ -16,10 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Attack of the Chaos Monkeys"
+config/description="Kubernetes Defense Shooter"
 run/main_scene="res://Scenes/UI/Menu.tscn"
 boot_splash/image="res://UI/Images/SplashScreen.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://UI/Images/MonkeyIcon.png"
+config/windows_native_icon="res://UI/Images/MonkeyIcon.ico"
+boot_splash/description="Kubernetes Defense Shooter"
+boot_splash/windows_native_icon="res://UI/Images/MonkeyIcon.ico"
 
 [autoload]
 
