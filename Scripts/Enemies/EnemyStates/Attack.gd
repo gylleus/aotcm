@@ -18,28 +18,22 @@ in_air : bool
 
 """
 
-var audio_clips = [
-    preload("res://Audio/MonkeyAttack3.wav"),
-    preload("res://Audio/MonkeyAttack4.wav")
-]
-
 var last_input 
 
 func update(input):
-    var output = input
-    input["anim_player"].playback_speed = animation_speed * input["attack_speed"]
-    last_input = input
-    return output
+	var output = input
+	input["anim_player"].playback_speed = animation_speed * input["attack_speed"]
+	last_input = input
+	return output
 
 func damage(target, attack_damage):
-    if target.has_method("take_damage"):
-        target.take_damage(attack_damage)
+	if target.has_method("take_damage"):
+		target.take_damage(attack_damage)
 
 func attack_hit():
-    var target = last_input["current_target"]
-    var owner = last_input["owner"]
- #   $AudioPlayer.stream = audio_clips[randi() % len(audio_clips)-1]
-    if is_instance_valid(target) && (target.get_global_transform().origin - owner.get_global_transform().origin).length() <= last_input["attack_range"] * hit_range_multiplier:
-        $AudioPlayer.play()
-        damage(target, last_input["attack_damage"])
-        
+	var target = last_input["current_target"]
+	var owner = last_input["owner"]
+	if is_instance_valid(target) && (target.get_global_transform().origin - owner.get_global_transform().origin).length() <= last_input["attack_range"] * hit_range_multiplier:
+		$AudioPlayer.play()
+		damage(target, last_input["attack_damage"])
+		

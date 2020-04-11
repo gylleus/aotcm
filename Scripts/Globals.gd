@@ -9,11 +9,7 @@ var survival = false
 var max_monkeys = 30
 
 var audio_clips = {
-	"RifleShot": preload("res://Audio/RifleShot.wav"),
-	"MonkeyAttack1": preload("res://Audio/MonkeyAttack1.wav"),
-	"MonkeyAttack2": preload("res://Audio/MonkeyAttack2.wav"),
-	"MonkeyAttack3": preload("res://Audio/MonkeyAttack3.wav"),
-	"MonkeyAttack4": preload("res://Audio/MonkeyAttack4.wav")
+	"RifleShot": preload("res://Audio/RifleShot.wav")
 }
 
 const AUDIO_PLAYER_SCENE = preload("res://Scenes/AudioPlayer.tscn")
