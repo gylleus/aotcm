@@ -51,7 +51,7 @@ volume_db = -4.496
 
 [node name="ChaosMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -4.496
+volume_db = -2.496
 
 [node name="KubernetesStateHandler" parent="." instance=ExtResource( 5 )]
 

@@ -19,7 +19,7 @@
 [ext_resource path="res://UI/Scripts/PauseMenu.gd" type="Script" id=17]
 [ext_resource path="res://UI/Scripts/StartGame.gd" type="Script" id=18]
 [ext_resource path="res://UI/Themes/MenuPanelStyle.tres" type="StyleBox" id=19]
-[ext_resource path="res://Models/Player/Audio/Hurt1.wav" type="AudioStream" id=20]
+[ext_resource path="res://Models/Player/Audio/Hurt3.wav" type="AudioStream" id=20]
 [ext_resource path="res://Models/Player/Audio/StartReload.wav" type="AudioStream" id=21]
 [ext_resource path="res://Models/Sprites/Crosshair/hitmark.png" type="Texture" id=22]
 [ext_resource path="res://Models/Player/Scripts/Hitmark.gd" type="Script" id=23]
@@ -487,28 +487,31 @@ __meta__ = {
 }
 
 [node name="Crosshair" type="TextureRect" parent="HUD"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_left = 0.491667
+anchor_top = 0.485185
+anchor_right = 0.508333
+anchor_bottom = 0.514815
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource( 8 )
 stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Hitmark" type="TextureRect" parent="HUD"]
 self_modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 0.458374
-margin_top = -27.3392
-margin_right = 38.4584
-margin_bottom = 10.6608
+anchor_left = 0.500239
+anchor_top = 0.474686
+anchor_right = 0.500239
+anchor_bottom = 0.524445
+margin_left = 6.10352e-05
+margin_right = 38.0001
+margin_bottom = -15.7401
 grow_horizontal = 2
 grow_vertical = 2
 rect_rotation = 45.0
@@ -516,30 +519,27 @@ texture = ExtResource( 22 )
 stretch_mode = 6
 script = ExtResource( 23 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 lifetime = 0.4
 
 [node name="AmmoBar" type="Panel" parent="HUD"]
-anchor_left = 1.0
-anchor_top = 1.0
+anchor_left = 0.858854
+anchor_top = 0.912963
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -271.0
-margin_top = -94.0
 rect_pivot_offset = Vector2( -130.466, -182.335 )
 theme = ExtResource( 9 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="AmmoText" type="Label" parent="HUD/AmmoBar"]
-anchor_left = -0.0516605
+anchor_left = 0.257909
 anchor_top = 0.0638298
-anchor_right = 0.97417
+anchor_right = 0.936876
 anchor_bottom = 1.06383
-margin_left = 83.8934
-margin_right = -14.1066
+margin_right = -3.99991
 custom_fonts/font = SubResource( 16 )
 text = "30/30"
 align = 1
@@ -549,18 +549,19 @@ __meta__ = {
 }
 
 [node name="StatusBar" type="Panel" parent="HUD"]
-margin_right = 455.0
-margin_bottom = 153.0
+anchor_left = -0.000470066
+anchor_right = 0.236509
+anchor_bottom = 0.141667
 custom_styles/panel = SubResource( 17 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="HealthBar" type="ProgressBar" parent="HUD/StatusBar"]
-margin_left = 17.0
-margin_top = 65.6227
-margin_right = 406.0
-margin_bottom = 86.6227
+anchor_left = 0.0373626
+anchor_top = 0.428907
+anchor_right = 0.892308
+anchor_bottom = 0.566161
 custom_styles/fg = SubResource( 18 )
 custom_styles/bg = SubResource( 19 )
 custom_colors/font_color = Color( 0.101961, 0.0941176, 0.0941176, 1 )
@@ -569,14 +570,14 @@ rounded = true
 percent_visible = false
 script = ExtResource( 12 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="KubeBar" type="ProgressBar" parent="HUD/StatusBar"]
-margin_left = 17.0
-margin_top = 96.0
-margin_right = 275.0
-margin_bottom = 117.0
+anchor_left = 0.0373626
+anchor_top = 0.627451
+anchor_right = 0.604396
+anchor_bottom = 0.764706
 custom_styles/fg = SubResource( 20 )
 custom_styles/bg = SubResource( 19 )
 custom_colors/font_color = Color( 0.101961, 0.0941176, 0.0941176, 1 )
@@ -584,31 +585,31 @@ value = 66.0
 rounded = true
 percent_visible = false
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="KubeBarHighlight" type="Panel" parent="HUD/StatusBar"]
-margin_left = 17.0
-margin_top = 93.0
-margin_right = 273.0
-margin_bottom = 120.0
+anchor_left = 0.0373626
+anchor_top = 0.607843
+anchor_right = 0.6
+anchor_bottom = 0.784314
 custom_styles/panel = SubResource( 21 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="QLabel" type="Label" parent="HUD/StatusBar/KubeBarHighlight"]
-margin_left = 253.777
-margin_top = -2.11862
-margin_right = 333.777
-margin_bottom = 67.8814
+anchor_left = 1.03715
+anchor_top = -0.212172
+anchor_right = 1.34965
+anchor_bottom = 2.38042
 custom_fonts/font = SubResource( 22 )
 text = "Q"
 align = 1
 valign = 1
 uppercase = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/StatusBar/KubeBarHighlight/QLabel"]
@@ -616,23 +617,23 @@ autoplay = "Grow"
 anims/Grow = SubResource( 23 )
 
 [node name="Score" type="Label" parent="HUD/StatusBar"]
-margin_left = 155.0
-margin_top = 17.0
-margin_right = 438.0
-margin_bottom = 57.0
+anchor_left = 0.340659
+anchor_top = 0.111111
+anchor_right = 0.962637
+anchor_bottom = 0.372549
 custom_fonts/font = SubResource( 24 )
 text = "100000"
 valign = 1
 script = ExtResource( 11 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="ScoreTitle" type="Label" parent="HUD/StatusBar"]
-margin_left = 17.0
-margin_top = 12.0
-margin_right = 147.0
-margin_bottom = 62.0
+anchor_left = 0.0373626
+anchor_top = 0.0784314
+anchor_right = 0.323077
+anchor_bottom = 0.405229
 custom_fonts/font = SubResource( 25 )
 text = "SCORE:"
 valign = 1
@@ -641,15 +642,13 @@ __meta__ = {
 }
 
 [node name="PodBar" type="Panel" parent="HUD"]
-anchor_left = 0.329
-anchor_right = 0.329
-margin_left = -157.68
-margin_right = 158.32
-margin_bottom = 87.0
+anchor_left = 0.246875
+anchor_right = 0.411458
+anchor_bottom = 0.0805556
 custom_styles/panel = SubResource( 26 )
 script = ExtResource( 14 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="PodsLeft" type="Label" parent="HUD/PodBar"]
@@ -784,7 +783,7 @@ stream = ExtResource( 20 )
 unit_db = -1.5
 unit_size = 10.0
 max_db = 2.754
-pitch_scale = 1.3
+pitch_scale = 1.1
 
 [node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83986, 0 )
