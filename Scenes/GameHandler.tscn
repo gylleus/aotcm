@@ -31,7 +31,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="ChaosStartTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 60.0
 one_shot = true
 
 [node name="ChaosStopTimer" type="Timer" parent="."]

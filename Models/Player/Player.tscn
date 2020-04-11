@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Models/Player/Scripts/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Models/Player/Scripts/Camera.gd" type="Script" id=2]
@@ -373,6 +373,7 @@ font_data = ExtResource( 10 )
 size = 30
 outline_size = 2
 outline_color = Color( 0.333333, 0.313726, 0.313726, 1 )
+use_mipmaps = true
 use_filter = true
 extra_spacing_char = 5
 font_data = ExtResource( 10 )
@@ -386,6 +387,13 @@ border_color = Color( 0.65098, 0.65098, 0.65098, 1 )
 border_blend = true
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
+
+[sub_resource type="DynamicFont" id=31]
+size = 32
+outline_size = 2
+outline_color = Color( 0.494118, 0.494118, 0.494118, 1 )
+extra_spacing_char = 5
+font_data = ExtResource( 10 )
 
 [sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.0588235, 0.0470588, 0.105882, 0.321569 )
@@ -478,7 +486,8 @@ anims/idle = SubResource( 14 )
 anims/reload = SubResource( 15 )
 
 [node name="HUD" type="Control" parent="."]
-anchor_right = 1.0
+anchor_left = 0.00169462
+anchor_right = 1.00169
 anchor_bottom = 1.0
 margin_top = -2.05039
 margin_bottom = -2.05042
@@ -549,9 +558,9 @@ __meta__ = {
 }
 
 [node name="StatusBar" type="Panel" parent="HUD"]
-anchor_left = -0.000470066
-anchor_right = 0.236509
-anchor_bottom = 0.141667
+margin_left = -0.902527
+margin_right = 454.097
+margin_bottom = 153.0
 custom_styles/panel = SubResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -642,21 +651,23 @@ __meta__ = {
 }
 
 [node name="PodBar" type="Panel" parent="HUD"]
-anchor_left = 0.246875
-anchor_right = 0.411458
-anchor_bottom = 0.0805556
+margin_left = 474.0
+margin_right = 790.0
+margin_bottom = 87.0
 custom_styles/panel = SubResource( 26 )
 script = ExtResource( 14 )
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="PodsLeft" type="Label" parent="HUD/PodBar"]
+anchor_top = 0.5
+anchor_bottom = 0.5
 margin_left = 239.0
-margin_top = 17.0
-margin_right = 321.0
-margin_bottom = 57.0
-custom_fonts/font = SubResource( 24 )
+margin_top = -26.5
+margin_right = 276.0
+margin_bottom = 13.5
+custom_fonts/font = SubResource( 31 )
 text = "50"
 valign = 1
 __meta__ = {
@@ -664,15 +675,17 @@ __meta__ = {
 }
 
 [node name="PodsLeftTitle" type="Label" parent="HUD/PodBar"]
+anchor_top = 0.5
+anchor_bottom = 0.5
 margin_left = 23.0
-margin_top = 12.0
+margin_top = -30.2722
 margin_right = 219.0
-margin_bottom = 62.0
+margin_bottom = 19.7278
 custom_fonts/font = SubResource( 25 )
 text = "PODS LEFT:"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="LogPanel" type="Panel" parent="HUD"]
@@ -707,9 +720,8 @@ max_length = 9
 
 [node name="PausePanel" type="Panel" parent="HUD"]
 visible = false
-margin_top = 5.48363e-06
-margin_right = 1920.0
-margin_bottom = 1080.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 29 )
 script = ExtResource( 17 )
 __meta__ = {
@@ -732,14 +744,10 @@ __meta__ = {
 }
 
 [node name="ResumeButton" type="Button" parent="HUD/PausePanel/PauseMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -119.5
-margin_top = -74.0
-margin_right = 119.5
-margin_bottom = -18.0
+anchor_left = 0.206388
+anchor_top = 0.175439
+anchor_right = 0.793612
+anchor_bottom = 0.421053
 theme = ExtResource( 9 )
 custom_fonts/font = SubResource( 30 )
 text = "RESUME"
@@ -749,20 +757,16 @@ __meta__ = {
 }
 
 [node name="ExitButton" type="Button" parent="HUD/PausePanel/PauseMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -119.5
-margin_top = 18.0
-margin_right = 119.5
-margin_bottom = 74.0
+anchor_left = 0.206388
+anchor_top = 0.578947
+anchor_right = 0.793612
+anchor_bottom = 0.824561
 theme = ExtResource( 9 )
 custom_fonts/font = SubResource( 30 )
 text = "EXIT"
 script = ExtResource( 18 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="RespawnTimer" type="Timer" parent="."]
@@ -791,7 +795,7 @@ stream = ExtResource( 21 )
 unit_db = -1.5
 unit_size = 10.0
 max_db = -2.0
-pitch_scale = 1.25
+pitch_scale = 1.1
 
 [node name="HitmarkSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83986, 0 )

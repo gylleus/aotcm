@@ -33,7 +33,6 @@ var is_alive = true
 var hurt_sounds = [
 	preload("res://Models/Player/Audio/Hurt1.wav"),
 	preload("res://Models/Player/Audio/Hurt3.wav")
- #   preload("res://Models/Player/Audio/Hurt3.wav")
    ]
 
 # Called when the node enters the scene tree for the first time.

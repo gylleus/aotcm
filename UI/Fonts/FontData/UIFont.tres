@@ -3,7 +3,7 @@
 [ext_resource path="res://UI/Fonts/Plug-NickelBlack.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 200
+size = 122
 outline_size = 4
 outline_color = Color( 0.466667, 0.443137, 0.443137, 1 )
 use_filter = true
