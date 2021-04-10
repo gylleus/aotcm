@@ -24,7 +24,7 @@ portal_spawn_angle_threshold = 0.8
 [node name="Monkey" type="Spatial" parent="EnemySpawner"]
 script = ExtResource( 3 )
 difficulty_points = 5
-scene_path = "res://Models/Entities/Enemies/Monkey/Monkey.tscn"
+scene_path = "Models/Entities/Enemies/Monkey/monkey.tscn"
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 10.0
@@ -48,6 +48,7 @@ wait_time = 10.0
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -4.496
+pitch_scale = 1.07
 
 [node name="ChaosMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

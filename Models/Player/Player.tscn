@@ -388,29 +388,29 @@ border_blend = true
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[sub_resource type="DynamicFont" id=31]
+[sub_resource type="DynamicFont" id=27]
 size = 32
 outline_size = 2
 outline_color = Color( 0.494118, 0.494118, 0.494118, 1 )
 extra_spacing_char = 5
 font_data = ExtResource( 10 )
 
-[sub_resource type="StyleBoxFlat" id=27]
+[sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.0588235, 0.0470588, 0.105882, 0.321569 )
 border_width_top = 3
 border_width_right = 3
 border_color = Color( 0.380392, 0.372549, 0.372549, 1 )
 border_blend = true
 
-[sub_resource type="DynamicFont" id=28]
+[sub_resource type="DynamicFont" id=29]
 size = 13
 use_filter = true
 font_data = ExtResource( 16 )
 
-[sub_resource type="StyleBoxFlat" id=29]
+[sub_resource type="StyleBoxFlat" id=30]
 bg_color = Color( 0.101961, 0.101961, 0.101961, 0.545098 )
 
-[sub_resource type="DynamicFont" id=30]
+[sub_resource type="DynamicFont" id=31]
 size = 41
 use_filter = true
 font_data = ExtResource( 10 )
@@ -478,7 +478,7 @@ active = true
 parameters/playback = SubResource( 12 )
 script = ExtResource( 7 )
 damage = 15
-hitmark = NodePath("../HUD/Hitmark")
+hitmark = NodePath("../HUD/Crosshair/Hitmark")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fire = SubResource( 13 )
@@ -512,15 +512,15 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Hitmark" type="TextureRect" parent="HUD"]
-self_modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.500239
-anchor_top = 0.474686
-anchor_right = 0.500239
-anchor_bottom = 0.524445
-margin_left = 6.10352e-05
-margin_right = 38.0001
-margin_bottom = -15.7401
+[node name="Hitmark" type="TextureRect" parent="HUD/Crosshair"]
+anchor_left = 0.980311
+anchor_top = 0.127049
+anchor_right = 0.980311
+anchor_bottom = 0.127049
+margin_left = -16.37
+margin_top = -15.0656
+margin_right = 21.63
+margin_bottom = 22.9344
 grow_horizontal = 2
 grow_vertical = 2
 rect_rotation = 45.0
@@ -667,7 +667,7 @@ margin_left = 239.0
 margin_top = -26.5
 margin_right = 276.0
 margin_bottom = 13.5
-custom_fonts/font = SubResource( 31 )
+custom_fonts/font = SubResource( 27 )
 text = "50"
 valign = 1
 __meta__ = {
@@ -693,7 +693,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -145.0
 margin_right = 406.0
-custom_styles/panel = SubResource( 27 )
+custom_styles/panel = SubResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -702,7 +702,7 @@ __meta__ = {
 anchor_left = 0.0172414
 anchor_right = 1.0
 anchor_bottom = 0.993464
-custom_fonts/normal_font = SubResource( 28 )
+custom_fonts/normal_font = SubResource( 29 )
 text = "test
 test
 test
@@ -722,7 +722,7 @@ max_length = 9
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 29 )
+custom_styles/panel = SubResource( 30 )
 script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -749,7 +749,7 @@ anchor_top = 0.175439
 anchor_right = 0.793612
 anchor_bottom = 0.421053
 theme = ExtResource( 9 )
-custom_fonts/font = SubResource( 30 )
+custom_fonts/font = SubResource( 31 )
 text = "RESUME"
 script = ExtResource( 18 )
 __meta__ = {
@@ -762,7 +762,7 @@ anchor_top = 0.578947
 anchor_right = 0.793612
 anchor_bottom = 0.824561
 theme = ExtResource( 9 )
-custom_fonts/font = SubResource( 30 )
+custom_fonts/font = SubResource( 31 )
 text = "EXIT"
 script = ExtResource( 18 )
 __meta__ = {
