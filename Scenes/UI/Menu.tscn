@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://UI/Scripts/StartGame.gd" type="Script" id=1]
 [ext_resource path="res://UI/Images/MenuText.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/KubernetesStateHandler.tscn" type="PackedScene" id=13]
 [ext_resource path="res://UI/Images/loading.png" type="Texture" id=14]
 [ext_resource path="res://UI/Themes/MenuPanelStyle.tres" type="StyleBox" id=15]
+[ext_resource path="res://Scripts/Settings/ScreenInitializer.gd" type="Script" id=16]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 5 )
@@ -518,6 +519,9 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="ScreenSizeSetter" type="Node" parent="."]
+script = ExtResource( 16 )
 [connection signal="pressed" from="CanvasLayer/MenuButtons/StartGame" to="CanvasLayer/StartGamePanel" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuButtons/KubernetesConnect" to="CanvasLayer/KubernetesConfigPanel" method="_on_KubernetesConnect_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuButtons/ExitGame" to="CanvasLayer/StartGamePanel" method="_on_ExitGame_pressed"]

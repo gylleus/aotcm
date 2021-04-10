@@ -18,6 +18,7 @@ _global_script_class_icons={
 config/name="Attack of the Chaos Monkeys"
 config/description="Kubernetes Defense Shooter"
 run/main_scene="res://Scenes/UI/Menu.tscn"
+run/low_processor_mode=true
 boot_splash/image="res://UI/Images/SplashScreen.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://UI/Images/MonkeyIcon.png"
@@ -32,12 +33,13 @@ KubernetesServer="*res://Scripts/GameHandler/KubernetesServer.gd"
 
 [debug]
 
+settings/fps/force_fps=240
 settings/stdout/print_fps=true
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=2560
+window/size/height=1440
 window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 window/vsync/use_vsync=false
