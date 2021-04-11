@@ -9,6 +9,7 @@ This repo contains the source code and assets for a Kubernetes FPS shooter where
 * __Movement__: `WASD-keys`
 * __Shoot__: `Left-click`
 * __Jump__: `Spacebar`
+* __Reload__: `R`
 * __Special ability__: `Q`
 
 ## Game overview
